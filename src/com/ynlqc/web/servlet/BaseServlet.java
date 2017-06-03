@@ -18,9 +18,9 @@ public class BaseServlet extends HttpServlet {
 	public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {//获取子类对象
 		Class clazz=this.getClass();
-		System.out.println(this);
+		System.out.println("Servlet : "+this);
 		String m=request.getParameter("method");
-		System.out.println(m);
+		System.out.println("method : "+m);
 		if (m==null) {
 			m="index";
 		}

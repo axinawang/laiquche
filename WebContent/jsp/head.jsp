@@ -48,7 +48,10 @@
 						<!-- Collect the nav links, forms, and other content for toggling -->
 						<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 							<ul id="menuId" class="nav navbar-nav">
-								
+							<li class="active"><a href="product_list.htm">我要买车<span class="sr-only">(current)</span></a></li>
+							<li><a href=''>来取车介绍</a></li>
+							<li><a href=''>常见问题</a></li>
+							<li><a href=''>下载应用</a></li>	
 							</ul>
 							<form class="navbar-form navbar-right" role="search">
 								<div class="form-group">
@@ -63,7 +66,7 @@
 					<!-- /.container-fluid -->
 				</nav>
 			</div>
-			<script>
+			<!-- <script>
 			$(function(){
 				//发送ajax请求
 				$.get("${pageContext.request.contextPath}/category?method=findAll",function(data){
@@ -77,4 +80,4 @@
 				},"json");
 			});
 			
-			</script>
+			</script> -->
