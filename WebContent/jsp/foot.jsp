@@ -48,7 +48,9 @@
 					
 					//遍历数组
 					$(data).each(function(){
-						$ul.append($("<li><a href='${pageContext.request.contextPath}/car?method=findByPage&brand_id="+this.brand_id+"&currPage=1'>"+this.brand_name+"</a></li>"));
+						//$ul.append($("<li><a href='${pageContext.request.contextPath}/car?method=findByBrandInPage&brand_id="+this.brand_id+"&currPage=1'>"+this.brand_name+"</a></li>"));
+						$ul.append($("<li><a href='${pageContext.request.contextPath}/car?method=findByBrand&brand_id="+this.brand_id+"'>"+this.brand_name+"</a></li>"));
+						
 					});
 				},"json");
 				//发送ajax请求
@@ -58,7 +60,7 @@
 					
 					//遍历数组
 					$(data).each(function(){
-						$ul.append($("<li><a href='${pageContext.request.contextPath}/car?method=findByPage&series_id="+this.series_id+"&currPage=1'>"+this.series_name+"</a></li>"));
+						$ul.append($("<li><a href='${pageContext.request.contextPath}/car?method=findBySeriesInPage&series_id="+this.series_id+"&currPage=1'>"+this.series_name+"</a></li>"));
 					});
 				},"json");
 			});

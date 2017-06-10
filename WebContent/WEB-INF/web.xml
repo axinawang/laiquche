@@ -63,4 +63,14 @@
     <servlet-name>SeriesServlet</servlet-name>
     <url-pattern>/series</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>CarServlet</display-name>
+    <servlet-name>CarServlet</servlet-name>
+    <servlet-class>com.ynlqc.web.servlet.CarServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CarServlet</servlet-name>
+    <url-pattern>/car</url-pattern>
+  </servlet-mapping>
 </web-app>

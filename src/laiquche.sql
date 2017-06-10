@@ -1,5 +1,6 @@
-create database laiquche;
-		use laiquche;
+DROP DATABASE laiquche;
+CREATE DATABASE IF NOT EXISTS laiquche CHARACTER SET 'utf8';  
+use laiquche;
 		
 DROP TABLE IF EXISTS `category`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -61,7 +62,11 @@ CREATE TABLE `brand` (
 
 LOCK TABLES `brand` WRITE;
 
-INSERT INTO `brand`(`brand_name`,`is_hot`,`brand_image`) VALUES ('本田',1,'brand/bentian.png'),('现代',1,'brand/bentian.png'),('别克',1,'brand/bentian.png'),('大众',0,'brand/bentian.png');
+INSERT INTO `brand`(`brand_name`,`is_hot`,`brand_image`) VALUES
+ ('本田',1,'brand/bentian.png'),('现代',1,'brand/bentian.png'),('别克',1,'brand/bentian.png'),('大众',0,'brand/bentian.png'),
+('丰田',1,'brand/bentian.png'),('标致',1,'brand/bentian.png'),('雷克萨斯',1,'brand/bentian.png'),('讴歌',0,'brand/bentian.png'),
+('宝马',1,'brand/bentian.png'),('奥迪',1,'brand/bentian.png'),('法拉利',1,'brand/bentian.png'),('保时捷',0,'brand/bentian.png'),
+('玛莎拉蒂',1,'brand/bentian.png'),('福特',1,'brand/bentian.png'),('雪佛兰',1,'brand/bentian.png'),('jeep',0,'brand/bentian.png');
 
 UNLOCK TABLES;
 
@@ -118,9 +123,9 @@ CREATE TABLE `car` (
 `com_fuel_consumption` varchar(100) DEFAULT NULL,
 `body_color` varchar(100) DEFAULT NULL,
 `description` text DEFAULT NULL,
-`brand_id` int
-`model_id` int
-`series_id` int
+`brand_id` int,
+`model_id` int,
+`series_id` int,
   PRIMARY KEY (`car_id`),
   KEY `sfk_0001` (`brand_id`),
   CONSTRAINT `sfk_0001` FOREIGN KEY (`brand_id`) REFERENCES `brand` (`brand_id`),
@@ -132,8 +137,11 @@ CREATE TABLE `car` (
 
 LOCK TABLES `car` WRITE;
 
-INSERT INTO `car`
-(`car_name`,`is_hot`,`brand_id`,`model_id`,`series_id`) VALUES 
-('本田凌派',1),('本田缤智',1),('现代领动',0),('现代朗动',0),('现代悦纳',1),('现代ix35',1),('现代名图',0),('别克英朗',0),('别克威朗',0),('别克君威',0);
-
+INSERT INTO `car` VALUES 
+('1','车车车 2016款 1.8L CVT舒适版1','2015-11-02',1,0,100000,10000,8800,3200,'含购置税首保','car/primaryexample.png','car/hot/example.jpg','三厢',4000,2000,1700,'2.5L 200马力 L4','CVT无级变速','前置前驱','汽油','6.1L/100km(工信部)','月光银/内饰浅','在中国，如果能将一个汽车细分市场与一个车型关联起来，恐怕只有一款车型能担当此任，那就是别克GL8，在国内别克GL8几乎是商务车的别称。能做到如此成功除了出道早之外，与别克GL8过硬的汽车品质也是分不开的。',1,1,1),
+('2','车车车 2016款 1.8L CVT舒适版2','2015-11-02',1,0,100000,10000,8800,3200,'含购置税首保','car/primaryexample.png','car/hot/example.jpg','三厢',4000,2000,1700,'2.5L 200马力 L4','CVT无级变速','前置前驱','汽油','6.1L/100km(工信部)','月光银/内饰浅','在中国，如果能将一个汽车细分市场与一个车型关联起来，恐怕只有一款车型能担当此任，那就是别克GL8，在国内别克GL8几乎是商务车的别称。能做到如此成功除了出道早之外，与别克GL8过硬的汽车品质也是分不开的。',1,2,1),
+('3','车车车 2016款 1.8L CVT舒适版3','2015-11-02',1,0,100000,10000,8800,3200,'含购置税首保','car/primaryexample.png','car/hot/example.jpg','三厢',4000,2000,1700,'2.5L 200马力 L4','CVT无级变速','前置前驱','汽油','6.1L/100km(工信部)','月光银/内饰浅','在中国，如果能将一个汽车细分市场与一个车型关联起来，恐怕只有一款车型能担当此任，那就是别克GL8，在国内别克GL8几乎是商务车的别称。能做到如此成功除了出道早之外，与别克GL8过硬的汽车品质也是分不开的。',1,1,3),
+('4','车车车 2016款 1.8L CVT舒适版4','2015-11-02',1,0,100000,10000,8800,3200,'含购置税首保','car/primaryexample.png','car/hot/example.jpg','三厢',4000,2000,1700,'2.5L 200马力 L4','CVT无级变速','前置前驱','汽油','6.1L/100km(工信部)','月光银/内饰浅','在中国，如果能将一个汽车细分市场与一个车型关联起来，恐怕只有一款车型能担当此任，那就是别克GL8，在国内别克GL8几乎是商务车的别称。能做到如此成功除了出道早之外，与别克GL8过硬的汽车品质也是分不开的。',3,1,1),
+('5','车车车 2016款 1.8L CVT舒适版5','2015-11-02',1,0,100000,10000,8800,3200,'含购置税首保','car/primaryexample.png','car/hot/example.jpg','三厢',4000,2000,1700,'2.5L 200马力 L4','CVT无级变速','前置前驱','汽油','6.1L/100km(工信部)','月光银/内饰浅','在中国，如果能将一个汽车细分市场与一个车型关联起来，恐怕只有一款车型能担当此任，那就是别克GL8，在国内别克GL8几乎是商务车的别称。能做到如此成功除了出道早之外，与别克GL8过硬的汽车品质也是分不开的。',1,2,1),
+('6','车车车 2016款 1.8L CVT舒适版6','2015-11-02',1,0,100000,10000,8800,3200,'含购置税首保','car/primaryexample.png','car/hot/example.jpg','三厢',4000,2000,1700,'2.5L 200马力 L4','CVT无级变速','前置前驱','汽油','6.1L/100km(工信部)','月光银/内饰浅','在中国，如果能将一个汽车细分市场与一个车型关联起来，恐怕只有一款车型能担当此任，那就是别克GL8，在国内别克GL8几乎是商务车的别称。能做到如此成功除了出道早之外，与别克GL8过硬的汽车品质也是分不开的。',1,3,1);
 UNLOCK TABLES;
