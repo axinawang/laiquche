@@ -49,7 +49,11 @@ public class Series implements Serializable {
 		this.description = description;
 	}
 	
-	
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return series_id.toString();
+	}
 	
 	
 }

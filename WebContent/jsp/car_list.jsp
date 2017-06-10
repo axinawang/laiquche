@@ -34,6 +34,11 @@ body {
 ul .active{
 	background-color: red;
 }
+li:hover {
+	cursor: pointer;
+	background-color:#888;
+	color:#fff;
+}
 </style>
 
 
@@ -119,51 +124,59 @@ ul .active{
 		</div>
 
 		<div class="container-fluid">
-			<div class="row-fluid">
-
+		   <div class="row-fluid">
+		   <%--左侧栏 --%>
+			<div class="col-md-3">
 				<div class="accordion" id="accordion-527728">
-				<%--展示所有品牌 --%>
+				    <%--展示所有品牌 --%>
 					<div class="accordion-group">					
 						<div class="accordion-heading">						
-						  <ul id="brandId" class="list-inline" title="品牌">                        
+						  <ul id="brandBaseId" class="brandId list-inline" title="品牌">                        
 							<li><a class="accordion-toggle" data-toggle="collapse"
 								data-parent="#accordion-527728" href="#accordion-element-80741">更多品牌</a>
 							</li>
-							<li value="-1" class="active" >全部</li>
+							<li value="-1" class="brandLi" >全部</li>
 					      </ul>
 						</div>
 						<div id="accordion-element-80741" class="accordion-body collapse in">
 							<div class="accordion-inner">
 								<div style="text-align: left; margin-top: 5px;">
-									<ul id="brandMoreId" class="list-inline" title="更多品牌">                                     
+									<ul id="brandMoreId" class="brandId list-inline" title="更多品牌">                                     
 									</ul>
 								</div>
 							</div>
 						</div>
-					</div>
+					</div>					
 					<%--展示所有品牌结束 --%>
 					
 				</div>
-                <%--展示查询到的车 --%>
-				<div class="row" style="width: 1210px; margin: 0 auto;">
+			</div>
+			
+			<%--展示查询到的车 --%>
+			<div class="col-md-9">                
+				<div class="row" style="width: 1100px; margin: 0 auto;">
 					<div class="col-md-12"></div>
 					<c:forEach items="${page_bean.list}" var="p">
-						<div class="col-md-2">
-							<a
+						<div class="col-md-4" style="margin:5px 0px">
+							<div style="border:1px solid #555;padding:2px">
+							<a 
 								href="${pageContext.request.contextPath}/car?method=getByCarId&car_id=${p.car_id}">
 								<img src="${pageContext.request.contextPath}/${p.car_image}"
-								width="170" height="170" style="display: inline-block;">
+								width="330" height="330" style="display: inline-block;">
 							</a>
+							
 							<p>
 								<a
 									href="${pageContext.request.contextPath}/car?method=getByCarId&car_id=${p.car_id}"
-									style='color: green'>${fn:substring(p.car_name,0,10) }...</a>
+									style='color: green'>${fn:substring(p.car_name,0,30) }...</a>
 							</p>
 							<p><font color="#FF0000">指导价：&yen;${p.guide_price }</font>	</p>
+							<p><font color="#FF0000">首付：&yen;${p.down_payment }</font>	</p>
+							<p><font color="#FF0000">月供：&yen;${p.month_payment }</font>	</p>
+							</div>
 						</div>
 					</c:forEach>
-				</div>
-			    <%--展示查询到的车结束 --%>
+				</div>		    
 			    
 				<!--分页 -->
 				<%-- <div style="width: 380px; margin: 0 auto; margin-top: 50px;">
@@ -217,11 +230,13 @@ ul .active{
 					</ul>
 				</div> --%>
 				<!-- 分页结束=======================        -->
-
-				<!--
-       		商品浏览记录:
-        -->
-				<div
+            
+				
+             </div>
+             <%--展示查询到的车结束 --%>
+             </div>
+             <!-- 		商品浏览记录:        -->
+				<%-- <div
 					style="width: 1210px; margin: 0 auto; padding: 0 9px; border: 1px solid #ddd; border-top: 2px solid #999; height: 246px;">
 
 					<h4 style="width: 50%; float: left; font: 14px/30px"微软雅黑 ";">浏览记录</h4>
@@ -240,9 +255,8 @@ ul .active{
 						</ul>
 
 					</div>
-				</div>
-
-			</div>
+				</div> --%>
+			
 		</div>
 	</div>
 
@@ -253,20 +267,40 @@ ul .active{
 			
 			//发送ajax请求
 			$.get("${pageContext.request.contextPath}/brand?method=findAll",function(data) {
-				    //获取brand的ul标签
-					var $ul = $("#brandId");
-					//遍历数组
-					$(data).each(function() {
+				    //遍历数组
+					$(data).each(function(i) {
+						//console.log(i);
+						if(i<5){
+							//获取brandBaseId的ul标签
+							var $ul = $("#brandBaseId");
+							$ul.append($("<li class='brandLi' value='"+this.brand_id+"'>"+this.brand_name+"</li>"));
+					
+						}else{
+							//获取brandMoreId的ul标签
+							var $ul = $("#brandMoreId");
+							$ul.append($("<li class='brandLi' value='"+this.brand_id+"'>"+this.brand_name+"</li>"));
+					}});
 						//$ul.append($("<li><a href='${pageContext.request.contextPath}/car?method=findByBrandInPage&brand_id="+this.brand_id+"&currPage=1'>"+this.brand_name+"</a></li>"));
-						$ul.append($("<li><a href='${pageContext.request.contextPath}/car?method=findByBrand&brand_id="	+ this.brand_id	+ "'>"+ this.brand_name	+ "</a></li>"));});
-					//给每个品牌添加点击事件
-					$('#brandId li').click(function(){
-					    alert("brandId li is clicked");
-
-					});
+						//给每个品牌添加点击事件
+					  $('.brandLi').each(function(){
+						  if(${brand_id}==$(this).attr("value")) $(this).addClass("active");
+						   $(this).click(function(){
+							   var $brandId = $(this).attr("value");
+							   window.location = "${pageContext.request.contextPath}/car?method=findByPage&brand_id="+$brandId;
+							   //alert("${pageContext.request.contextPath}/car?method=findByPageAjax&brand_id="+$brandId);
+							   /* $.get("${pageContext.request.contextPath}/car?method=findByPage&brand_id="+$brandId,function(data){
+								   $(data).each(function(){
+									   alert(this.car_name);
+								   });
+							   },"json"); */
+						   });
+					   }); 	   
+					   
+					
 			      },"json");
 			
 		});
+		
 			
 	</script>
 

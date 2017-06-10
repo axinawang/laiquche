@@ -38,6 +38,10 @@ public class Model implements Serializable {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-
+@Override
+public String toString() {
+	// TODO Auto-generated method stub
+	return model_id.toString();
+}
 	
 }

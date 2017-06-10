@@ -50,5 +50,9 @@ public class Brand implements Serializable {
 		this.description = description;
 	}
 	
-	
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return getBrand_id().toString();
+	}
 }
