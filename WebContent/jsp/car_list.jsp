@@ -19,7 +19,6 @@
 <!-- 引入自定义css文件 style.css -->
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/css/style.css" type="text/css" />
-	<link href="${pageContext.request.contextPath}/css/base.css" type="text/css" rel="stylesheet" />
 <style>
 body {
 	margin-top: 20px;
@@ -31,13 +30,15 @@ body {
 	width: 100%;
 	height: 300px;
 }
-ul .active{
+
+#leftColumn ul .active {
 	background-color: red;
 }
-li:hover {
+
+#leftColumn li:hover {
 	cursor: pointer;
-	background-color:#888;
-	color:#fff;
+	background-color: #888;
+	color: #fff;
 }
 </style>
 
@@ -47,139 +48,64 @@ li:hover {
 <body>
 	<div class="container-fluid">
 
-		<!-- 头部的顶部 -->
+		<jsp:include page="/jsp/head.jsp"></jsp:include>
+		<hr />
 		<div class="container-fluid">
-			<div class="col-md-4">
-				<img src="${pageContext.request.contextPath}/img/logo2.png" />
-			</div>
-			<div class="col-md-5">
-				<img src="${pageContext.request.contextPath}/img/header.png" />
-			</div>
-			<div class="col-md-3" style="padding-top: 20px">
-				<ol class="list-inline">
-					<c:if test="${ empty user}">
-						<li><a
-							href="${pageContext.request.contextPath}/user?method=loginUI">登录</a></li>
-						<li><a
-							href="${pageContext.request.contextPath}/user?method=registerUI">注册</a></li>
-						<!-- <li><a href="cart.htm">购物车</a></li> -->
-					</c:if>
-					<c:if test="${not empty user }">
-						<li>hello:${user.username}</li>
-						<li><a
-							href="${pageContext.request.contextPath}/user?method=logout">logout</a></li>
-						<!-- <li><a href="cart.htm">购物车</a></li> -->
-					</c:if>
-				</ol>
-			</div>
-		</div>
-		<!--
-            	时间：2015-12-30
-            	描述：导航条
-            -->
-		<div class="container-fluid">
-			<nav class="navbar navbar-inverse">
-				<div class="container-fluid">
-					<!-- Brand and toggle get grouped for better mobile display -->
-					<div class="navbar-header">
-						<button type="button" class="navbar-toggle collapsed"
-							data-toggle="collapse"
-							data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-							<span class="sr-only">Toggle navigation</span> <span
-								class="icon-bar"></span> <span class="icon-bar"></span> <span
-								class="icon-bar"></span>
-						</button>
-						<a class="navbar-brand"
-							href="${pageContext.request.contextPath}/index">首页</a>
+			<div class="row-fluid">
+				<%--左侧栏 --%>
+				<div class="col-md-3" id="leftColumn">
+					<%--展示所有品牌 --%>
+					<div id="divTitle">
+						<h3>品牌</h3>
 					</div>
-
-					<!-- Collect the nav links, forms, and other content for toggling -->
-					<div class="collapse navbar-collapse"
-						id="bs-example-navbar-collapse-1">
-						<ul id="menuId" class="nav navbar-nav">
-							<li><a
-								href="${pageContext.request.contextPath}/car?method=findByPage">我要买车<span
-									class="sr-only">(current)</span></a></li>
-							<li><a
-								href='${pageContext.request.contextPath}/jsp/info.jsp'>来取车介绍</a></li>
-							<li><a href=''>常见问题</a></li>
-							<li><a href=''>下载应用</a></li>
+					<div id="divContet">
+						<ul id="brandId" class="list-inline">
+							<li value="-1" class="brandLi">全部</li>
 						</ul>
-
-
-						<form class="navbar-form navbar-right" role="search">
-							<div class="form-group">
-								<input type="text" class="form-control" placeholder="Search">
-							</div>
-							<button type="submit" class="btn btn-default">搜索</button>
-						</form>
-
-						
-
-					</div>
-					<!-- /.navbar-collapse -->
-				</div>
-				<!-- /.container-fluid -->
-			</nav>
-		</div>
-
-		<div class="container-fluid">
-		   <div class="row-fluid">
-		   <%--左侧栏 --%>
-			<div class="col-md-3">
-				<div class="accordion" id="accordion-527728">
-				    <%--展示所有品牌 --%>
-					<div class="accordion-group">					
-						<div class="accordion-heading">						
-						  <ul id="brandBaseId" class="brandId list-inline" title="品牌">                        
-							<li><a class="accordion-toggle" data-toggle="collapse"
-								data-parent="#accordion-527728" href="#accordion-element-80741">更多品牌</a>
-							</li>
-							<li value="-1" class="brandLi" >全部</li>
-					      </ul>
+						<div id="divJianhua" style="float:right">
+							<a href="#">更多品牌</a>
 						</div>
-						<div id="accordion-element-80741" class="accordion-body collapse in">
-							<div class="accordion-inner">
-								<div style="text-align: left; margin-top: 5px;">
-									<ul id="brandMoreId" class="brandId list-inline" title="更多品牌">                                     
-									</ul>
+					</div>
+
+					<%--展示所有品牌结束 --%>
+
+
+				</div>
+
+				<%--展示查询到的车 --%>
+				<div  class="col-md-9">
+					<div  id="carsDiv" class="row" style="width: 1100px; margin: 0 auto;">
+						
+						<c:forEach items="${page_bean.list}" var="p">
+							<div class="col-md-4" style="margin: 5px 0px">
+								<div style="border: 1px solid #555; padding: 2px">
+									<a target='_blank' 
+										href="${pageContext.request.contextPath}/car?method=getByCarId&car_id=${p.car_id}">
+										<img src="${pageContext.request.contextPath}/${p.car_image}"
+										width="330" height="330" style="display: inline-block;">
+									</a>
+
+									<p>
+										<a target='_blank' 
+											href="${pageContext.request.contextPath}/car?method=getByCarId&car_id=${p.car_id}"
+											style='color: green'>${fn:substring(p.car_name,0,30) }...</a>
+									</p>
+									<p>
+										<font color="#FF0000">指导价：&yen;${p.guide_price }</font>
+									</p>
+									<p>
+										<font color="#FF0000">首付：&yen;${p.down_payment }</font>
+									</p>
+									<p>
+										<font color="#FF0000">月供：&yen;${p.month_payment }</font>
+									</p>
 								</div>
 							</div>
-						</div>
-					</div>					
-					<%--展示所有品牌结束 --%>
-					
-				</div>
-			</div>
-			
-			<%--展示查询到的车 --%>
-			<div class="col-md-9">                
-				<div class="row" style="width: 1100px; margin: 0 auto;">
-					<div class="col-md-12"></div>
-					<c:forEach items="${page_bean.list}" var="p">
-						<div class="col-md-4" style="margin:5px 0px">
-							<div style="border:1px solid #555;padding:2px">
-							<a 
-								href="${pageContext.request.contextPath}/car?method=getByCarId&car_id=${p.car_id}">
-								<img src="${pageContext.request.contextPath}/${p.car_image}"
-								width="330" height="330" style="display: inline-block;">
-							</a>
-							
-							<p>
-								<a
-									href="${pageContext.request.contextPath}/car?method=getByCarId&car_id=${p.car_id}"
-									style='color: green'>${fn:substring(p.car_name,0,30) }...</a>
-							</p>
-							<p><font color="#FF0000">指导价：&yen;${p.guide_price }</font>	</p>
-							<p><font color="#FF0000">首付：&yen;${p.down_payment }</font>	</p>
-							<p><font color="#FF0000">月供：&yen;${p.month_payment }</font>	</p>
-							</div>
-						</div>
-					</c:forEach>
-				</div>		    
-			    
-				<!--分页 -->
-				<%-- <div style="width: 380px; margin: 0 auto; margin-top: 50px;">
+						</c:forEach>
+					</div>
+
+					<!--分页 -->
+					<div style="width: 380px; margin: 0 auto; margin-top: 50px;">
 					<ul class="pagination"
 						style="text-align: center; margin-top: 10px;">
 						<!-- 判断当前页是否是首页  -->
@@ -228,15 +154,15 @@ li:hover {
 						</c:if>
 
 					</ul>
-				</div> --%>
-				<!-- 分页结束=======================        -->
-            
-				
-             </div>
-             <%--展示查询到的车结束 --%>
-             </div>
-             <!-- 		商品浏览记录:        -->
-				<%-- <div
+				</div> 
+					<!-- 分页结束=======================        -->
+
+
+				</div>
+				<%--展示查询到的车结束 --%>
+			</div>
+			<!-- 		商品浏览记录:        -->
+			<%-- <div
 					style="width: 1210px; margin: 0 auto; padding: 0 9px; border: 1px solid #ddd; border-top: 2px solid #999; height: 246px;">
 
 					<h4 style="width: 50%; float: left; font: 14px/30px"微软雅黑 ";">浏览记录</h4>
@@ -256,48 +182,71 @@ li:hover {
 
 					</div>
 				</div> --%>
-			
+
 		</div>
 	</div>
 
-
-	<jsp:include page="/jsp/foot.jsp"></jsp:include>
-	<script>
+<script>
+		//添加查询到的车子信息
+		$.addCars=function(data){
+			$("#carsDiv").empty();
+			$(data).each(function(){
+				alert(this.car_name);
+				
+				var content="<div class='col-md-4' style='margin: 5px 0px'><div style='border: 1px solid #555; padding: 2px'>"+
+				"<a target='_blank' href=${pageContext.request.contextPath}/car?method=getByCarId&car_id="+this.car_id+">"+
+				"<img src=${pageContext.request.contextPath}/"+this.car_image+" width='330' height='330' style='display: inline-block;'></a>"+
+			"<p><a target='_blank' href=${pageContext.request.contextPath}/car?method=getByCarId&car_id="+this.car_id+" style='color: green'>"+this.car_name+"</a></p>"+
+				"<p><font color='#FF0000'>指导价：&yen;"+this.guide_price+ "</font></p>"+
+				"<p><font color='#FF0000'>首付：&yen;"+this.down_payment+"</font></p>"+
+			    "<p><font color='#FF0000'>月供：&yen;"+this.month_payment+"</font></p>"+
+			"</div></div>";
+				$("#carsDiv").append(content);
+				
+			});
+		};
 		$(function() {
 			
 			//发送ajax请求
 			$.get("${pageContext.request.contextPath}/brand?method=findAll",function(data) {
 				    //遍历数组
-					$(data).each(function(i) {
-						//console.log(i);
-						if(i<5){
-							//获取brandBaseId的ul标签
-							var $ul = $("#brandBaseId");
-							$ul.append($("<li class='brandLi' value='"+this.brand_id+"'>"+this.brand_name+"</li>"));
+					$(data).each(function(i) {						
+							//获取brandId的ul标签
+							var $ul = $("#brandId");
+							$ul.append($("<li class='brandLi' value='"+this.brand_id+"'>"+this.brand_name+"</li>"));						
 					
-						}else{
-							//获取brandMoreId的ul标签
-							var $ul = $("#brandMoreId");
-							$ul.append($("<li class='brandLi' value='"+this.brand_id+"'>"+this.brand_name+"</li>"));
-					}});
+					});
+				    
+					    $('#divContet ul li:gt(7)').hide();
+	                    $('#divJianhua a').html('更多品牌');
 						//$ul.append($("<li><a href='${pageContext.request.contextPath}/car?method=findByBrandInPage&brand_id="+this.brand_id+"&currPage=1'>"+this.brand_name+"</a></li>"));
+					  
 						//给每个品牌添加点击事件
 					  $('.brandLi').each(function(){
-						  if(${brand_id}==$(this).attr("value")) $(this).addClass("active");
+						  if( ${brand_id}==$(this).attr("value")) $(this).addClass("active");
 						   $(this).click(function(){
 							   var $brandId = $(this).attr("value");
-							   window.location = "${pageContext.request.contextPath}/car?method=findByPage&brand_id="+$brandId;
-							   //alert("${pageContext.request.contextPath}/car?method=findByPageAjax&brand_id="+$brandId);
-							   /* $.get("${pageContext.request.contextPath}/car?method=findByPage&brand_id="+$brandId,function(data){
-								   $(data).each(function(){
-									   alert(this.car_name);
-								   });
-							   },"json"); */
+							   //window.location = "${pageContext.request.contextPath}/car?method=findByPage&brand_id="+$brandId;
+							  $.get("${pageContext.request.contextPath}/car?method=findByPageAjax&brand_id="+$brandId,function(data){
+								  $.addCars(data);
+							  },"json");						   
+							   
 						   });
 					   }); 	   
 					   
 					
 			      },"json");
+			//品牌展开更多 收起
+			$('#divJianhua a').click(function () {
+                if ($('#divContet ul li:gt(7)').is(':visible')) {
+                    $('#divContet ul li:gt(7)').hide();
+                    $('#divJianhua a').html('更多品牌');
+                }
+                else {
+                    $('#divContet ul li:gt(7)').show();
+                    $('#divJianhua a').html('收起品牌');
+                }
+            });
 			
 		});
 		

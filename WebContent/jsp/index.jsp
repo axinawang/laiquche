@@ -1,139 +1,76 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-    <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-    <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+	pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
 <html>
 
-	<head>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>来取车</title>
-		<link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.min.css" type="text/css" />
-		<script src="${pageContext.request.contextPath}/js/jquery-1.11.3.min.js" type="text/javascript"></script>
-		<script src="${pageContext.request.contextPath}/js/bootstrap.min.js" type="text/javascript"></script>
-	</head>
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>来取车</title>
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/css/bootstrap.min.css"
+	type="text/css" />
+<script src="${pageContext.request.contextPath}/js/jquery-1.11.3.min.js"
+	type="text/javascript"></script>
+<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"
+	type="text/javascript"></script>
+	<!-- 引入自定义css文件 style.css -->
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/css/style.css" type="text/css" />
+</head>
 
-	<body>
-		<div class="container-fluid">
+<body>
+	<div class="container-fluid">
 
-			<jsp:include page="/jsp/head.jsp"></jsp:include>
+		<jsp:include page="/jsp/head.jsp"></jsp:include>
 
-			<!--
-            	作者：ci2713@163.com
-            	时间：2015-12-30
+		<!--
             	描述：轮播条
             -->
-			<div class="container-fluid">
-				<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-					<!-- Indicators -->
-					<ol class="carousel-indicators">
-						<li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-						<li data-target="#carousel-example-generic" data-slide-to="1"></li>
-						<li data-target="#carousel-example-generic" data-slide-to="2"></li>
-					</ol>
-
-					<!-- Wrapper for slides -->
-					<div class="carousel-inner" role="listbox">
-						<div class="item active">
-							<img src="${pageContext.request.contextPath}/img/1.jpg">
-							<div class="carousel-caption">
-
-							</div>
-						</div>
-						<div class="item">
-							<img src="${pageContext.request.contextPath}/img/2.jpg">
-							<div class="carousel-caption">
-
-							</div>
-						</div>
-						<div class="item">
-							<img src="${pageContext.request.contextPath}/img/3.jpg">
-							<div class="carousel-caption">
-
-							</div>
-						</div>
-					</div>
-
-					<!-- Controls -->
-					<a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
-						<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-						<span class="sr-only">Previous</span>
-					</a>
-					<a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
-						<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-						<span class="sr-only">Next</span>
-					</a>
-				</div>
-			</div>
-			<!--
-            	作者：ci2713@163.com
-            	时间：2015-12-30
-            	描述：商品显示
-            -->
-			<div class="container-fluid">
-				<div class="col-md-12">
-					<h2>热门车&nbsp;&nbsp;<img src="${pageContext.request.contextPath}/img/title2.jpg"/></h2>
-				</div>
+		<div class="container-fluid">
+			<div id="carousel-example-generic" class="carousel slide"
+				data-ride="carousel">
 				
-				<div class="col-md-10">
-					
-				<c:forEach items="${hList }" var="car">
-					<div class="col-md-5 col-md-offset-1" style="text-align:center;height:500px;padding:10px 0px;">
-						<a href="${pageContext.request.contextPath }/car?method=getByCarId&car_id=${car.car_id}">
-							<img src="${pageContext.request.contextPath}/${car.hot_image}" width="686px" height="344px" style="padding:0 10%;display: inline-block;">
-						</a>
-						</div>
-				</c:forEach>
-					
+
+				<!-- Wrapper for slides -->
+				<div class="carousel-inner" role="listbox">
+					<div class="item active">
+						<img src="${pageContext.request.contextPath}/img/1.jpg">
+						<div class="carousel-caption"></div>
+					</div>					
 				</div>
+
+				
 			</div>
-			<!--
-            	作者：ci2713@163.com
-            	时间：2015-12-30
-            	描述：广告部分
-            -->
-            <div class="container-fluid">
-				<img src="${pageContext.request.contextPath}/products/hao/ad.jpg" width="100%"/>
-			</div>
-			<!--
-            	作者：ci2713@163.com
-            	时间：2015-12-30
-            	描述：商品显示
-            -->
-			<div class="container-fluid">
-				<div class="col-md-12">
-					<h2>热门车&nbsp;&nbsp;<img src="${pageContext.request.contextPath}/img/title2.jpg"/></h2>
-				</div>
-				<div class="col-md-2" style="border:1px solid #E7E7E7;border-right:0;padding:0;">
-					<img src="${pageContext.request.contextPath}/products/hao/big01.jpg" width="205" height="404" style="display: inline-block;"/>
-				</div>
-				<div class="col-md-10">
-					<div class="col-md-6" style="text-align:center;height:200px;padding:0px;">
-						<a href="product_info.htm">
-							<img src="${pageContext.request.contextPath}/products/hao/middle01.jpg" width="516px" height="200px" style="display: inline-block;">
-						</a>
-					</div>
-					<c:forEach items="${hList }" var="car">
-					<div class="col-md-2" style="text-align:center;height:200px;padding:10px 0px;">
-						<a href="${pageContext.request.contextPath }/car?method=getByCarId&car_id=${car.car_id}">
-							<img src="${pageContext.request.contextPath}/${car.hot_image}" width="130" height="130" style="display: inline-block;">
-						</a>
-						<p><a href="${pageContext.request.contextPath }/car?method=getByCarId&car_id=${car.car_id}" style='color:#666'>${fn:substring(car.car_name,0,10) }...</a></p>
-							<p><font color="#E4393C" style="font-size:16px">&yen;${car.guide_price }</font></p>
-						
-						</div>
-				</c:forEach>
-					
-				</div>
-			</div>			
-			<!--
-            	作者：ci2713@163.com
-            	时间：2015-12-30
-            	描述：页脚部分
-            -->
-			<jsp:include page="/jsp/foot.jsp"></jsp:include>
 		</div>
-	</body>
+		<!--
+            	描述：热门车显示
+            -->
+		<div class="container-fluid">
+			<div class="col-md-12" style="text-align: center;">
+				<h1>热&nbsp;&nbsp;门&nbsp;&nbsp;车</h1>
+			</div>
+			<div class="col-md-12" >
+			<c:forEach items="${hotCarList}" var="car" varStatus="status">
+				<div class="col-md-6" style="${status.index%2==0 ? 'text-align: right;height: 280px;':'text-align: left;height: 280px;'}" >
+					<a
+						href="${pageContext.request.contextPath }/car?method=getByCarId&car_id=${car.car_id}">
+						<img src="${pageContext.request.contextPath}/${car.hot_image}"
+						width="545px" height="273px" >
+					</a>
+				</div>
+			</c:forEach>
+			</div>
+		</div>
+
+		<jsp:include page="/jsp/foot.jsp"></jsp:include>
+            
+            
+		
+	</div>
+	
+</body>
 
 </html>

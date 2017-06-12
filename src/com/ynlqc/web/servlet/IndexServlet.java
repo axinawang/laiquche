@@ -26,7 +26,7 @@ public class IndexServlet extends BaseServlet {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		request.setAttribute("hList", hotList);
+		request.setAttribute("hotCarList", hotList);
 		return "/jsp/index.jsp";
 	}
 
