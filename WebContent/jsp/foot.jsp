@@ -71,7 +71,7 @@ $(function () {
 					
 					//遍历数组
 					$(data).each(function(){
-						$ul.append($("<li><a href='${pageContext.request.contextPath}/car?method=findByPage&series_id="+this.series_id+"&currPage=1'>"+this.series_name+"</a></li>"));
+						$ul.append($("<li><a href='${pageContext.request.contextPath}/car?method=findByPage&series_id="+this.series_id+"'>"+this.series_name+"</a></li>"));
 					});
 				},"json");
 			});

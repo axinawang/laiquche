@@ -1,6 +1,7 @@
 package com.ynlqc.web.servlet;
 
 import java.io.IOException;
+import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -56,16 +57,18 @@ public class CarServlet extends BaseServlet {
 		int brand_id=request.getParameter("brand_id")==null?-1:Integer.parseInt(request.getParameter("brand_id"));
 		//车型
 		int model_id=request.getParameter("model_id")==null?-1:Integer.parseInt(request.getParameter("model_id"));
-		//首付
+		//车系
+				int series_id=request.getParameter("series_id")==null?-1:Integer.parseInt(request.getParameter("series_id"));
+				//首付
 		double down_payment=request.getParameter("down_payment")==null?-1.0:Double.parseDouble(request.getParameter("down_payment"));
 		//月供
 		double month_payment=request.getParameter("month_payment")==null?-1.0:Double.parseDouble(request.getParameter("month_payment"));
 		//当前页
 		int currPage=request.getParameter("currPage")==null?1:Integer.parseInt(request.getParameter("currPage"));
 		//搜索关键字
-		String searh_key=request.getParameter("searh_key")==null?"":request.getParameter("searh_key");
+		String search_key=request.getParameter("search_key")==null?"":request.getParameter("search_key");
 		
-		
+		System.out.println("search_key:"+search_key);
 		
 		
 		//2.调用service 返回值pagebean
@@ -79,7 +82,7 @@ public class CarServlet extends BaseServlet {
 
 			bean = service.findByPage(
 					currPage,Constant.PAGE_SIZE,brand_id,
-					model_id,down_payment,month_payment,searh_key);
+					model_id,series_id,down_payment,month_payment,search_key);
 			
 			//3.将结果放入request中 请求转发
 			request.setAttribute("page_bean", bean);
@@ -96,20 +99,27 @@ public class CarServlet extends BaseServlet {
 	 */
 	public String  findByPageAjax(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		//品牌
-		int brand_id=request.getParameter("brand_id")==null?-1:Integer.parseInt(request.getParameter("brand_id"));
+		int brand_id=(request.getParameter("brand_id")==null||request.getParameter("brand_id")=="")?-1:Integer.parseInt(request.getParameter("brand_id"));
 		//车型
-		int model_id=request.getParameter("model_id")==null?-1:Integer.parseInt(request.getParameter("model_id"));
+		int model_id=(request.getParameter("model_id")==null||request.getParameter("model_id")=="")?-1:Integer.parseInt(request.getParameter("model_id"));
 		//首付
-		double down_payment=request.getParameter("down_payment")==null?-1.0:Double.parseDouble(request.getParameter("down_payment"));
+		double down_payment=(request.getParameter("down_payment")==null||request.getParameter("down_payment")=="")?-1.0:Double.parseDouble(request.getParameter("down_payment"));
 		//月供
-		double month_payment=request.getParameter("month_payment")==null?-1.0:Double.parseDouble(request.getParameter("month_payment"));
+		double month_payment=(request.getParameter("month_payment")==null||request.getParameter("month_payment")=="")?-1.0:Double.parseDouble(request.getParameter("month_payment"));
 		//当前页
-		int currPage=request.getParameter("currPage")==null?1:Integer.parseInt(request.getParameter("currPage"));
+		int currPage=(request.getParameter("currPage")==null||request.getParameter("currPage")=="")?1:Integer.parseInt(request.getParameter("currPage"));
 		//搜索关键字
-		String searh_key=request.getParameter("searh_key")==null?"":request.getParameter("searh_key");
-		
-		
-		
+		String search_key=request.getParameter("search_key")==null?"":request.getParameter("search_key");
+		//测试请求过来时没有该参数
+		//String testParam=request.getParameter("testParam")==null?"null":request.getParameter("testParam");
+		//测试请求过来时该参数没有值
+		//String testParam=request.getParameter("testParam")==null?"kong zi fu chuan":request.getParameter("testParam");
+				
+		//System.out.println("testParam:"+testParam);
+		//search_key =  URLDecoder.decode((new String(search_key.getBytes("ISO8859-1"), "UTF-8")), "UTF-8");
+		search_key=URLDecoder.decode(search_key, "UTF-8");
+		System.out.println("brand_id:"+brand_id);
+		System.out.println("search_key:"+search_key);
 		
 		//2.调用service 返回值pagebean
 		CarService service=(CarService) BeanFactory.getBean("CarService");
@@ -122,7 +132,7 @@ public class CarServlet extends BaseServlet {
 
 			bean = service.findByPage(
 					currPage,Constant.PAGE_SIZE,brand_id,
-					model_id,down_payment,month_payment,searh_key);
+					model_id,-1,down_payment,month_payment,search_key);
 			
 			// 2.将返回值转成json格式 返回到页面上
 			//request.setAttribute("clist", clist);
@@ -174,7 +184,7 @@ public class CarServlet extends BaseServlet {
 
 		bean = service.findByPage(
 				1,Constant.PAGE_SIZE,brand_id,
-				-1,-1.0,-1.0,"");
+				-1,-1,-1.0,-1.0,"");
 		
 		//3.将结果放入request中 请求转发
 		request.setAttribute("page_bean", bean);

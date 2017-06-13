@@ -20,7 +20,7 @@ public interface CarService {
 	List<Car> findByBrand(int type_id) throws Exception;
 
 	
-	PageBean<Car> findByPage(int currPage, int pageSize, int brand_id, int model_id, double down_payment,
+	PageBean<Car> findByPage(int currPage, int pageSize, int brand_id, int model_id, int series_id,double down_payment,
 			double month_payment, String searh_key) throws Exception;
 
 }

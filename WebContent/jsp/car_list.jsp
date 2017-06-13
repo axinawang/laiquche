@@ -115,6 +115,14 @@ body {
 
 				<%--展示查询到的车 --%>
 				<div  class="col-md-9">
+				
+<!-- 搜索框 -->
+<div class="input-group" style="width: 1000px; margin: 0 auto;">
+    <input id="searchInput" type="text" class="form-control input-lg" placeholder="品牌或车系">
+    <span id="searchId" class="input-group-addon btn btn-primary">搜索</span>
+</div>
+
+				
 					<div  id="carsDiv" class="row" style="width: 1100px; margin: 0 auto;">
 						
 						<c:forEach items="${page_bean.list}" var="p">
@@ -240,7 +248,7 @@ body {
 				  var $brandId=$("#brandId .active").attr("value");
 				  var $modelId=$("#modelId .active").attr("value");
 				  var $monthPayment=$("#monthPaymentId .active").attr("value");
-				  var $searchKey="";
+				  var $searchKey=encodeURI(encodeURI($("#searchInput").val()));
 				  $.ajaxUninSearch($brandId,$modelId,$downPayment,$monthPayment,$searchKey);
 				   
 			   });
@@ -256,11 +264,21 @@ body {
 				  var $brandId=$("#brandId .active").attr("value");
 				  var $modelId=$("#modelId .active").attr("value");
 				  var $downPayment=$("#downPaymentId .active").attr("value");
-				  var $searchKey="";
+				  var $searchKey=encodeURI(encodeURI($("#searchInput").val()));
 				  $.ajaxUninSearch($brandId,$modelId,$downPayment,$monthPayment,$searchKey);
 				   
 			   });
 		   }); 
+		$("#searchId").click(function(){
+			var $monthPayment = $("#monthPaymentId .active").attr("value");		 
+			  
+			  var $brandId=$("#brandId .active").attr("value");
+			  var $modelId=$("#modelId .active").attr("value");
+			  var $downPayment=$("#downPaymentId .active").attr("value");
+			  var $searchKey=encodeURI(encodeURI($("#searchInput").val()));
+			  $.ajaxUninSearch($brandId,$modelId,$downPayment,$monthPayment,$searchKey);
+			alert($("#searchInput").val());
+		});
     };
 		
 		//ajax联合查询车
@@ -313,7 +331,7 @@ body {
 					  
 						//给每个品牌添加点击事件
 					  $('.brandLi').each(function(){
-						  if( ${brand_id}==$(this).attr("value")) $(this).addClass("active");
+						  if( ${ brand_id }==$(this).attr("value")) $(this).addClass("active");
 						   $(this).click(function(){
 							   var $brandId = $(this).attr("value");
 							 //更改选中的品牌的背景色
@@ -322,7 +340,7 @@ body {
 							 var $modelId=$("#modelId .active").attr("value");
 							  var $downPayment=$("#downPaymentId .active").attr("value");
 							  var $monthPayment=$("#monthPaymentId .active").attr("value");
-							  var $searchKey="";
+							  var $searchKey=encodeURI(encodeURI($("#searchInput").val()));
 							  $.ajaxUninSearch($brandId,$modelId,$downPayment,$monthPayment,$searchKey);						   
 							   
 						   });
@@ -352,7 +370,7 @@ body {
 							  var $brandId=$("#brandId .active").attr("value");
 							  var $downPayment=$("#downPaymentId .active").attr("value");
 							  var $monthPayment=$("#monthPaymentId .active").attr("value");
-							  var $searchKey="";
+							  var $searchKey=encodeURI(encodeURI($("#searchInput").val()));
 							  $.ajaxUninSearch($brandId,$modelId,$downPayment,$monthPayment,$searchKey);
 							   
 						   });

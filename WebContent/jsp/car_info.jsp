@@ -54,7 +54,19 @@
 
 						<div style="margin:10px 0 10px 0;">保证金: <strong style="color:#ef0101;">￥：${bean.deposit}</strong> 首付： <del>${bean.down_payment}</del> 月供： <del>${bean.month_payment}</del>
 						</div>
+<hr/>
+                       <div style="margin:10px 0 10px 0;"><p style="background-color: #f07373;">${ bean.pay_description }</p> </div>
 
+						<div style="padding:10px;border:1px solid #e7dbb1;width:330px;margin:15px 0 10px 0;;background-color: #fffee6;">
+							
+
+							
+								
+									<div style="background-color: red;height:36px;width:127px;text-align: center;font-size:180%;color:white">
+									预约到店
+									</div>
+								
+						</div> 
 						<%-- <div style="margin:10px 0 10px 0;">促销: <a target="_blank" title="限时抢购 (2014-07-30 ~ 2015-01-01)" style="background-color: #f07373;">限时抢购</a> </div>
 
 						<div style="padding:10px;border:1px solid #e7dbb1;width:330px;margin:15px 0 10px 0;;background-color: #fffee6;">

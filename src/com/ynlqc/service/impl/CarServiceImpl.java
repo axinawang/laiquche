@@ -51,11 +51,11 @@ public class CarServiceImpl implements CarService {
  * 
  */
 	@Override
-	public PageBean<Car> findByPage(int currPage, int pageSize, int brand_id, int model_id, double down_payment,
+	public PageBean<Car> findByPage(int currPage, int pageSize, int brand_id, int model_id,int series_id, double down_payment,
 			double month_payment,String search_key) throws Exception {
 		CarDao dao=(CarDao) BeanFactory.getBean("CarDao");
 		List<Car> list=dao.findByPage(currPage, pageSize, brand_id,
-				model_id,down_payment,month_payment,search_key);
+				model_id,series_id,down_payment,month_payment,search_key);
 		//总条数
 		int totalCount = dao.getTotalCount(brand_id,model_id,down_payment,month_payment,search_key);
 		return new PageBean<>(list, currPage, pageSize, totalCount);

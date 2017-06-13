@@ -68,24 +68,27 @@ public class CarDaoImpl implements CarDao {
 	 * 月供的区间是【month_payment，month_payment+1000】
 	 */
 	@Override
-	public List<Car> findByPage(int currPage, int pageSize, int brand_id, int model_id, double down_payment,
+	public List<Car> findByPage(int currPage, int pageSize, int brand_id, int model_id,int series_id, double down_payment,
 			double month_payment, String search_key) throws Exception {
 		QueryRunner qr = new QueryRunner(DataSourceUtils.getDataSource());
 		String sql="select * from car where "+
 		           (brand_id==-1?"brand_id > ?":"brand_id = ? ")+" and "+
 		           (model_id==-1?"model_id > ?":"model_id = ? ")+" and "+
+		           (series_id==-1?"series_id > ?":"series_id = ? ")+" and "+
 		           "down_payment >= ? and down_payment<= ?"+" and "+
 		           "month_payment >= ? and month_payment<= ?"+" and "+
-				    "car_name like ? ";
+				    "(brand_id in (SELECT brand_id from brand where brand_name like ?) or series_id in (SELECT series_id from series where series_name like ?))";
 		logger.debug("findByPage sql:"+sql);
+		System.out.println("CarDaoImpl like :"+"%"+search_key+"%");
 		return qr.query(sql, new BeanListHandler<>(Car.class),
 				        brand_id,
 				        model_id,
+				        series_id,
 				        down_payment,//如果首付是5万以上，首付的上限是一千万
 				        (down_payment==-1.0?10000000.0:(down_payment==50000?10000000.0:down_payment+10000)),
 				        month_payment,//如果月供是5千以上，月供的上限是一千万
 				        (month_payment==-1.0?10000000.0:(month_payment==5000?10000000.0:month_payment+1000)),
-				        "%"+search_key+"%");
+				        "%"+search_key+"%","%"+search_key+"%");
 	}
 
 	@Override
