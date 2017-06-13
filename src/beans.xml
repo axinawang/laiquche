@@ -5,7 +5,9 @@
 	<bean id="SeriesService" class="com.ynlqc.service.impl.SeriesServiceImpl"></bean>
 	<bean id="UserService" class="com.ynlqc.service.impl.UserServiceImpl"></bean>
 	<bean id="CarService" class="com.ynlqc.service.impl.CarServiceImpl"></bean>
+     <bean id="ModelService" class="com.ynlqc.service.impl.ModelServiceImpl"></bean>
 
+	<bean id="ModelDao" class="com.ynlqc.dao.impl.ModelDaoImpl" />
 	<bean id="CarDao" class="com.ynlqc.dao.impl.CarDaoImpl" />
 	<bean id="BrandDao" class="com.ynlqc.dao.impl.BrandDaoImpl" />
 	<bean id="SeriesDao" class="com.ynlqc.dao.impl.SeriesDaoImpl" />

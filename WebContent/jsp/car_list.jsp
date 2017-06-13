@@ -66,9 +66,50 @@ body {
 							<a href="#">更多品牌</a>
 						</div>
 					</div>
-
 					<%--展示所有品牌结束 --%>
-
+					
+					<%--展示首付 --%>
+					<div id="divTitle">
+						<h3>首付</h3>
+					</div>
+					<div>
+						<ul id="downPaymentId" class="list-inline">
+							<li value="-1" class="downPaymentLi active">全部</li>
+							<li value="0" class="downPaymentLi">1万以内</li>
+							<li value="10000" class="downPaymentLi">1-2万</li>
+							<li value="20000" class="downPaymentLi">2-3万</li>
+							<li value="30000" class="downPaymentLi">3-4万</li>
+							<li value="40000" class="downPaymentLi">4-5万</li>
+							<li value="50000" class="downPaymentLi">5万以上</li>
+						</ul>						
+					</div>
+					<%--展示首付结束 --%>
+					<%--展示月供 --%>
+					<div id="divTitle">
+						<h3>月供</h3>
+					</div>
+					<div>
+						<ul id="monthPaymentId" class="list-inline">
+							<li value="-1" class="monthPaymentLi active">全部</li>
+							<li value="0" class="monthPaymentLi">1千以内</li>
+							<li value="1000" class="monthPaymentLi">1-2千</li>
+							<li value="2000" class="monthPaymentLi">2-3千</li>
+							<li value="3000" class="monthPaymentLi">3-4千</li>
+							<li value="4000" class="monthPaymentLi">4-5千</li>
+							<li value="5000" class="monthPaymentLi">5千以上</li>
+						</ul>						
+					</div>
+					<%--展示月供结束 --%>
+                    <%--展示所有车型--%>
+					<div id="divTitle">
+						<h3>车型</h3>
+					</div>
+					<div >
+						<ul id="modelId" class="list-inline">
+							<li value="-1" class="modelLi active">全部</li>
+						</ul>
+					</div>
+					<%--展示所有车型结束 --%>
 
 				</div>
 
@@ -105,7 +146,7 @@ body {
 					</div>
 
 					<!--分页 -->
-					<div style="width: 380px; margin: 0 auto; margin-top: 50px;">
+					<%-- <div style="width: 380px; margin: 0 auto; margin-top: 50px;">
 					<ul class="pagination"
 						style="text-align: center; margin-top: 10px;">
 						<!-- 判断当前页是否是首页  -->
@@ -154,7 +195,7 @@ body {
 						</c:if>
 
 					</ul>
-				</div> 
+				</div>  --%>
 					<!-- 分页结束=======================        -->
 
 
@@ -187,12 +228,57 @@ body {
 	</div>
 
 <script>
+    //初始化页面
+	$.init=function(){
+		//给每种首付添加点击事件
+		  $('.downPaymentLi').each(function(){						  
+			   $(this).click(function(){
+				   var $downPayment = $(this).attr("value");
+				 //更改背景色
+				  $(this).addClass("active").siblings().removeClass("active");
+				  
+				  var $brandId=$("#brandId .active").attr("value");
+				  var $modelId=$("#modelId .active").attr("value");
+				  var $monthPayment=$("#monthPaymentId .active").attr("value");
+				  var $searchKey="";
+				  $.ajaxUninSearch($brandId,$modelId,$downPayment,$monthPayment,$searchKey);
+				   
+			   });
+		   }); 
+		
+		//给每种月供添加点击事件
+		  $('.monthPaymentLi').each(function(){						  
+			   $(this).click(function(){
+				   var $monthPayment = $(this).attr("value");
+				 //更改背景色
+				  $(this).addClass("active").siblings().removeClass("active");
+				  
+				  var $brandId=$("#brandId .active").attr("value");
+				  var $modelId=$("#modelId .active").attr("value");
+				  var $downPayment=$("#downPaymentId .active").attr("value");
+				  var $searchKey="";
+				  $.ajaxUninSearch($brandId,$modelId,$downPayment,$monthPayment,$searchKey);
+				   
+			   });
+		   }); 
+    };
+		
+		//ajax联合查询车
+		$.ajaxUninSearch=function($brandId,$modelId,$downPayment,$monthPayment,$searchKey){
+			alert("${pageContext.request.contextPath}/car?method=findByPageAjax&brand_id="+
+					$brandId+"&model_id="+$modelId+"&down_payment="+$downPayment+"&month_payment="+$monthPayment+"&search_key="+$searchKey
+			);
+			$.get("${pageContext.request.contextPath}/car?method=findByPageAjax&brand_id="+
+					$brandId+"&model_id="+$modelId+"&down_payment="+$downPayment+"&month_payment="+$monthPayment+"&search_key="+$searchKey,function(data){
+				  $.addCars(data);
+			  },"json");	
+		}
+
 		//添加查询到的车子信息
 		$.addCars=function(data){
 			$("#carsDiv").empty();
 			$(data).each(function(){
-				alert(this.car_name);
-				
+			
 				var content="<div class='col-md-4' style='margin: 5px 0px'><div style='border: 1px solid #555; padding: 2px'>"+
 				"<a target='_blank' href=${pageContext.request.contextPath}/car?method=getByCarId&car_id="+this.car_id+">"+
 				"<img src=${pageContext.request.contextPath}/"+this.car_image+" width='330' height='330' style='display: inline-block;'></a>"+
@@ -205,11 +291,15 @@ body {
 				
 			});
 		};
+		
+		
+		//页面首次载入时，加载所有品牌
 		$(function() {
-			
-			//发送ajax请求
+			//初始化页面
+			$.init();
+			//发送ajax请求 展示所有品牌
 			$.get("${pageContext.request.contextPath}/brand?method=findAll",function(data) {
-				    //遍历数组
+				    //遍历每个品牌
 					$(data).each(function(i) {						
 							//获取brandId的ul标签
 							var $ul = $("#brandId");
@@ -226,16 +316,51 @@ body {
 						  if( ${brand_id}==$(this).attr("value")) $(this).addClass("active");
 						   $(this).click(function(){
 							   var $brandId = $(this).attr("value");
+							 //更改选中的品牌的背景色
+							  $(this).addClass("active").siblings().removeClass("active");
 							   //window.location = "${pageContext.request.contextPath}/car?method=findByPage&brand_id="+$brandId;
-							  $.get("${pageContext.request.contextPath}/car?method=findByPageAjax&brand_id="+$brandId,function(data){
-								  $.addCars(data);
-							  },"json");						   
+							 var $modelId=$("#modelId .active").attr("value");
+							  var $downPayment=$("#downPaymentId .active").attr("value");
+							  var $monthPayment=$("#monthPaymentId .active").attr("value");
+							  var $searchKey="";
+							  $.ajaxUninSearch($brandId,$modelId,$downPayment,$monthPayment,$searchKey);						   
 							   
 						   });
 					   }); 	   
 					   
 					
 			      },"json");
+			
+			//ajax请求所有车型
+
+			$.get("${pageContext.request.contextPath}/model?method=findAll",function(data) {
+				    //遍历每个车型
+					$(data).each(function(i) {						
+							//获取brandId的ul标签
+							var $ul = $("#modelId");
+							$ul.append($("<li class='modelLi' value='"+this.model_id+"'>"+this.model_name+"</li>"));						
+					
+					});			  
+						//给每个车型添加点击事件
+					  $('.modelLi').each(function(){						  
+						   $(this).click(function(){
+							   var $modelId = $(this).attr("value");
+							 //更改选中的品牌的背景色
+							  $(this).addClass("active").siblings().removeClass("active");
+							   //window.location = "${pageContext.request.contextPath}/car?method=findByPage&brand_id="+$brandId;
+							  
+							  var $brandId=$("#brandId .active").attr("value");
+							  var $downPayment=$("#downPaymentId .active").attr("value");
+							  var $monthPayment=$("#monthPaymentId .active").attr("value");
+							  var $searchKey="";
+							  $.ajaxUninSearch($brandId,$modelId,$downPayment,$monthPayment,$searchKey);
+							   
+						   });
+					   }); 	   
+					   
+					
+			      },"json");
+			
 			//品牌展开更多 收起
 			$('#divJianhua a').click(function () {
                 if ($('#divContet ul li:gt(7)').is(':visible')) {

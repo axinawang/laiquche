@@ -53,6 +53,17 @@
     <servlet-name>BrandServlet</servlet-name>
     <url-pattern>/brand</url-pattern>
   </servlet-mapping>
+  
+  <servlet>
+    <description></description>
+    <display-name>ModelServlet</display-name>
+    <servlet-name>ModelServlet</servlet-name>
+    <servlet-class>com.ynlqc.web.servlet.ModelServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ModelServlet</servlet-name>
+    <url-pattern>/model</url-pattern>
+  </servlet-mapping>
   <servlet>
     <description></description>
     <display-name>SeriesServlet</display-name>

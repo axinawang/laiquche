@@ -142,7 +142,7 @@ public class CarServlet extends BaseServlet {
 				listCarJson.add(json);
 			}
 			String listJson=JsonUtil.list2json(listCarJson);
-			
+			System.out.println(listJson);
 			
 			//3.写回去
 			response.setContentType("text/html;charset=utf-8");

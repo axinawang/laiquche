@@ -75,6 +75,8 @@ CREATE TABLE `model` (
   `model_id` int  NOT NULL auto_increment,
   `model_name` varchar(20) DEFAULT NULL,
   `is_hot` int(11) DEFAULT 0,
+`model_image` varchar(200) DEFAULT NULL,
+  `description` text,
   PRIMARY KEY (`model_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -89,6 +91,8 @@ CREATE TABLE `series` (
   `series_id` int  NOT NULL auto_increment,
   `series_name` varchar(20) DEFAULT NULL,
   `is_hot` int(11) DEFAULT 0,
+`series_image` varchar(200) DEFAULT NULL,
+  `description` text,
   PRIMARY KEY (`series_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 

@@ -74,17 +74,17 @@ public class CarDaoImpl implements CarDao {
 		String sql="select * from car where "+
 		           (brand_id==-1?"brand_id > ?":"brand_id = ? ")+" and "+
 		           (model_id==-1?"model_id > ?":"model_id = ? ")+" and "+
-		           "down_payment > ? and down_payment< ?"+" and "+
-		           "month_payment > ? and month_payment< ?"+" and "+
+		           "down_payment >= ? and down_payment<= ?"+" and "+
+		           "month_payment >= ? and month_payment<= ?"+" and "+
 				    "car_name like ? ";
 		logger.debug("findByPage sql:"+sql);
 		return qr.query(sql, new BeanListHandler<>(Car.class),
 				        brand_id,
 				        model_id,
-				        down_payment,
-				        (down_payment==-1.0?10000000.0:down_payment+10000),
-				        month_payment,
-				        (month_payment==-1.0?10000000.0:month_payment+1000),
+				        down_payment,//如果首付是5万以上，首付的上限是一千万
+				        (down_payment==-1.0?10000000.0:(down_payment==50000?10000000.0:down_payment+10000)),
+				        month_payment,//如果月供是5千以上，月供的上限是一千万
+				        (month_payment==-1.0?10000000.0:(month_payment==5000?10000000.0:month_payment+1000)),
 				        "%"+search_key+"%");
 	}
 
