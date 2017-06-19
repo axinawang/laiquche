@@ -6,6 +6,7 @@
 	<bean id="UserService" class="com.ynlqc.service.impl.UserServiceImpl"></bean>
 	<bean id="CarService" class="com.ynlqc.service.impl.CarServiceImpl"></bean>
      <bean id="ModelService" class="com.ynlqc.service.impl.ModelServiceImpl"></bean>
+     <bean id="AppointmentService" class="com.ynlqc.service.impl.AppointmentServiceImpl"></bean>
 
 	<bean id="ModelDao" class="com.ynlqc.dao.impl.ModelDaoImpl" />
 	<bean id="CarDao" class="com.ynlqc.dao.impl.CarDaoImpl" />
@@ -13,4 +14,5 @@
 	<bean id="SeriesDao" class="com.ynlqc.dao.impl.SeriesDaoImpl" />
 	<bean id="UserDao" class="com.ynlqc.dao.impl.UserDaoImpl" />
 	<bean id="CategoryDao" class="com.ynlqc.dao.impl.CategoryDaoImpl" />
+	<bean id="AppointmentDao" class="com.ynlqc.dao.impl.AppointmentDaoImpl" />
 </beans>

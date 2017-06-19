@@ -84,4 +84,14 @@
     <servlet-name>CarServlet</servlet-name>
     <url-pattern>/car</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>AppointmentServlet</display-name>
+    <servlet-name>AppointmentServlet</servlet-name>
+    <servlet-class>com.ynlqc.web.servlet.AppointmentServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AppointmentServlet</servlet-name>
+    <url-pattern>/appointment</url-pattern>
+  </servlet-mapping>
 </web-app>

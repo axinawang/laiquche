@@ -143,6 +143,139 @@
             -->
 			<jsp:include page="/jsp/foot.jsp"></jsp:include>
 
-	</body>
+	<div class="container-fluid">
+		<div class="row-fluid">
+			<div class="span8">
+				<a id="modal-372827" href="#modal-container-372827" role="button"
+					class="btn" data-toggle="modal">触发遮罩窗体</a>
+
+				<div id="modal-container-372827" class="modal hide fade"
+					role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal"
+							aria-hidden="true">×</button>
+						<h3 id="myModalLabel">标题栏</h3>
+					</div>
+					<div class="modal-body">
+						<p>显示信息</p>
+					</div>
+					<div class="modal-footer">
+						<button class="btn" data-dismiss="modal" aria-hidden="true">关闭</button>
+						<button class="btn btn-primary">保存设置</button>
+					</div>
+				</div>
+			</div>
+			<div class="span4"></div>
+		</div>
+	</div>
+
+
+
+<h2>创建模态框（Modal）</h2>
+<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+开始演示模态框
+</button>
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal-dialog">
+<div class="modal-content">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+×
+</button>
+<h4 class="modal-title" id="myModalLabel">
+模态框（Modal）标题
+</h4>
+</div>
+<div class="modal-body">
+<font>会员注册</font>USER REGISTER
+		<form class="form-horizontal" style="margin-top:5px;" action="${pageContext.request.contextPath}/user?method=regist" method="post">
+			 <div class="form-group">
+			    <label for="username" class="col-sm-2 control-label">用户名</label>
+			    <div class="col-sm-6">
+			      <input type="text" class="form-control" id="username" placeholder="请输入用户名" name="username">
+			    </div>
+			  </div>
+			   <div class="form-group">
+			    <label for="inputPassword3" class="col-sm-2 control-label">密码</label>
+			    <div class="col-sm-6">
+			      <input type="password" class="form-control" id="inputPassword3" placeholder="请输入密码" name="password">
+			    </div>
+			  </div>
+			   <div class="form-group">
+			    <label for="confirmpwd" class="col-sm-2 control-label">确认密码</label>
+			    <div class="col-sm-6">
+			      <input type="password" class="form-control" id="confirmpwd" placeholder="请输入确认密码">
+			    </div>
+			  </div>
+			  <div class="form-group">
+			    <label for="inputEmail3" class="col-sm-2 control-label">Email</label>
+			    <div class="col-sm-6">
+			      <input type="email" class="form-control" id="inputEmail3" placeholder="Email" name="email">
+			    </div>
+			  </div>
+			 <div class="form-group">
+			    <label for="usercaption" class="col-sm-2 control-label">姓名</label>
+			    <div class="col-sm-6">
+			      <input type="text" class="form-control" id="usercaption" placeholder="请输入姓名"  name="name">
+			    </div>
+			  </div>
+			  <div class="form-group opt">  
+			  <label for="inlineRadio1" class="col-sm-2 control-label">性别</label>  
+			  <div class="col-sm-6">
+			    <label class="radio-inline">
+			  <input type="radio" name="sex" id="inlineRadio1" value="男"> 男
+			</label>
+			<label class="radio-inline">
+			  <input type="radio" name="sex" id="inlineRadio2" value="女"> 女
+			</label>
+			</div>
+			  </div>		
+			  <div class="form-group">
+			    <label for="date" class="col-sm-2 control-label">出生日期</label>
+			    <div class="col-sm-6">
+			      <input type="date" class="form-control"  name="birthday">		      
+			    </div>
+			  </div>
+			  
+			  <div class="form-group">
+			    <label for="date" class="col-sm-2 control-label">验证码</label>
+			    <div class="col-sm-3">
+			      <input type="text" class="form-control"  >
+			      
+			    </div>
+			    <div class="col-sm-2">
+			    <img src="${pageContext.request.contextPath}/image/captcha.jhtml"/>
+			    </div>
+			    
+			  </div>
+			 
+			  <div class="form-group">
+			    <div class="col-sm-offset-2 col-sm-10">
+			      <%-- <input type="submit"  width="100" value="注册" name="submit" border="0"
+				    style="background: url('${pageContext.request.contextPath}/images/register.gif') no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+				    height:35px;width:100px;color:white;"> --%>
+			    </div>
+			    <div class="modal-footer">
+<button type="button" class="btn btn-default" data-dismiss="modal">关闭
+</button>
+<button type="submit" class="btn btn-primary" name="submit">
+提交更改
+</button>
+</div>
+			  </div>
+			</form>
+</div>
+<div class="modal-footer">
+<button type="button" class="btn btn-default" data-dismiss="modal">关闭
+</button>
+<button type="button" class="btn btn-primary">
+提交更改
+</button>
+</div>
+</div>
+</div>
+</div>
+
+</body>
 
 </html>
