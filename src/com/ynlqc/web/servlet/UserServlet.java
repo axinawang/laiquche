@@ -104,42 +104,7 @@ public class UserServlet extends BaseServlet {
 		return null;
 	}
 
-	public String onWeixinLogin(HttpServletRequest request, HttpServletResponse response)
-			throws Exception {
-		request.setAttribute("msg", "wei xin denglu");
-		String code = request.getParameter("code");
-		System.out.println("weixin user code : " + code);
-		UserService service = new UserServiceImpl();
-		String weixinUser=service.getWeixinUser(code);
-		System.out.println("weixinUser= "+weixinUser);
-		JSONObject jsonObject=JSONObject.fromObject(weixinUser);
-		String openid=(String) jsonObject.get("openid");
-		
-		//System.out.println("openid= "+jsonObject.get("openid"));
-		
-		//如果是第一次微信登陆，保存openid到user表
-		if(!service.havingOpenid(openid)){
-			service.add(new User(openid));
-		}
-		//保存微信用户到session
-		String sessoin3rd=UUIDUtils.getCode();
-		request.getSession().setAttribute("sessoin3rd", sessoin3rd);
-		//设置编码格式  
-		String encoding = "UTF-8";
-        response.setContentType("text/plain;charset=" + encoding);  
-        response.setCharacterEncoding(encoding);  
-          
-        PrintWriter out = null;  
-        try{  
-            out = response.getWriter();  
-            out.write("{\"openid\":\""+openid+"\"}");  
-            out.flush();  
-        }catch(IOException e){  
-            e.printStackTrace();  
-        }  
-		
-		return null;
-	}
+	
 
 	public String logout(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {

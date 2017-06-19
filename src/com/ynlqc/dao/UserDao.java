@@ -11,5 +11,4 @@ public interface UserDao {
 
 	User getByUsernameAndPwd(String username, String password) throws Exception;
 
-	boolean havingOpenid(String openid) throws Exception;
 }

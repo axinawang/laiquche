@@ -40,15 +40,15 @@ $(function () {
 
 	<div style="text-align: center; margin-top: 5px;">
 		<ul class="list-inline">
-			<li><a href="info.html">关于我们</a></li>
-			<li><a>我要买车</a></li>
-			<li><a>来取车介绍</a></li>
-			<li><a>常见问题</a></li>
-			<li><a>下载应用</a></li>
+			
+			<li><a href="${pageContext.request.contextPath}/car?method=findByPage">我要买车</a></li>
+			<li><a href='${pageContext.request.contextPath}/jsp/info.jsp'>来取车介绍</a></li>
+			<li><a href='${pageContext.request.contextPath}/jsp/question.jsp'>常见问题</a></li>
+			<li><a href='#'>下载应用</a></li>
 		</ul>
 	</div>
 	<div style="text-align: center; margin-top: 5px; margin-bottom: 20px;">
-		Copyright &copy; 2017-2018 越牛科技 版权所有</div>
+		Copyright &copy; 2017-2018 越牛科技 版权所有 联系电话：400-0575-168</div>
 </div>
 <script>
 			$(function(){

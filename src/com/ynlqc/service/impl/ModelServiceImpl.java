@@ -20,7 +20,7 @@ public class ModelServiceImpl implements ModelService {
 	 */
 	@Override
 	public List<Model> findAll() throws Exception {
-		//1.创建缓存管理器
+		/*//1.创建缓存管理器
 		CacheManager cm=CacheManager.create(ModelServiceImpl.class.getClassLoader().getResourceAsStream("ehcache.xml"));
 		
 		//2.获取指定的缓存
@@ -46,7 +46,11 @@ public class ModelServiceImpl implements ModelService {
 			list=(List<Model>) element.getObjectValue();
 			
 			System.out.println("缓存中有数据");
-		}
+		}*/
+		List<Model> list=null;
+		//从数据库中获取
+		ModelDao cd=(ModelDao) BeanFactory.getBean("ModelDao");
+		list=cd.findAll();
 		
 		return list;
 	}	
@@ -54,7 +58,7 @@ public class ModelServiceImpl implements ModelService {
 
 	@Override
 	public List<Model> findHotModel() throws Exception {
-		//1.创建缓存管理器
+		/*//1.创建缓存管理器
 				CacheManager cm=CacheManager.create(ModelServiceImpl.class.getClassLoader().getResourceAsStream("ehcache.xml"));
 				
 				//2.获取指定的缓存
@@ -80,8 +84,11 @@ public class ModelServiceImpl implements ModelService {
 					list=(List<Model>) element.getObjectValue();
 					
 					System.out.println("缓存中有数据");
-				}
-				
+				}*/
+		List<Model> list=null;
+		//从数据库中获取
+		ModelDao cd=(ModelDao) BeanFactory.getBean("ModelDao");
+		list=cd.findHotModel();
 				return list;
 	}
 

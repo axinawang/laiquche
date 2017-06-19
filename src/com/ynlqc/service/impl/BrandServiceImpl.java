@@ -20,7 +20,7 @@ public class BrandServiceImpl implements BrandService {
 	 */
 	@Override
 	public List<Brand> findAll() throws Exception {
-		//1.创建缓存管理器
+		/*//1.创建缓存管理器
 		CacheManager cm=CacheManager.create(BrandServiceImpl.class.getClassLoader().getResourceAsStream("ehcache.xml"));
 		
 		//2.获取指定的缓存
@@ -46,21 +46,18 @@ public class BrandServiceImpl implements BrandService {
 			list=(List<Brand>) element.getObjectValue();
 			
 			System.out.println("缓存中有数据");
-		}
-		
+		}*/
+		List<Brand> list=null;
+		//从数据库中获取
+		BrandDao cd=(BrandDao) BeanFactory.getBean("BrandDao");
+		list=cd.findAll();
 		return list;
-	}
-	
-	
-	public static void main(String[] args) {
-		InputStream is = BrandServiceImpl.class.getClassLoader().getResourceAsStream("ehcache.xml");
-		System.out.println(is);
 	}
 
 
 	@Override
 	public List<Brand> findHotBrand() throws Exception {
-		//1.创建缓存管理器
+		/*//1.创建缓存管理器
 				CacheManager cm=CacheManager.create(BrandServiceImpl.class.getClassLoader().getResourceAsStream("ehcache.xml"));
 				
 				//2.获取指定的缓存
@@ -87,7 +84,12 @@ public class BrandServiceImpl implements BrandService {
 					
 					System.out.println("缓存中有数据");
 				}
-				
+				*/
+		List<Brand> list=null;
+		//从数据库中获取
+		BrandDao cd=(BrandDao) BeanFactory.getBean("BrandDao");
+		list=cd.findHotBrand();
+		
 				return list;
 	}
 

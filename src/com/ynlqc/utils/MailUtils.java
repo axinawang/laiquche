@@ -24,14 +24,18 @@ public class MailUtils {
 		props.setProperty("mail.transport.protocol", "SMTP");
 		
 		//设置发送邮件的服务器
-		props.setProperty("mail.host", "localhost");
+		props.setProperty("mail.host", "smtp.163.com");
 		props.setProperty("mail.smtp.auth", "true");// 指定验证为true
+		//props.put("mail.smtp.port", 465);
+		props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
+        props.put("mail.smtp.socketFactory.port", "465");
+         props.put("mail.smtp.port", "465");
 
 		// 创建验证器
 		Authenticator auth = new Authenticator() {
 			public PasswordAuthentication getPasswordAuthentication() {
 				//设置发送人的帐号和密码
-				return new PasswordAuthentication("service@store.com","123");
+				return new PasswordAuthentication("ynlqcba@163.com","lqc123456");
 			}
 		};
 
@@ -41,7 +45,7 @@ public class MailUtils {
 		Message message = new MimeMessage(session);
 
 		//设置发送者
-		message.setFrom(new InternetAddress("service@store.com"));
+		message.setFrom(new InternetAddress("ynlqcba@163.com"));
 
 		//设置发送方式与接收者
 		message.setRecipient(RecipientType.TO, new InternetAddress(email)); 
@@ -55,5 +59,6 @@ public class MailUtils {
 
 		// 3.创建 Transport用于将邮件发送
 		Transport.send(message);
+		
 	}
 }

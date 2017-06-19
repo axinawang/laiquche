@@ -13,7 +13,6 @@ public interface UserService {
 
 	String getWeixinUser(String code);
 
-	boolean havingOpenid(String openid) throws Exception;
 
 	void add(User user) throws Exception;
 }

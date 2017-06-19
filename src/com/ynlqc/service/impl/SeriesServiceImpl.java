@@ -19,7 +19,7 @@ public class SeriesServiceImpl implements SeriesService {
 	 */
 	@Override
 	public List<Series> findAll() throws Exception {
-		//1.创建缓存管理器
+		/*//1.创建缓存管理器
 		CacheManager cm=CacheManager
 		  .create(SeriesServiceImpl.class.getClassLoader().getResourceAsStream("ehcache.xml"));
 		
@@ -46,15 +46,18 @@ public class SeriesServiceImpl implements SeriesService {
 			list=(List<Series>) element.getObjectValue();
 			
 			System.out.println("缓存中有数据");
-		}
-		
+		}*/
+		List<Series> list=null;
+		//从数据库中获取
+		SeriesDao cd=(SeriesDao) BeanFactory.getBean("SeriesDao");
+		list=cd.findAll();
 		return list;
 	}
 	
 
 	@Override
 	public List<Series> findHotSeries() throws Exception {
-		//1.创建缓存管理器
+		/*//1.创建缓存管理器
 				CacheManager cm=CacheManager.create(SeriesServiceImpl.class.getClassLoader().getResourceAsStream("ehcache.xml"));
 				
 				//2.获取指定的缓存
@@ -81,7 +84,11 @@ public class SeriesServiceImpl implements SeriesService {
 					
 					System.out.println("缓存中有数据");
 				}
-				
+				*/
+		List<Series> list=null;
+		//从数据库中获取
+		SeriesDao cd=(SeriesDao) BeanFactory.getBean("SeriesDao");
+		list=cd.findHotSeries();
 				return list;
 	}
 

@@ -7,35 +7,36 @@ import javax.sql.DataSource;
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.BeanHandler;
 
+import com.ynlqc.dao.AppointmentDao;
 import com.ynlqc.dao.UserDao;
+import com.ynlqc.domain.Appointment;
 import com.ynlqc.domain.User;
 import com.ynlqc.utils.DataSourceUtils;
 
-public class UserDaoImpl implements UserDao {
+public class AppointmentDaoImpl implements AppointmentDao {
 
 	@Override
-	public void add(User user) throws Exception {
+	public void add(Appointment bean) throws Exception {
 		QueryRunner qr=new QueryRunner(DataSourceUtils.getDataSource());
 		/**
-		 *  `uid` VARCHAR(32) NOT NULL,
-		  `username` VARCHAR(20) DEFAULT NULL,
-		  `password` VARCHAR(100) DEFAULT NULL,
-		  
-		  `name` VARCHAR(20) DEFAULT NULL,
-		  `email` VARCHAR(30) DEFAULT NULL,
-		  `telephone` VARCHAR(20) DEFAULT NULL,
-		  
-		  `birthday` DATE DEFAULT NULL,
-		  `sex` VARCHAR(10) DEFAULT NULL,
-		  `state` INT(11) DEFAULT NULL,
-		  `code` VARCHAR(64) DEFAULT NULL
+		 *  `appointment_id` varchar(32) NOT NULL,
+  `name` varchar(20) DEFAULT NULL,
+  `sex` varchar(10) DEFAULT NULL,
+  `telephone` varchar(20) DEFAULT NULL,
+  `arrive_time` date DEFAULT NULL,
+  `selected_city` varchar(40) DEFAULT NULL,
+  `shop_id` int(11) DEFAULT NULL,
+  `description` text DEFAULT NULL,
+  `date` date DEFAULT NULL,
+  `admin_id`	varchar(32) DEFAULT NULL,
 		 */
-		String sql="insert into user values(?,?,?,?,?,?,?,?,?,?)";
-		qr.update(sql,user.getUid(),user.getUsername(),user.getPassword(),user.getName(),user.getEmail()
-				,user.getTelephone(),user.getBirthday(),user.getSex(),user.getState(),user.getCode());
+		String sql="insert into Appointment values(?,?,?,?,?,?,?,?,?,?)";
+		qr.update(sql,bean.getAppointment_id(),bean.getName(),bean.getSex(),bean.getTelephone(),
+				bean.getArrive_time(),bean.getSelected_city(),bean.getShop().getShop_id(),
+				bean.getDescription(),bean.getDate(),bean.getAdmin().getAdmin_id());
 	}
 
-	@Override
+	/*@Override
 	public User getByCode(String code) throws Exception {
 		QueryRunner qr=new QueryRunner(DataSourceUtils.getDataSource());
 		String sql="select * from user where code=? limit 1";
@@ -57,7 +58,7 @@ public class UserDaoImpl implements UserDao {
 		QueryRunner qr=new QueryRunner(DataSourceUtils.getDataSource());
 		String sql="select * from user where username=? and password=?";
 		return qr.query(sql, new BeanHandler<>(User.class),username,password);
-	}
+	}*/
 
 	
 

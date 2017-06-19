@@ -6,4 +6,7 @@ public interface Constant {
 	 */
 	int USER_IS_ACTIVE=1;
 	int PAGE_SIZE=12;
+	//网站服务器地址
+	//String IP="47.93.221.37";
+	
 }

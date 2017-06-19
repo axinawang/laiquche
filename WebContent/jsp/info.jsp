@@ -37,6 +37,7 @@
 					<p>
 						<font color="red">线下提交申请</font>
 					</p>
+				</div>
 					<h2>购车方式一（不含购置税与首保）</h2>
 				<hr />
 				<div>
@@ -50,6 +51,7 @@
 					
 					<h2>购车方式二（含购置税与首保）</h2>
 				<hr />
+				</div>
 				<div>
 					<p>
 						<font color="red">保证金--></font>
@@ -59,8 +61,7 @@
 					</p>
 					<p>
 						<font color="red">月供3年</font>
-					</p>
-					
+					</p>			
 
 				</div>
 			</div>

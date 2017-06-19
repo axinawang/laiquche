@@ -12,8 +12,8 @@
 					<li><a
 						href="${pageContext.request.contextPath}/car?method=findByPage">我要买车</a></li>
 					<li><a href='${pageContext.request.contextPath}/jsp/info.jsp'>来取车介绍</a></li>
-					<li><a href=''>常见问题</a></li>
-					<li><a href='${pageContext.request.contextPath}/jsp/test.jsp'>下载应用</a></li>
+					<li><a href='${pageContext.request.contextPath}/jsp/question.jsp'>常见问题</a></li>
+					<li><a href='#'>下载应用</a></li>
 				</ul>
 	</div>
 	<div class="col-md-3" style="padding-top: 20px">

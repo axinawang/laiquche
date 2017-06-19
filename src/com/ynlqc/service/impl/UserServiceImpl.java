@@ -5,23 +5,30 @@ import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
 
+import org.apache.log4j.Logger;
+
+import com.ynlqc.constant.Constant;
 import com.ynlqc.dao.UserDao;
 import com.ynlqc.dao.impl.UserDaoImpl;
 import com.ynlqc.domain.User;
 import com.ynlqc.service.UserService;
 import com.ynlqc.utils.MailUtils;
+import com.ynlqc.utils.PropertiesUtil;
 
 import net.sf.json.JSONObject;
 import sun.util.logging.resources.logging;
 
 public class UserServiceImpl implements UserService {
-
+	Logger logger = Logger.getLogger(getClass());
 	@Override
 	public void regist(User user) throws Exception {
 		UserDao dao=new UserDaoImpl();
 		dao.add(user);
+		String host=PropertiesUtil.getValueByKey("/config.properties", "IP");
+		//String host="47.93.221.37";
 		
-		String emailMsg="亲，注册已成功，请"+"<a href='http://localhost:8080/store28/user?method=active&code="+user.getCode()+"'>激活</a>后使用";
+		logger.debug("服务器:"+host);
+		String emailMsg="亲，注册已成功，请"+"<a href='http://"+host+"/user?method=active&code="+user.getCode()+"'>激活</a>后使用";
 		System.out.println("emailmsg="+emailMsg);
 		MailUtils.sendMail(user.getEmail(), emailMsg);
 	}
@@ -69,12 +76,7 @@ public class UserServiceImpl implements UserService {
 	        return json.toString();
 	}
 
-	@Override
-	public boolean havingOpenid(String openid) throws Exception {
-		UserDao dao=new UserDaoImpl();
-		
-		return dao.havingOpenid(openid);
-	}
+	
 
 	@Override
 	public void add(User user) throws Exception {
