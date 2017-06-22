@@ -218,7 +218,7 @@ CREATE TABLE `shop` (
   `tel` varchar(40) DEFAULT NULL,
   `image` varchar(200) DEFAULT NULL,
   `des` text DEFAULT NULL,
-  `city_id` varchar(32) NOT NULL,
+  `city_id` varchar(32) DEFAULT NULL,
   PRIMARY KEY (`shop_id`),
   KEY `cityfk` (`city_id`),
   CONSTRAINT `cityfk` FOREIGN KEY (`city_id`) REFERENCES `city` (`city_id`)

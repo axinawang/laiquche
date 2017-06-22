@@ -33,5 +33,13 @@ public class ShopDaoImpl implements ShopDao {
 		return qr.query(sql, new BeanListHandler<>(Shop.class),city_id);
 	}
 
+	@Override
+	public void updateCid(String city_id) throws Exception {
+		QueryRunner qr = new QueryRunner();
+		String sql="update shop set city_id = null where city_id = ?";
+		qr.update(DataSourceUtils.getConnection(), sql, city_id);
+		
+	}
+
 	
 }

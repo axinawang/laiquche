@@ -89,4 +89,22 @@ public class AdminCityServlet extends BaseServlet {
 		response.sendRedirect(request.getContextPath() + "/adminCity?method=findAll");
 		return null;
 	}
+	/**
+	 * 删除城市
+	 * @param request
+	 * @param response
+	 * @return
+	 * @throws Exception
+	 */
+	public String delete(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		//1.接受cid
+		String city_id=request.getParameter("city_id");
+		
+		//2 调用service完成 查询操作 返回值:category
+		CityService cs=(CityService) BeanFactory.getBean("CityService");
+		cs.delete(city_id);
+		
+		response.sendRedirect(request.getContextPath() + "/adminCity?method=findAll");
+		return null;
+	}
 }

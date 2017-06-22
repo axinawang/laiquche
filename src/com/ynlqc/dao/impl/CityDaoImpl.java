@@ -49,6 +49,14 @@ public class CityDaoImpl implements CityDao {
 		qr.update(sql,bean.getName(),bean.getCity_id());
 		
 	}
+
+	@Override
+	public void delete(String city_id) throws Exception {
+		QueryRunner qr = new QueryRunner();
+		String sql="delete from city where city_id = ?";
+		qr.update(DataSourceUtils.getConnection(), sql, city_id);
+		
+	}
 	
 
 }

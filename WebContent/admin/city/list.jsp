@@ -68,7 +68,7 @@
 											</td>
 									
 											<td align="center" style="HEIGHT: 22px">
-												<a href="javascript:void(0)" onclick="deleteC('${c.city_id}')">
+												<a href="javascript:void(0)" onclick="deleteCity('${c.city_id}')">
 													<img src="${pageContext.request.contextPath}/images/i_del.gif" width="16" height="16" border="0" style="CURSOR: hand">
 												</a>
 											</td>
@@ -81,7 +81,7 @@
 			</table>
 	</body>
 	<script type="text/javascript">
-		function deleteC(cid){
+		function deleteCity(city_id){
 			if(confirm("您确定要删除该分类吗?")){
 				location.href="${ pageContext.request.contextPath }/adminCity?method=delete&city_id="+city_id;
 				

@@ -12,6 +12,8 @@ public interface ShopDao {
 
 	List<Shop> findByCity(String city_id) throws Exception;
 
+	void updateCid(String city_id) throws Exception;
+
 	
 
 	

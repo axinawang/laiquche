@@ -11,4 +11,5 @@ public interface CityDao {
 	List<City> findAll () throws Exception;
 	City getById(String cid) throws Exception;
 	void update(City bean) throws Exception;
+	void delete(String city_id) throws Exception;
 }
