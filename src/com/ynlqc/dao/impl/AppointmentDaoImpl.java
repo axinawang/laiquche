@@ -30,10 +30,11 @@ public class AppointmentDaoImpl implements AppointmentDao {
   `date` date DEFAULT NULL,
   `admin_id`	varchar(32) DEFAULT NULL,
 		 */
-		String sql="insert into Appointment values(?,?,?,?,?,?,?,?,?,?)";
+		String sql="insert into appointment_info (appointment_id,name,sex,telephone,arrive_time,"
+				+ "selected_city,shop_id,description) values(?,?,?,?,?,?,?,?)";
 		qr.update(sql,bean.getAppointment_id(),bean.getName(),bean.getSex(),bean.getTelephone(),
 				bean.getArrive_time(),bean.getSelected_city(),bean.getShop().getShop_id(),
-				bean.getDescription(),bean.getDate(),bean.getAdmin().getAdmin_id());
+				bean.getDescription());
 	}
 
 	/*@Override

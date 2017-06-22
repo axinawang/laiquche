@@ -13,7 +13,9 @@ import javax.servlet.jsp.PageContext;
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.beanutils.ConvertUtils;
 
+import com.ynlqc.domain.Admin;
 import com.ynlqc.domain.Appointment;
+import com.ynlqc.domain.Shop;
 import com.ynlqc.domain.User;
 import com.ynlqc.myconverter.MyConverter;
 import com.ynlqc.service.AppointmentService;
@@ -36,9 +38,10 @@ public class AppointmentServlet extends BaseServlet {
 		AppointmentService service=(AppointmentService) BeanFactory.getBean("AppointmentService");
 		Appointment bean = new Appointment();
 		ConvertUtils.register(new MyConverter(), Date.class);
+		ConvertUtils.register(new MyConverter(), Shop.class);
 		BeanUtils.populate(bean, request.getParameterMap());
-		bean.setAppointment_id(UUIDUtils.getId());
 		
+		bean.setAppointment_id(UUIDUtils.getId());
 		service.add(bean);
 		request.setAttribute("msg", "预约成功，稍后客服会与您联系！");
 		return "/jsp/msg.jsp";

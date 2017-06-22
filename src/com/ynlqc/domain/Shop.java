@@ -1,9 +1,6 @@
 package com.ynlqc.domain;
 
 import java.io.Serializable;
-import java.util.Date;
-
-import com.ynlqc.utils.UUIDUtils;
 /**
  * 用户实体
  * @author Administrator
@@ -67,13 +64,7 @@ public class Shop implements Serializable {
 	}
 
 	/**
-	 * `shop_id` int NOT NULL auto_increment,
-  `shop_name` varchar(100) DEFAULT NULL,
-  `shop_city` varchar(40) DEFAULT NULL,
-  `shop_address` varchar(200) DEFAULT NULL,
-  `shop_tel` varchar(40) DEFAULT NULL,
-  `shop_image` varchar(200) DEFAULT NULL,
-  `description` text DEFAULT NULL,
+	 * 
 	 */
 	private String shop_id;
 	private String name;

@@ -11,6 +11,26 @@
   </filter-mapping>
   <servlet>
     <description></description>
+    <display-name>CityServlet</display-name>
+    <servlet-name>CityServlet</servlet-name>
+    <servlet-class>com.ynlqc.web.servlet.CityServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CityServlet</servlet-name>
+    <url-pattern>/city</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>AdminCityServlet</display-name>
+    <servlet-name>AdminCityServlet</servlet-name>
+    <servlet-class>com.ynlqc.web.servlet.AdminCityServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AdminCityServlet</servlet-name>
+    <url-pattern>/adminCity</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
     <display-name>UserServlet</display-name>
     <servlet-name>UserServlet</servlet-name>
     <servlet-class>com.ynlqc.web.servlet.UserServlet</servlet-class>
@@ -93,5 +113,15 @@
   <servlet-mapping>
     <servlet-name>AppointmentServlet</servlet-name>
     <url-pattern>/appointment</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ShopServlet</display-name>
+    <servlet-name>ShopServlet</servlet-name>
+    <servlet-class>com.ynlqc.web.servlet.ShopServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ShopServlet</servlet-name>
+    <url-pattern>/shop</url-pattern>
   </servlet-mapping>
 </web-app>

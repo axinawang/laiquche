@@ -191,23 +191,47 @@ INSERT INTO `car` VALUES
 ('26','2015款 别克君威 1.6T领先技术版','2015-11-02',1,0,189900,18990,16788,6066,'含购置税首保','car/primaryexample.png','car/hot/example.jpg','三厢',4000,2000,1700,'2.5L 200马力 L4','CVT无级变速','前置前驱','汽油','6.1L/100km(工信部)','月光银/内饰浅','在中国，如果能将一个汽车细分市场与一个车型关联起来，恐怕只有一款车型能担当此任，那就是别克GL8，在国内别克GL8几乎是商务车的别称。能做到如此成功除了出道早之外，与别克GL8过硬的汽车品质也是分不开的。',3,2,10);
 UNLOCK TABLES;
 
+DROP TABLE IF EXISTS `city`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `city` (
+  `city_id` varchar(32) NOT NULL,
+  `name` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`city_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+LOCK TABLES `city` WRITE;
+
+INSERT INTO `city`(`city_id` ,`name`) VALUES ('1','绍兴');
+INSERT INTO `city`(`city_id` ,`name`) VALUES ('2','杭州');
+UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `shop`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `shop` (
-  `shop_id` int NOT NULL auto_increment,
-  `shop_name` varchar(100) DEFAULT NULL,
-  `shop_city` varchar(40) DEFAULT NULL,
-  `shop_address` varchar(200) DEFAULT NULL,
-  `shop_tel` varchar(40) DEFAULT NULL,
-  `shop_image` varchar(200) DEFAULT NULL,
-  `description` text DEFAULT NULL,
-  PRIMARY KEY (`shop_id`)
+  `shop_id` varchar(32) NOT NULL,
+  `name` varchar(100) DEFAULT NULL,
+  `city` varchar(40) DEFAULT NULL,
+  `addr` varchar(200) DEFAULT NULL,
+  `tel` varchar(40) DEFAULT NULL,
+  `image` varchar(200) DEFAULT NULL,
+  `des` text DEFAULT NULL,
+  `city_id` varchar(32) NOT NULL,
+  PRIMARY KEY (`shop_id`),
+  KEY `cityfk` (`city_id`),
+  CONSTRAINT `cityfk` FOREIGN KEY (`city_id`) REFERENCES `city` (`city_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
+LOCK TABLES `shop` WRITE;
 
+INSERT INTO `shop`(`shop_id` ,`name`,`city`,`addr`,`tel`,`image`,`des`,`city_id`) VALUES ('md1','绍兴4s1','shaoxing','addr','tel','image','des','1');
+INSERT INTO `shop`(`shop_id` ,`name`,`city`,`addr`,`tel`,`image`,`des`,`city_id`) VALUES ('md2','绍兴4s2','shaoxing','addr','tel','image','des','1');
+INSERT INTO `shop`(`shop_id` ,`name`,`city`,`addr`,`tel`,`image`,`des`,`city_id`) VALUES ('md3','杭州4s1','shaoxing','addr','tel','image','des','2');
+INSERT INTO `shop`(`shop_id` ,`name`,`city`,`addr`,`tel`,`image`,`des`,`city_id`) VALUES ('md4','杭州4s2','shaoxing','addr','tel','image','des','2');
+UNLOCK TABLES;
 
 
 
@@ -221,9 +245,9 @@ CREATE TABLE `appointment_info` (
   `telephone` varchar(20) DEFAULT NULL,
   `arrive_time` date DEFAULT NULL,
   `selected_city` varchar(40) DEFAULT NULL,
-  `shop_id` int(11) DEFAULT NULL,
+  `shop_id` varchar(32) DEFAULT NULL,
   `description` text DEFAULT NULL,
-  `date` date DEFAULT NULL,
+  `date` timestamp,
   `admin_id`	varchar(32) DEFAULT NULL,
   PRIMARY KEY (`appointment_id`),
   KEY `adminfk` (`admin_id`),
@@ -232,6 +256,10 @@ CREATE TABLE `appointment_info` (
   CONSTRAINT `shopfk` FOREIGN KEY (`shop_id`) REFERENCES `shop` (`shop_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+LOCK TABLES `appointment_info` WRITE;
+
+UNLOCK TABLES;
 
 
 DROP TABLE IF EXISTS `intent_series`;

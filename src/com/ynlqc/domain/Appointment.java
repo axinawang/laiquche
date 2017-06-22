@@ -29,8 +29,7 @@ public class Appointment {
 	private String telephone;	
 	private Date  arrive_time;
 	private String selected_city;
-	
-	private Date date;//该条信息的最近更新时间	 
+	 
 	private Shop shop;
 	private Admin admin;
 	private String  description;
@@ -77,12 +76,7 @@ public class Appointment {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public Date getDate() {
-		return date;
-	}
-	public void setDate(Date date) {
-		this.date = date;
-	}
+	
 	public Shop getShop() {
 		return shop;
 	}

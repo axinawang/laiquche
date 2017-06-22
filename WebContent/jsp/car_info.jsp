@@ -12,6 +12,68 @@
 		<script src="${pageContext.request.contextPath}/js/bootstrap.min.js" type="text/javascript"></script>
 		<!-- 引入自定义css文件 style.css -->
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css" type="text/css" />
+		<!-- 引入自定义日期选择器 -->
+        <script src="${pageContext.request.contextPath}/js/jquery-ui-1.12.1/jquery-ui.min.js"></script>
+		<link href="${pageContext.request.contextPath}/js/jquery-ui-1.12.1/jquery-ui.min.css" rel="stylesheet" />
+		<script src="${pageContext.request.contextPath}/js/jQuery-Timepicker/jquery-ui-timepicker-addon.min.js"></script>
+		<script type="text/javascript" src="${pageContext.request.contextPath}/js/jQuery-Timepicker/i18n/jquery-ui-timepicker-zh-CN.js"></script>
+		<link href="${pageContext.request.contextPath}/js/jQuery-Timepicker/jquery-ui-timepicker-addon.min.css" rel="stylesheet" />
+		<script type="text/javascript">
+			(function($) {
+				$(function() {
+					$.datepicker.regional['zh-CN'] = {
+						changeMonth: true,
+						changeYear: true,
+						clearText: '清除',
+						clearStatus: '清除已选日期',
+						closeText: '关闭',
+						closeStatus: '不改变当前选择',
+						prevText: '<上月',
+						prevStatus: '显示上月',
+						prevBigText: '<<',
+						prevBigStatus: '显示上一年',
+						nextText: '下月>',
+						nextStatus: '显示下月',
+						nextBigText: '>>',
+						nextBigStatus: '显示下一年',
+						currentText: '今天',
+						currentStatus: '显示本月',
+						monthNames: ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月'],
+						monthNamesShort: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'],
+						monthStatus: '选择月份',
+						yearStatus: '选择年份',
+						weekHeader: '周',
+						weekStatus: '年内周次',
+						dayNames: ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'],
+						dayNamesShort: ['周日', '周一', '周二', '周三', '周四', '周五', '周六'],
+						dayNamesMin: ['日', '一', '二', '三', '四', '五', '六'],
+						dayStatus: '设置 DD 为一周起始',
+						dateStatus: '选择 m月 d日, DD',
+						dateFormat: 'yy-mm-dd',
+						firstDay: 1,
+						initStatus: '请选择日期',
+						isRTL: false
+					};
+
+				});
+
+				$(function() {
+
+					$.datepicker.setDefaults($.datepicker.regional['zh-CN']);
+					$("#arrive_time").prop("readonly", true).datepicker({
+						changeMonth: true,
+						dateFormat: "yy-mm-dd",
+						onClose: function(selectedDate) {
+
+						}
+
+					});				
+					
+				});			
+				
+			}(jQuery));
+		</script>
+<!-- 引入自定义日期选择器 结束-->
 
 		<style>
 			body {
@@ -59,7 +121,7 @@
 
 						<!-- 预约开始 -->
 
-<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+<button id="appiont" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
 预约到店
 </button>
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -74,36 +136,12 @@
 </h4>
 </div>
 <div class="modal-body">
-
-		<form class="form-horizontal" style="margin-top:5px;" action="${pageContext.request.contextPath}/user?method=regist" method="post">
+		请留下您的联系方式并选择附近门店，我们将在24小时内安排门店销售顾问与您联系
+		<form class="form-horizontal" style="margin-top:5px;" action="${pageContext.request.contextPath}/appointment?method=add" method="post">
 			 <div class="form-group">
-			    <label for="username" class="col-sm-2 control-label">用户名</label>
+			    <label for="name" class="col-sm-2 control-label">姓名</label>
 			    <div class="col-sm-6">
-			      <input type="text" class="form-control" id="username" placeholder="请输入用户名" name="username">
-			    </div>
-			  </div>
-			   <div class="form-group">
-			    <label for="inputPassword3" class="col-sm-2 control-label">密码</label>
-			    <div class="col-sm-6">
-			      <input type="password" class="form-control" id="inputPassword3" placeholder="请输入密码" name="password">
-			    </div>
-			  </div>
-			   <div class="form-group">
-			    <label for="confirmpwd" class="col-sm-2 control-label">确认密码</label>
-			    <div class="col-sm-6">
-			      <input type="password" class="form-control" id="confirmpwd" placeholder="请输入确认密码">
-			    </div>
-			  </div>
-			  <div class="form-group">
-			    <label for="inputEmail3" class="col-sm-2 control-label">Email</label>
-			    <div class="col-sm-6">
-			      <input type="email" class="form-control" id="inputEmail3" placeholder="Email" name="email">
-			    </div>
-			  </div>
-			 <div class="form-group">
-			    <label for="usercaption" class="col-sm-2 control-label">姓名</label>
-			    <div class="col-sm-6">
-			      <input type="text" class="form-control" id="usercaption" placeholder="请输入姓名"  name="name">
+			      <input type="text" class="form-control" id="name" placeholder="请输入姓名" name="name">
 			    </div>
 			  </div>
 			  <div class="form-group opt">  
@@ -116,15 +154,39 @@
 			  <input type="radio" name="sex" id="inlineRadio2" value="女"> 女
 			</label>
 			</div>
-			  </div>		
+			  </div> 
+			   
 			  <div class="form-group">
-			    <label for="date" class="col-sm-2 control-label">出生日期</label>
+			    <label for="telephone" class="col-sm-2 control-label">手机号</label>
 			    <div class="col-sm-6">
-			      <input type="date" class="form-control"  name="birthday">		      
+			      <input type="text" class="form-control" id="telephone" placeholder="手机号" name="telephone">
+			    </div>
+			  </div>
+			  <div class="form-group">
+			    <label for="arrive_time" class="col-sm-2 control-label">到达时间</label>
+			    <div class="col-sm-6">
+			      <input id="arrive_time" type="date" class="form-control"  name="arrive_time">		      
+			    </div>
+			  </div>
+			 <div class="form-group">
+			    <label for="selected_city" class="col-sm-2 control-label">选择城市</label>
+			    <div class="col-sm-6">
+			      <select id="city"  class="form-control" id="selected_city" name="selected_city">
+		</select>
+			       </div>
+			  </div>
+			  		
+			  <div class="form-group">
+			    <label for="shop" class="col-sm-2 control-label">门店</label>
+			    <div class="col-sm-6">
+			    <select  class="form-control" id="shop" name="shop">
+			       
+		        </select>
+			      	      
 			    </div>
 			  </div>
 			  
-			  <div class="form-group">
+			  <%-- <div class="form-group">
 			    <label for="date" class="col-sm-2 control-label">验证码</label>
 			    <div class="col-sm-3">
 			      <input type="text" class="form-control"  >
@@ -134,7 +196,7 @@
 			    <img src="${pageContext.request.contextPath}/image/captcha.jhtml"/>
 			    </div>
 			    
-			  </div>
+			  </div> --%>
 			 
 			  <div class="form-group">
 			    <div class="col-sm-offset-2 col-sm-10">
@@ -254,16 +316,61 @@
             -->
 			<jsp:include page="/jsp/foot.jsp"></jsp:include>
 			
-
-	</body>
-
-</html>
 <script>
 
 //初始化
 $(function() {
-	$("#appointment").click(function(){
-		alert("yuyue");
+	$("#appiont").click(function(){
+		//发送ajax请求
+		$.get("${pageContext.request.contextPath}/city?method=findAll",function(data){
+			//获取brand的ul标签
+			var $selected=$("#city");
+			$("#city").empty();
+			$("#shop").empty();
+			//遍历数组
+			$(data).each(function(){
+				//$ul.append($("<li><a href='${pageContext.request.contextPath}/car?method=findByBrandInPage&brand_id="+this.brand_id+"&currPage=1'>"+this.brand_name+"</a></li>"));
+				$selected.append($("<option value='"+this.city_id+"'>"+this.name+"</option>"));
+				
+			});
+			
+			$("#city option").click(function(){
+				var $city_id=$(this).val();
+				$.get("${pageContext.request.contextPath}/shop?method=findByCity&city_id="+$city_id,function(data){
+					//获取brand的ul标签
+					var $selected=$("#shop");
+					$("#shop").empty();
+					//遍历数组
+					$(data).each(function(){
+						//$ul.append($("<li><a href='${pageContext.request.contextPath}/car?method=findByBrandInPage&brand_id="+this.brand_id+"&currPage=1'>"+this.brand_name+"</a></li>"));
+						$selected.append($("<option value='"+this.shop_id+"'>"+this.name+"</option>"));
+						
+					});
+				},"json");				
+				
+			});
+			$("#city option:first").trigger("click");
+		},"json");
+		//$('#myModal').modal('show');
 	});
+	/* $("#appiont").click(function(){
+		//发送ajax请求
+		$.get("${pageContext.request.contextPath}/shop?method=findAll",function(data){
+			//获取brand的ul标签
+			var $selected=$("#shop");
+			$("#shop").empty();
+			//遍历数组
+			$(data).each(function(){
+				//$ul.append($("<li><a href='${pageContext.request.contextPath}/car?method=findByBrandInPage&brand_id="+this.brand_id+"&currPage=1'>"+this.brand_name+"</a></li>"));
+				$selected.append($("<option value='"+this.shop_id+"'>"+this.name+"</option>"));
+				
+			});
+		},"json");
+		//$('#myModal').modal('show');
+	}); */
+	
 });
 </script>
+	</body>
+
+</html>
