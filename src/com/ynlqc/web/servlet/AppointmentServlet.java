@@ -15,6 +15,7 @@ import org.apache.commons.beanutils.ConvertUtils;
 
 import com.ynlqc.domain.Admin;
 import com.ynlqc.domain.Appointment;
+import com.ynlqc.domain.Car;
 import com.ynlqc.domain.Shop;
 import com.ynlqc.domain.User;
 import com.ynlqc.myconverter.MyConverter;
@@ -39,6 +40,8 @@ public class AppointmentServlet extends BaseServlet {
 		Appointment bean = new Appointment();
 		ConvertUtils.register(new MyConverter(), Date.class);
 		ConvertUtils.register(new MyConverter(), Shop.class);
+		ConvertUtils.register(new MyConverter(), User.class);
+		ConvertUtils.register(new MyConverter(), Car.class);
 		BeanUtils.populate(bean, request.getParameterMap());
 		
 		bean.setAppointment_id(UUIDUtils.getId());

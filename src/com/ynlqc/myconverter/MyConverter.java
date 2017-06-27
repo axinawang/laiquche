@@ -6,7 +6,10 @@ import java.util.Date;
 
 import org.apache.commons.beanutils.Converter;
 
+import com.sun.org.apache.regexp.internal.recompile;
+import com.ynlqc.domain.Car;
 import com.ynlqc.domain.Shop;
+import com.ynlqc.domain.User;
 
 public class MyConverter implements Converter {
 
@@ -27,6 +30,21 @@ public class MyConverter implements Converter {
 			Shop shop=new Shop();
 			shop.setShop_id(shop_id);
 			return shop;
+		}else if (User.class==clazz) {//如果是会员转换
+			String user_id=(String) value;
+			if ("".equals(user_id)) {
+				return null;
+			}else {
+				User user=new User();
+			user.setUid(user_id);
+			return user;
+			}
+			
+		}else if (Car.class==clazz) {//如果是车转换
+			String car_id=(String) value;
+			Car car=new Car();
+			car.setCar_id(car_id);
+			return car;
 		}
 
 		return null;

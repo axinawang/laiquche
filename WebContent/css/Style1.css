@@ -191,6 +191,15 @@ A.eq:hover {
 	height:21px ;
 	width:150px;
 }
+.bg2 {
+	border-top:0px ;
+	border-left:0px ;
+	border-right:0px ;
+	border-bottom: solid 1px gray;
+	background-color: #FBFDFF;
+	height:21px ;
+	width:300px;
+}
 .button {
 	background-color: #DAE6FF;
 	margin: 1px;

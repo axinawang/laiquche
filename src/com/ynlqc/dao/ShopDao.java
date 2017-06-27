@@ -14,6 +14,8 @@ public interface ShopDao {
 
 	void updateCid(String city_id) throws Exception;
 
+	void updateCarId(String car_id) throws Exception;
+
 	
 
 	

@@ -41,5 +41,13 @@ public class ShopDaoImpl implements ShopDao {
 		
 	}
 
+	@Override
+	public void updateCarId(String car_id) throws Exception {
+		QueryRunner qr = new QueryRunner();
+		String sql="update shop_car set car_id = null where car_id = ?";
+		qr.update(DataSourceUtils.getConnection(), sql, car_id);
+		
+	}
+
 	
 }

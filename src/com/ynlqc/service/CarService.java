@@ -23,4 +23,13 @@ public interface CarService {
 	PageBean<Car> findByPage(int currPage, int pageSize, int brand_id, int model_id, int series_id,double down_payment,
 			double month_payment, String searh_key) throws Exception;
 
+	List<Car> findAll() throws Exception;
+
+	void add(Car bean) throws Exception;
+
+	void update(Car bean) throws Exception;
+
+	void delete(String car_id) throws Exception;
+
+
 }

@@ -46,7 +46,11 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES ('373eb242933b4f5ca3bd43503c34668b','ccc','ccc','aaa','bbb@store.com','15723689921','2015-11-04','男',0,'9782f3e837ff422b9aee8b6381ccf927bdd9d2ced10d48f4ba4b9f187edf7738'),('3ca76a75e4f64db2bacd0974acc7c897','bb','bb','张三','bbb@store.com','15723689921','1990-02-01','男',0,'1258e96181a9457987928954825189000bae305094a042d6bd9d2d35674684e6'),('62145f6e66ea4f5cbe7b6f6b954917d3','cc','cc','张三','bbb@store.com','15723689921','2015-11-03','男',0,'19f100aa81184c03951c4b840a725b6a98097aa1106a4a38ba1c29f1a496c231'),('c95b15a864334adab3d5bb6604c6e1fc','bbb','bbb','老王','bbb@store.com','15712344823','2000-02-01','男',0,'71a3a933353347a4bcacff699e6baa9c950a02f6b84e4f6fb8404ca06febfd6f'),('f55b7d3a352a4f0782c910b2c70f1ea4','aaa','aaa','小王','aaa@store.com','15712344823','2000-02-01','男',1,NULL);
+INSERT INTO `user` VALUES ('1','ccc','ccc','aaa','bbb@store.com','15723689921','2015-11-04','男',0,'9782f3e837ff422b9aee8b6381ccf927bdd9d2ced10d48f4ba4b9f187edf7738'),
+('2','bb','bb','张三','bbb@store.com','15723689921','1990-02-01','男',0,'1258e96181a9457987928954825189000bae305094a042d6bd9d2d35674684e6'),
+('3','cc','cc','张三','bbb@store.com','15723689921','2015-11-03','男',0,'19f100aa81184c03951c4b840a725b6a98097aa1106a4a38ba1c29f1a496c231'),
+('4','bbb','bbb','老王','bbb@store.com','15712344823','2000-02-01','男',0,'71a3a933353347a4bcacff699e6baa9c950a02f6b84e4f6fb8404ca06febfd6f'),
+('5','aaa','aaa','小王','aaa@store.com','15712344823','2000-02-01','男',1,NULL);
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -127,7 +131,7 @@ DROP TABLE IF EXISTS `car`;
 CREATE TABLE `car` (
   `car_id` varchar(32)  NOT NULL,
   `car_name` varchar(100) DEFAULT NULL,
-  `car_date` date DEFAULT NULL,
+  `car_date` datetime DEFAULT NULL,
   `is_hot` int(11) DEFAULT 0,
 `car_flag` int(11) DEFAULT 0,
 `guide_price` double DEFAULT NULL,
@@ -191,6 +195,11 @@ INSERT INTO `car` VALUES
 ('26','2015款 别克君威 1.6T领先技术版','2015-11-02',1,0,189900,18990,16788,6066,'含购置税首保','car/primaryexample.png','car/hot/example.jpg','三厢',4000,2000,1700,'2.5L 200马力 L4','CVT无级变速','前置前驱','汽油','6.1L/100km(工信部)','月光银/内饰浅','在中国，如果能将一个汽车细分市场与一个车型关联起来，恐怕只有一款车型能担当此任，那就是别克GL8，在国内别克GL8几乎是商务车的别称。能做到如此成功除了出道早之外，与别克GL8过硬的汽车品质也是分不开的。',3,2,10);
 UNLOCK TABLES;
 
+
+
+
+
+
 DROP TABLE IF EXISTS `city`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
@@ -213,7 +222,6 @@ DROP TABLE IF EXISTS `shop`;
 CREATE TABLE `shop` (
   `shop_id` varchar(32) NOT NULL,
   `name` varchar(100) DEFAULT NULL,
-  `city` varchar(40) DEFAULT NULL,
   `addr` varchar(200) DEFAULT NULL,
   `tel` varchar(40) DEFAULT NULL,
   `image` varchar(200) DEFAULT NULL,
@@ -227,10 +235,10 @@ CREATE TABLE `shop` (
 
 LOCK TABLES `shop` WRITE;
 
-INSERT INTO `shop`(`shop_id` ,`name`,`city`,`addr`,`tel`,`image`,`des`,`city_id`) VALUES ('md1','绍兴4s1','shaoxing','addr','tel','image','des','1');
-INSERT INTO `shop`(`shop_id` ,`name`,`city`,`addr`,`tel`,`image`,`des`,`city_id`) VALUES ('md2','绍兴4s2','shaoxing','addr','tel','image','des','1');
-INSERT INTO `shop`(`shop_id` ,`name`,`city`,`addr`,`tel`,`image`,`des`,`city_id`) VALUES ('md3','杭州4s1','shaoxing','addr','tel','image','des','2');
-INSERT INTO `shop`(`shop_id` ,`name`,`city`,`addr`,`tel`,`image`,`des`,`city_id`) VALUES ('md4','杭州4s2','shaoxing','addr','tel','image','des','2');
+INSERT INTO `shop`(`shop_id` ,`name`,`addr`,`tel`,`image`,`des`,`city_id`) VALUES ('1','绍兴4s1','addr','tel','image','des','1');
+INSERT INTO `shop`(`shop_id` ,`name`,`addr`,`tel`,`image`,`des`,`city_id`) VALUES ('2','绍兴4s2','addr','tel','image','des','1');
+INSERT INTO `shop`(`shop_id` ,`name`,`addr`,`tel`,`image`,`des`,`city_id`) VALUES ('3','杭州4s1','addr','tel','image','des','2');
+INSERT INTO `shop`(`shop_id` ,`name`,`addr`,`tel`,`image`,`des`,`city_id`) VALUES ('4','杭州4s2','addr','tel','image','des','2');
 UNLOCK TABLES;
 
 
@@ -244,21 +252,26 @@ CREATE TABLE `appointment_info` (
   `sex` varchar(10) DEFAULT NULL,
   `telephone` varchar(20) DEFAULT NULL,
   `arrive_time` date DEFAULT NULL,
-  `selected_city` varchar(40) DEFAULT NULL,
   `shop_id` varchar(32) DEFAULT NULL,
   `description` text DEFAULT NULL,
   `date` timestamp,
   `admin_id`	varchar(32) DEFAULT NULL,
+`car_id` varchar(32) DEFAULT NULL,
+`user_id` varchar(32) DEFAULT NULL,
   PRIMARY KEY (`appointment_id`),
   KEY `adminfk` (`admin_id`),
   CONSTRAINT `adminfk` FOREIGN KEY (`admin_id`) REFERENCES `admin` (`admin_id`),
   KEY `shopfk` (`shop_id`),
-  CONSTRAINT `shopfk` FOREIGN KEY (`shop_id`) REFERENCES `shop` (`shop_id`)
+  CONSTRAINT `shopfk` FOREIGN KEY (`shop_id`) REFERENCES `shop` (`shop_id`),
+KEY `carfk` (`car_id`),
+  CONSTRAINT `carfk` FOREIGN KEY (`car_id`) REFERENCES `car` (`car_id`),
+KEY `fk_appointment_info_user_id` (`user_id`),
+  CONSTRAINT `fk_appointment_info_user_id` FOREIGN KEY (`user_id`) REFERENCES `user` (`uid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 LOCK TABLES `appointment_info` WRITE;
-
+INSERT INTO `appointment_info`(`appointment_id` ,`name`,`shop_id`,`car_id`,`user_id`) VALUES ('1','绍兴4s1','1','1','1');
 UNLOCK TABLES;
 
 
@@ -278,3 +291,36 @@ CREATE TABLE `intent_series` (
 KEY `intfk_0001` (`admin_id`),
   CONSTRAINT `intfk_0001` FOREIGN KEY (`admin_id`) REFERENCES `admin` (`admin_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+DROP TABLE IF EXISTS `user_car`;
+CREATE TABLE `user_car` (
+  `user_car_id` varchar(32) NOT NULL,
+  `user_id` varchar(32) DEFAULT NULL,
+  `car_id` varchar(32) DEFAULT NULL,
+  PRIMARY KEY (`user_car_id`),
+KEY `fk_user_car_user_id` (`user_id`),
+  CONSTRAINT `fk_user_car_user_id` FOREIGN KEY (`user_id`) REFERENCES `user` (`uid`),
+KEY `fk_user_car_car_id` (`car_id`),
+  CONSTRAINT `fk_user_car_car_id` FOREIGN KEY (`car_id`) REFERENCES `car` (`car_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+LOCK TABLES `user_car` WRITE;
+INSERT INTO `user_car`VALUES ('1','1','1');
+UNLOCK TABLES;
+
+DROP TABLE IF EXISTS `shop_car`;
+CREATE TABLE `shop_car` (
+  `shop_car_id` varchar(32) NOT NULL,
+  `shop_id` varchar(32) DEFAULT NULL,
+  `car_id` varchar(32) DEFAULT NULL,
+  PRIMARY KEY (`shop_car_id`),
+KEY `fk_shop_car_shop_id` (`shop_id`),
+  CONSTRAINT `fk_shop_car_shop_id` FOREIGN KEY (`shop_id`) REFERENCES `shop` (`shop_id`),
+KEY `fk_shop_car_car_id` (`car_id`),
+  CONSTRAINT `fk_shop_car_car_id` FOREIGN KEY (`car_id`) REFERENCES `car` (`car_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+LOCK TABLES `shop_car` WRITE;
+INSERT INTO `shop_car`VALUES ('1','1','1');
+UNLOCK TABLES;
+

@@ -59,6 +59,14 @@ public class UserDaoImpl implements UserDao {
 		return qr.query(sql, new BeanHandler<>(User.class),username,password);
 	}
 
+	@Override
+	public void updateCarId(String car_id) throws Exception {
+		QueryRunner qr = new QueryRunner();
+		String sql="update user_car set car_id = null where car_id = ?";
+		qr.update(DataSourceUtils.getConnection(), sql, car_id);
+		
+	}
+
 	
 
 }

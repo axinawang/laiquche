@@ -23,6 +23,14 @@ public interface CarDao {
 
 	List<Car> findByBrand(int type_id) throws Exception;
 
+	List<Car> findAll() throws Exception;
+
+	void add(Car bean) throws Exception;
+
+	void update(Car bean) throws Exception;
+
+	void delete(String car_id) throws Exception;
+
 	
 
 }

@@ -7,6 +7,18 @@ import java.io.Serializable;
  *
  */
 public class Shop implements Serializable {
+	private String shop_id;
+	private String name;
+	private String city_id;
+	
+	private String addr;
+	private String tel;
+	
+
+	private String  image;
+
+	private String  des;
+
 	public String getShop_id() {
 		return shop_id;
 	}
@@ -23,12 +35,12 @@ public class Shop implements Serializable {
 		this.name = name;
 	}
 
-	public String getCity() {
-		return city;
+	public String getCity_id() {
+		return city_id;
 	}
 
-	public void setCity(String city) {
-		this.city = city;
+	public void setCity_id(String city_id) {
+		this.city_id = city_id;
 	}
 
 	public String getAddr() {
@@ -62,21 +74,7 @@ public class Shop implements Serializable {
 	public void setDes(String des) {
 		this.des = des;
 	}
-
-	/**
-	 * 
-	 */
-	private String shop_id;
-	private String name;
-	private String city;
 	
-	private String addr;
-	private String tel;
-	
-
-	private String  image;
-
-	private String  des;
 	
 	
 	

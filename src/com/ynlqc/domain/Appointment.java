@@ -15,11 +15,12 @@ public class Appointment {
   `sex` varchar(10) DEFAULT NULL,
   `telephone` varchar(20) DEFAULT NULL,
   `arrive_time` date DEFAULT NULL,
-  `selected_city` varchar(40) DEFAULT NULL,
-  `shop_id` int(11) DEFAULT NULL,
+  `shop_id` varchar(32) DEFAULT NULL,
   `description` text DEFAULT NULL,
-  `date` date DEFAULT NULL,
+  `date` timestamp,
   `admin_id`	varchar(32) DEFAULT NULL,
+`car_id` varchar(32) DEFAULT NULL,
+`user_id` varchar(32) DEFAULT NULL,
 	 * 
 	 */
 	private String appointment_id;
@@ -28,10 +29,12 @@ public class Appointment {
 
 	private String telephone;	
 	private Date  arrive_time;
-	private String selected_city;
+
 	 
 	private Shop shop;
 	private Admin admin;
+	private User user;
+	private Car car;
 	private String  description;
 	
 	public String getAppointment_id() {
@@ -64,12 +67,7 @@ public class Appointment {
 	public void setArrive_time(Date arrive_time) {
 		this.arrive_time = arrive_time;
 	}
-	public String getSelected_city() {
-		return selected_city;
-	}
-	public void setSelected_city(String selected_city) {
-		this.selected_city = selected_city;
-	}
+
 	public String getDescription() {
 		return description;
 	}
@@ -88,6 +86,18 @@ public class Appointment {
 	}
 	public void setAdmin(Admin admin) {
 		this.admin = admin;
+	}
+	public User getUser() {
+		return user;
+	}
+	public void setUser(User user) {
+		this.user = user;
+	}
+	public Car getCar() {
+		return car;
+	}
+	public void setCar(Car car) {
+		this.car = car;
 	}
 	
 	

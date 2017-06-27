@@ -18,23 +18,20 @@ public class AppointmentDaoImpl implements AppointmentDao {
 	@Override
 	public void add(Appointment bean) throws Exception {
 		QueryRunner qr=new QueryRunner(DataSourceUtils.getDataSource());
-		/**
-		 *  `appointment_id` varchar(32) NOT NULL,
-  `name` varchar(20) DEFAULT NULL,
-  `sex` varchar(10) DEFAULT NULL,
-  `telephone` varchar(20) DEFAULT NULL,
-  `arrive_time` date DEFAULT NULL,
-  `selected_city` varchar(40) DEFAULT NULL,
-  `shop_id` int(11) DEFAULT NULL,
-  `description` text DEFAULT NULL,
-  `date` date DEFAULT NULL,
-  `admin_id`	varchar(32) DEFAULT NULL,
-		 */
+
 		String sql="insert into appointment_info (appointment_id,name,sex,telephone,arrive_time,"
-				+ "selected_city,shop_id,description) values(?,?,?,?,?,?,?,?)";
+				+ "shop_id,user_id,car_id,description) values(?,?,?,?,?,?,?,?,?)";
 		qr.update(sql,bean.getAppointment_id(),bean.getName(),bean.getSex(),bean.getTelephone(),
-				bean.getArrive_time(),bean.getSelected_city(),bean.getShop().getShop_id(),
-				bean.getDescription());
+				bean.getArrive_time(),bean.getShop().getShop_id(),bean.getUser()==null?null:bean.getUser().getUid(),
+				bean.getCar().getCar_id(),bean.getDescription());
+	}
+
+	@Override
+	public void updateCarId(String car_id) throws Exception {
+		QueryRunner qr = new QueryRunner();
+		String sql="update appointment_info set car_id = null where car_id = ?";
+		qr.update(DataSourceUtils.getConnection(), sql, car_id);
+		
 	}
 
 	/*@Override

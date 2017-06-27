@@ -138,6 +138,8 @@
 <div class="modal-body">
 		请留下您的联系方式并选择附近门店，我们将在24小时内安排门店销售顾问与您联系
 		<form class="form-horizontal" style="margin-top:5px;" action="${pageContext.request.contextPath}/appointment?method=add" method="post">
+			 <input type="hidden" name="user" value='${empty user?"":user.uid}'>
+			 <input type="hidden" name="car" value="${bean.car_id}">
 			 <div class="form-group">
 			    <label for="name" class="col-sm-2 control-label">姓名</label>
 			    <div class="col-sm-6">

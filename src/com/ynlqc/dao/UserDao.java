@@ -11,4 +11,7 @@ public interface UserDao {
 
 	User getByUsernameAndPwd(String username, String password) throws Exception;
 
+	void updateCarId(String car_id) throws Exception;
+
+
 }

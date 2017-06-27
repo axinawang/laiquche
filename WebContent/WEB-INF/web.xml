@@ -11,6 +11,26 @@
   </filter-mapping>
   <servlet>
     <description></description>
+    <display-name>UpdateCarServlet</display-name>
+    <servlet-name>UpdateCarServlet</servlet-name>
+    <servlet-class>com.ynlqc.web.servlet.UpdateCarServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UpdateCarServlet</servlet-name>
+    <url-pattern>/updateCar</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>AddCarServlet</display-name>
+    <servlet-name>AddCarServlet</servlet-name>
+    <servlet-class>com.ynlqc.web.servlet.AddCarServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AddCarServlet</servlet-name>
+    <url-pattern>/addCar</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
     <display-name>CityServlet</display-name>
     <servlet-name>CityServlet</servlet-name>
     <servlet-class>com.ynlqc.web.servlet.CityServlet</servlet-class>
@@ -28,6 +48,16 @@
   <servlet-mapping>
     <servlet-name>AdminCityServlet</servlet-name>
     <url-pattern>/adminCity</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>AdminCarServlet</display-name>
+    <servlet-name>AdminCarServlet</servlet-name>
+    <servlet-class>com.ynlqc.web.servlet.AdminCarServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AdminCarServlet</servlet-name>
+    <url-pattern>/adminCar</url-pattern>
   </servlet-mapping>
   <servlet>
     <description></description>

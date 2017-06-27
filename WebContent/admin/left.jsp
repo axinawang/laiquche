@@ -24,9 +24,15 @@
 	
 		d = new dTree('d');
 		d.add('01',-1,'系统菜单树');
+		
 		d.add('0102','01','城市管理','','','mainFrame');
 		d.add('010201','0102','展示所有','${pageContext.request.contextPath}/adminCity?method=findAll','','mainFrame');
 		d.add('010202','0102','添加城市','${pageContext.request.contextPath}/adminCity?method=addUI','','mainFrame');
+		
+		d.add('0103','01','车子管理','','','mainFrame');
+		d.add('010301','0103','展示所有','${pageContext.request.contextPath}/adminCar?method=findAll','','mainFrame');
+		d.add('010302','0103','添加车子','${pageContext.request.contextPath}/adminCar?method=addUI','','mainFrame');
+		
 		d.add('0104','01','商品管理');
 		d.add('010401','0104','商品管理','${pageContext.request.contextPath}/adminProduct?method=findAll','','mainFrame');
 		d.add('0105','01','订单管理');
