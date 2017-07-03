@@ -14,6 +14,7 @@ import com.ynlqc.domain.Car;
 import com.ynlqc.domain.Category;
 import com.ynlqc.domain.Shop;
 import com.ynlqc.utils.DataSourceUtils;
+import com.ynlqc.utils.UUIDUtils;
 
 public class ShopDaoImpl implements ShopDao {
 	/**
@@ -41,11 +42,37 @@ public class ShopDaoImpl implements ShopDao {
 		
 	}
 
+	
+/**
+ * `shop_id` varchar(32) NOT NULL,
+  `name` varchar(100) DEFAULT NULL,
+  `addr` varchar(200) DEFAULT NULL,
+  `tel` varchar(40) DEFAULT NULL,
+  `image` varchar(200) DEFAULT NULL,
+  `des` text DEFAULT NULL,
+  `city_id` varchar(32) DEFAULT NULL,
+ */
+	/**
+	 * 添加门店，不提交事务
+	 */
 	@Override
-	public void updateCarId(String car_id) throws Exception {
+	public void add(Shop bean) throws Exception {
 		QueryRunner qr = new QueryRunner();
-		String sql="update shop_car set car_id = null where car_id = ?";
-		qr.update(DataSourceUtils.getConnection(), sql, car_id);
+		String sql = "insert into shop values(?,?,?,?,?,?,?)";
+		qr.update(DataSourceUtils.getConnection(),sql, bean.getShop_id(),bean.getName(),bean.getAddr(),bean.getTel(),bean.getImage(),bean.getDes(),bean.getCity().getCity_id());
+		
+	}
+
+	
+
+	/* (non-Javadoc)
+	 * @see com.ynlqc.dao.ShopDao#delete(java.lang.String)
+	 */
+	@Override
+	public void delete(String shop_id) throws Exception {
+		QueryRunner qr = new QueryRunner();
+		String sql = "delete from shop where shop_id = ?";
+		qr.update(DataSourceUtils.getConnection(), sql, shop_id);
 		
 	}
 

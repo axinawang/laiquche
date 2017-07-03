@@ -8,17 +8,16 @@ import java.io.Serializable;
  */
 public class Shop implements Serializable {
 	private String shop_id;
-	private String name;
-	private String city_id;
+	private String name;	
 	
 	private String addr;
-	private String tel;
-	
+	private String tel;	
 
 	private String  image;
-
 	private String  des;
 
+	private City city;
+	
 	public String getShop_id() {
 		return shop_id;
 	}
@@ -35,12 +34,14 @@ public class Shop implements Serializable {
 		this.name = name;
 	}
 
-	public String getCity_id() {
-		return city_id;
+	
+
+	public City getCity() {
+		return city;
 	}
 
-	public void setCity_id(String city_id) {
-		this.city_id = city_id;
+	public void setCity(City city) {
+		this.city = city;
 	}
 
 	public String getAddr() {

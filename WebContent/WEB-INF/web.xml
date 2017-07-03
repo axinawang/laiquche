@@ -21,6 +21,16 @@
   </servlet-mapping>
   <servlet>
     <description></description>
+    <display-name>AddShopServlet</display-name>
+    <servlet-name>AddShopServlet</servlet-name>
+    <servlet-class>com.ynlqc.web.servlet.AddShopServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AddShopServlet</servlet-name>
+    <url-pattern>/addShop</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
     <display-name>AddCarServlet</display-name>
     <servlet-name>AddCarServlet</servlet-name>
     <servlet-class>com.ynlqc.web.servlet.AddCarServlet</servlet-class>
@@ -48,6 +58,16 @@
   <servlet-mapping>
     <servlet-name>AdminCityServlet</servlet-name>
     <url-pattern>/adminCity</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>AdminShopServlet</display-name>
+    <servlet-name>AdminShopServlet</servlet-name>
+    <servlet-class>com.ynlqc.web.servlet.AdminShopServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AdminShopServlet</servlet-name>
+    <url-pattern>/adminShop</url-pattern>
   </servlet-mapping>
   <servlet>
     <description></description>

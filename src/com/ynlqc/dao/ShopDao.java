@@ -14,7 +14,12 @@ public interface ShopDao {
 
 	void updateCid(String city_id) throws Exception;
 
-	void updateCarId(String car_id) throws Exception;
+
+	void add(Shop bean) throws Exception;
+	/**
+	 * @param shop_id
+	 */
+	void delete(String shop_id) throws Exception;
 
 	
 

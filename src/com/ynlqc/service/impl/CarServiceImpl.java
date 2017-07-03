@@ -5,6 +5,7 @@ import java.util.List;
 import com.ynlqc.dao.AppointmentDao;
 import com.ynlqc.dao.CarDao;
 import com.ynlqc.dao.CityDao;
+import com.ynlqc.dao.ShopAndCarDao;
 import com.ynlqc.dao.ShopDao;
 import com.ynlqc.dao.UserDao;
 import com.ynlqc.domain.Car;
@@ -93,8 +94,8 @@ public class CarServiceImpl implements CarService {
 			DataSourceUtils.startTransaction();
 
 			//2.1更新门店与车的关系表,该车id置空
-			ShopDao shopDao=(ShopDao) BeanFactory.getBean("ShopDao");
-			shopDao.updateCarId(car_id);
+			ShopAndCarDao shopAndCarDao=(ShopAndCarDao) BeanFactory.getBean("ShopAndCarDao");
+			shopAndCarDao.updateCarId(car_id);
 			//2.2更新预约,该车id置空
 			AppointmentDao appointmentDao=(AppointmentDao) BeanFactory.getBean("AppointmentDao");
 			appointmentDao.updateCarId(car_id);

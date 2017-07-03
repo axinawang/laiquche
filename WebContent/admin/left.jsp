@@ -33,8 +33,8 @@
 		d.add('010301','0103','展示所有','${pageContext.request.contextPath}/adminCar?method=findAll','','mainFrame');
 		d.add('010302','0103','添加车子','${pageContext.request.contextPath}/adminCar?method=addUI','','mainFrame');
 		
-		d.add('0104','01','商品管理');
-		d.add('010401','0104','商品管理','${pageContext.request.contextPath}/adminProduct?method=findAll','','mainFrame');
+		d.add('0104','01','门店管理');
+		d.add('010401','0104','展示所有','${pageContext.request.contextPath}/adminShop?method=findAll','','mainFrame');
 		d.add('0105','01','订单管理');
 		d.add('010501','0105','所有订单','${pageContext.request.contextPath}/adminOrder?method=findAllByState','','mainFrame');
 		d.add('010502','0105','未支付订单','${pageContext.request.contextPath}/adminOrder?method=findAllByState&state=0','','mainFrame');

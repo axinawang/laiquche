@@ -6,8 +6,10 @@ import java.util.Date;
 
 import org.apache.commons.beanutils.Converter;
 
+import com.sun.org.apache.bcel.internal.generic.NEW;
 import com.sun.org.apache.regexp.internal.recompile;
 import com.ynlqc.domain.Car;
+import com.ynlqc.domain.City;
 import com.ynlqc.domain.Shop;
 import com.ynlqc.domain.User;
 
@@ -42,9 +44,13 @@ public class MyConverter implements Converter {
 			
 		}else if (Car.class==clazz) {//如果是车转换
 			String car_id=(String) value;
-			Car car=new Car();
-			car.setCar_id(car_id);
+			Car car=new Car(car_id);
+
 			return car;
+		}else if (City.class==clazz) {//如果是车转换
+			String city_id=(String) value;
+			
+			return new City(city_id);
 		}
 
 		return null;

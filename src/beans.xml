@@ -19,4 +19,5 @@
 	<bean id="AppointmentDao" class="com.ynlqc.dao.impl.AppointmentDaoImpl" />
 	<bean id="ShopDao" class="com.ynlqc.dao.impl.ShopDaoImpl" />
 	<bean id="CityDao" class="com.ynlqc.dao.impl.CityDaoImpl" />
+	<bean id="ShopAndCarDao" class="com.ynlqc.dao.impl.ShopAndCarDaoImpl" />
 </beans>

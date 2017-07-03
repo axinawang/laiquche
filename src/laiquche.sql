@@ -313,6 +313,7 @@ CREATE TABLE `shop_car` (
   `shop_car_id` varchar(32) NOT NULL,
   `shop_id` varchar(32) DEFAULT NULL,
   `car_id` varchar(32) DEFAULT NULL,
+`date` timestamp,
   PRIMARY KEY (`shop_car_id`),
 KEY `fk_shop_car_shop_id` (`shop_id`),
   CONSTRAINT `fk_shop_car_shop_id` FOREIGN KEY (`shop_id`) REFERENCES `shop` (`shop_id`),
@@ -321,6 +322,6 @@ KEY `fk_shop_car_car_id` (`car_id`),
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 LOCK TABLES `shop_car` WRITE;
-INSERT INTO `shop_car`VALUES ('1','1','1');
+INSERT INTO `shop_car` (`shop_car_id`,`shop_id`,`car_id`) VALUES ('1','1','1');
 UNLOCK TABLES;
 
