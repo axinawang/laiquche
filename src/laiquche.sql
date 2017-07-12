@@ -139,9 +139,16 @@ CREATE TABLE `car` (
 `down_payment` double DEFAULT NULL,
 `month_payment` double DEFAULT NULL,
 `pay_description` text DEFAULT NULL,
-`car_image` varchar(200) DEFAULT NULL,
+`car_image` varchar(20000) DEFAULT NULL,
 `hot_image` varchar(200) DEFAULT NULL,
-
+`whole_image` varchar(200) DEFAULT NULL,          
+`whole_description` text DEFAULT NULL,
+`part_image1` varchar(200) DEFAULT NULL,
+`part_description1` text DEFAULT NULL,
+`part_image2` varchar(200) DEFAULT NULL,
+`part_description2` text DEFAULT NULL,
+`part_image3` varchar(200) DEFAULT NULL,
+`part_description3` text DEFAULT NULL,
 									-- 基本参数
 `length` int(11) DEFAULT 0,						   -- 长	
 `width` int(11) DEFAULT 0,						   -- 宽
@@ -335,7 +342,7 @@ CREATE TABLE `car` (
                                                                                  -- 上下+前后调节
 	`fangxiangpandiandongtiaojie` int DEFAULT 0,                                 -- 方向盘电动调节					
                                                                                  -- -
-	`donggongnengfangxiangpan` int DEFAULT 0,                                    -- 多功能方向盘						
+	`duogongnengfangxiangpan` int DEFAULT 0,                                    -- 多功能方向盘						
                                                                                  -- ●
 	`fangxiangpanhuandang` int DEFAULT 0,                                        -- 方向盘换挡						
                                                                                  -- -
