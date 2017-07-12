@@ -1,0 +1,234 @@
+.picview{
+	width:60%;
+	float:left;
+	padding-right:24px;
+	padding-top:16px;
+}
+.picview img{
+	width: 80%;
+height: 80%;
+max-height: 100%;
+max-width: 100%;
+padding-left: 20px;
+
+}
+.infolist{
+	width:38%;
+	float:right;
+	font-size:15px;
+	margin-top:30px;
+}
+.infolist p{
+	width:100%;
+	float:left;
+	padding-left:10px;
+	color:#999;
+	line-height:31px;
+}
+.main_shop{
+	position:relative; 
+	width:80%;  
+	margin:0 auto;
+}
+
+.main_shop .mainCon{
+	margin:0px auto;
+	width:100%;
+}
+
+.main_shop .infolist small{
+	width:30%;
+	text-align:left;
+	padding-left:10px;
+	display:block;
+	float:left;
+	line-height:31px;
+	color:#999;
+	clear:left;
+	height:31px;
+	overflow:hidden;
+	font-size:18px;
+}
+.main_shop .infolist span{
+	width:200px;
+	line-height:30px;
+	float:left;
+	height:31px;
+	overflow:hidden;
+}
+
+.store ul{
+	width:100%;
+	font-size:16px;
+}
+.store {
+	clear:both;
+	color:#fcd500;
+}
+.store .cont_title{
+	font-size:20px;
+	font-weight:bold;
+	margin-top:30px;
+	margin-left:30px;
+}
+.store .storename{
+	color:blue;
+}
+.store .all_store{
+	float:right;
+	margin-top:15px;
+}
+.store .stores{
+	position:relative;
+	width:70%;
+	height:500px;
+	overflow-y:scroll;
+	left:20%;
+	top:-400px;
+	display:none;
+	border:1px solid #999;
+	background:#fff;/*,url("/images/white_bg2.gif")*/
+	clear:both;
+}
+.store td{
+	padding-left:15px;
+	padding-top:10px;
+}
+.store li{
+	padding-left:10px;
+	height:130px;
+	border:1px solid #999;
+}
+.store li p{
+	margin:5px 0px;
+}
+
+
+.main_shop .configure{
+	width:100%;
+}
+.main_shop .configure .conf_title{
+	font-size:20px;
+	font-weight:bold;
+	color:#fcd500;
+}
+.main_shop .configure .conf_main_shop{
+	width:90%;
+	font-size:15px;
+	color:#999;
+	margin:20px auto;
+	height:100px;
+}
+.main_shop .configure .conf_l1{
+	width:15%;	
+	float:left;
+	border-bottom:1px solid #999;
+}
+.main_shop .configure .conf_l2{
+	width:30%;
+	float:left;
+	border-bottom:1px solid #999;
+}
+.main_shop .configure .conf_r1{
+	width:15%;	
+	float:right;
+	border-bottom:1px solid #999;
+}
+.main_shop .configure .conf_r2{
+	width:30%;
+	float:right;
+	border-bottom:1px solid #999;
+}
+.main_shop .cont_title{
+	font-size:20px;
+	font-weight:bold;
+	color:#fcd500;
+}
+.configure .all_conf{
+	float:right;
+	color:#fcd500;
+}
+.configure .full_conf{
+	/*position:relative;
+	position:absolute;
+	width:70%;
+	height:500px;
+	overflow-y:scroll;
+	left:20%;
+	top:-200px;
+	display:none;
+	border:1px solid #999;
+	background:url("/images/white_bg2.gif");*/
+	position: absolute;
+left: 50%;
+top: 50%;
+width: 640px;
+height: 550px;
+background: #FFF;
+overflow-y:scroll;
+display:none;
+margin-left: -320px;
+margin-top: -400px;
+}
+
+.configure .full_conf span{
+	float:right;
+	color:#000;
+}
+
+
+.list_left{
+	float:left;
+	overflow:hidden;
+	width:30%;
+	color:#fff;
+}
+.list_left a{
+	color:#fff;
+}
+.list_left .lqcleft ul li{
+	float:left;
+	width:30%;
+	font-size:16px;
+	margin-bottom:10px;
+}
+.list_left .lqcleft {
+	clear:both;
+	width:70%;
+	height:150px;
+	margin-left:25%;
+	margin-bottom:25px;
+}
+.list_main{
+	float:left;
+	width: 1000px;
+	margin: 0 auto;
+}
+
+.list_left .lqcleft dt {
+	font-size:18px;
+	background-color:#fcd500;
+	padding-left:5%;
+	height:36px;
+	line-height:36px;
+	color:#000;
+}
+
+.list_left .lqcleft ul {
+	margin-top:20px;
+	padding-left:5%;
+}
+
+.list_left .lqcleft ul li a:hover{
+	background-color:#fcd500;
+	color:#000;
+}
+.list_left .lqcleft ul li a:active{
+	background-color:#fcd500;
+	color:#000;
+}
+
+.userinfo a{
+	display:inline;
+	
+}

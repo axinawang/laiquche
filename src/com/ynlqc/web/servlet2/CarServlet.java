@@ -1,4 +1,4 @@
-package com.ynlqc.web.servlet;
+package com.ynlqc.web.servlet2;
 
 import java.io.IOException;
 import java.net.URLDecoder;
@@ -87,7 +87,7 @@ public class CarServlet extends BaseServlet {
 			//3.将结果放入request中 请求转发
 			request.setAttribute("page_bean", bean);
 			request.setAttribute("brand_id", brand_id);
-			return "/jsp/car_list.jsp";
+			return "/jsp2/car_list.jsp";
 		
 		}
 	/**
@@ -109,7 +109,7 @@ public class CarServlet extends BaseServlet {
 		//当前页
 		int currPage=(request.getParameter("currPage")==null||request.getParameter("currPage")=="")?1:Integer.parseInt(request.getParameter("currPage"));
 		//搜索关键字
-		String search_key=(request.getParameter("search_key")==null||request.getParameter("search_key").equals("undefined"))?"":request.getParameter("search_key");
+		String search_key=request.getParameter("search_key")==null?"":request.getParameter("search_key");
 		//测试请求过来时没有该参数
 		//String testParam=request.getParameter("testParam")==null?"null":request.getParameter("testParam");
 		//测试请求过来时该参数没有值
