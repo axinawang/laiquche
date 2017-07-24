@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.ynlqc.domain.Car;
 import com.ynlqc.domain.PageBean;
+import com.ynlqc.domain.Shop;
 
 public interface CarService {
 
@@ -30,6 +31,13 @@ public interface CarService {
 	void update(Car bean) throws Exception;
 
 	void delete(String car_id) throws Exception;
+
+	/**
+	 * @param car_id
+	 * @return
+	 * @throws Exception 
+	 */
+	List<Shop> getShopByCarId(String car_id) throws Exception;
 
 
 }

@@ -123,7 +123,7 @@
       <div id="carsDiv" class="mainConList">
       <c:forEach items="${page_bean.list}" var="p">
         <dl class="pic1">
-          <a target='_blank' href="${pageContext.request.contextPath}/car?method=getByCarId&car_id=${p.car_id}" title="${fn:substring(p.car_name,0,30) }...">
+          <a target='_blank' href="${pageContext.request.contextPath}/car2?method=getByCarId&car_id=${p.car_id}" title="${fn:substring(p.car_name,0,30) }...">
           <dt class="pic"> <img src="${pageContext.request.contextPath}/${p.car_image}" alt="${fn:substring(p.car_name,0,30) }..." width="320" height="240" class="PicAuto">
             <div class="intro">${fn:substring(p.description,0,30) }...</div>
           </dt>

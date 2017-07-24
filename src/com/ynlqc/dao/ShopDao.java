@@ -21,6 +21,19 @@ public interface ShopDao {
 	 */
 	void delete(String shop_id) throws Exception;
 
+	/**
+	 * @param shop_id
+	 * @return
+	 * @throws Exception 
+	 */
+	Shop getById(String shop_id) throws Exception;
+
+	/**
+	 * @param bean
+	 * @throws Exception 
+	 */
+	void update(Shop bean) throws Exception;
+
 	
 
 	

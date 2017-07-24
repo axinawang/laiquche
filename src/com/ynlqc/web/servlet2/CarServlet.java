@@ -19,6 +19,7 @@ import com.ynlqc.domain.Car;
 import com.ynlqc.domain.CarJson;
 import com.ynlqc.domain.Category;
 import com.ynlqc.domain.PageBean;
+import com.ynlqc.domain.Shop;
 import com.ynlqc.service.CarService;
 import com.ynlqc.service.CategoryService;
 import com.ynlqc.service.impl.CarServiceImpl;
@@ -29,7 +30,24 @@ import com.ynlqc.utils.JsonUtil;
  * Servlet implementation class CategoryServlet
  */
 public class CarServlet extends BaseServlet {
-
+	/**
+	 * 根据车辆id查找拥有该车的门店
+	 * @param request
+	 * @param response
+	 * @return
+	 * @throws Exception
+	 */
+	public String getShopByCarId(HttpServletRequest request, HttpServletResponse response)
+			throws Exception {
+		String car_id=request.getParameter("car_id");
+		System.out.println("car_id="+car_id);
+		CarService service=(CarService) BeanFactory.getBean("CarService");
+		List<Shop> shops=service.getShopByCarId(car_id);
+		
+		
+		
+		return null;
+	}
 	/**
 	 * 根据id查询单个车辆
 	 * @throws Exception 
@@ -41,9 +59,10 @@ public class CarServlet extends BaseServlet {
 		CarService service=(CarService) BeanFactory.getBean("CarService");
 		Car car=service.getByCarId(car_id);
 		request.setAttribute("bean", car);
-		
-		
-		return "/jsp/car_info.jsp";
+
+		List<Shop> shops=service.getShopByCarId(car_id);
+		request.setAttribute("shops", shops);
+		return "/jsp2/detail.jsp";
 	}
 	/**
 	 * 分页查询数据
@@ -188,6 +207,6 @@ public class CarServlet extends BaseServlet {
 		
 		//3.将结果放入request中 请求转发
 		request.setAttribute("page_bean", bean);
-		return "/jsp/car_list.jsp";
+		return "/jsp2/car_list.jsp";
 	}
 }

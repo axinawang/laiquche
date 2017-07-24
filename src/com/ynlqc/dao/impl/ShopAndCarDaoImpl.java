@@ -42,4 +42,41 @@ public class ShopAndCarDaoImpl implements ShopAndCarDao {
 		qr.update(DataSourceUtils.getConnection(), sql, car_id);
 		
 	}
+
+	/* (non-Javadoc)
+	 * @see com.ynlqc.dao.ShopAndCarDao#getCarsByShopId(java.lang.String)
+	 */
+	@Override
+	public List<Car> getCarsByShopId(String shop_id) throws Exception {
+		QueryRunner qr = new QueryRunner(DataSourceUtils.getDataSource());
+		String sql = "select car_id from shop_car where shop_id = ?";
+		return qr.query(sql, new BeanListHandler<>(Car.class), shop_id);
+	}
+
+	/* (non-Javadoc)
+	 * @see com.ynlqc.dao.ShopAndCarDao#updateByShop(com.ynlqc.domain.Shop, java.util.List)
+	 */
+	@Override
+	public void updateByShop(Shop bean, List<Car> cars) throws Exception {
+		QueryRunner qr = new QueryRunner(DataSourceUtils.getDataSource());
+		String sql=null;
+		for (Car car : cars) {
+			
+			 sql= "update shop_car set car_id = ? where shop_id = ?";
+			qr.update(DataSourceUtils.getConnection(), sql, car.getCar_id(),bean.getShop_id());
+		}
+		
+		
+	}
+
+	/* (non-Javadoc)
+	 * @see com.ynlqc.dao.ShopAndCarDao#deleteByShop(com.ynlqc.domain.Shop)
+	 */
+	@Override
+	public void deleteByShop(Shop bean) throws Exception {
+		QueryRunner qr = new QueryRunner();
+		String sql = "delete from shop_car where shop_id = ?";
+		qr.update(DataSourceUtils.getConnection(), sql, bean.getShop_id());
+		
+	}
 }

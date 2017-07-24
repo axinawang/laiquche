@@ -173,7 +173,7 @@
 			 <div class="form-group">
 			    <label for="selected_city" class="col-sm-2 control-label">选择城市</label>
 			    <div class="col-sm-6">
-			      <select id="city"  class="form-control" id="selected_city" name="selected_city">
+			      <select id="city"  class="form-control"  name="selected_city">
 		</select>
 			       </div>
 			  </div>
@@ -267,15 +267,15 @@
 								</tr>
 								<tr>
 									<th width="15%">车身结构</th>
-									<td width="35%">${bean.body_structure}</td>
+									<td width="35%">${bean.cheshenjiegou}</td>
 									<th width="15%">长/宽/高</th>
 									<td width="35%">${bean.length}/${bean.width}/${bean.height}</td>
 								</tr>
 								<tr>
 									<th width="15%">发动机</th>
-									<td width="35%">${bean.engine}</td>
+									<td width="35%">${bean.fadongji}</td>
 									<th width="15%">变速箱</th>
-									<td width="35%">${bean.gearbox}</td>
+									<td width="35%">${bean.biansuxiang}</td>
 								</tr>
 							</tbody>
 						</table>

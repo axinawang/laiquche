@@ -1,6 +1,7 @@
 package com.ynlqc.dao.impl;
 
 import java.sql.SQLException;
+import java.util.Date;
 import java.util.List;
 
 import org.apache.commons.dbutils.QueryRunner;
@@ -16,6 +17,7 @@ import com.ynlqc.domain.Car;
 import com.ynlqc.domain.Model;
 import com.ynlqc.domain.PageBean;
 import com.ynlqc.domain.Series;
+import com.ynlqc.domain.Shop;
 import com.ynlqc.utils.DataSourceUtils;
 
 public class CarDaoImpl implements CarDao {
@@ -126,11 +128,11 @@ public class CarDaoImpl implements CarDao {
 	@Override
 	public List<Car> findAll() throws Exception {
 		QueryRunner qr = new QueryRunner(DataSourceUtils.getDataSource());
-		String sql = "select * from car";
+		String sql = "select * from car order by date desc";
 		return qr.query(sql, new BeanListHandler<>(Car.class));
 	}
 /**
- * `car_id` varchar(32)  NOT NULL,
+ *   `car_id` varchar(32)  NOT NULL,
   `car_name` varchar(100) DEFAULT NULL,
   `car_date` datetime DEFAULT NULL,
   `is_hot` int(11) DEFAULT 0,
@@ -140,7 +142,7 @@ public class CarDaoImpl implements CarDao {
 `down_payment` double DEFAULT NULL,
 `month_payment` double DEFAULT NULL,
 `pay_description` text DEFAULT NULL,
-`car_image` varchar(20000) DEFAULT NULL,
+`car_image` text DEFAULT NULL,
 `hot_image` varchar(200) DEFAULT NULL,
 `whole_image` varchar(200) DEFAULT NULL,          
 `whole_description` text DEFAULT NULL,
@@ -150,6 +152,8 @@ public class CarDaoImpl implements CarDao {
 `part_description2` text DEFAULT NULL,
 `part_image3` varchar(200) DEFAULT NULL,
 `part_description3` text DEFAULT NULL,
+`part_image4` varchar(200) DEFAULT NULL,
+`part_description4` text DEFAULT NULL,
 									-- 基本参数
 `length` int(11) DEFAULT 0,						   -- 长	
 `width` int(11) DEFAULT 0,						   -- 宽
@@ -343,7 +347,7 @@ public class CarDaoImpl implements CarDao {
                                                                                  -- 上下+前后调节
 	`fangxiangpandiandongtiaojie` int DEFAULT 0,                                 -- 方向盘电动调节					
                                                                                  -- -
-	`donggongnengfangxiangpan` int DEFAULT 0,                                    -- 多功能方向盘						
+	`duogongnengfangxiangpan` int DEFAULT 0,                                    -- 多功能方向盘						
                                                                                  -- ●
 	`fangxiangpanhuandang` int DEFAULT 0,                                        -- 方向盘换挡						
                                                                                  -- -
@@ -362,7 +366,7 @@ public class CarDaoImpl implements CarDao {
                                                                              
                                                                              -- 座椅配置
                                                                              
-	`zuoyipizhi` varchar(100) DEFAULT NULL,                                      -- 座椅材质							
+	`zuoyicaizhi` varchar(100) DEFAULT NULL,                                      -- 座椅材质							
                                                                                  -- 皮/织物混搭(选装真皮)
 	`zuoyigaoditiaojie` int DEFAULT 0,                                           -- 座椅高低调节						
                                                                                  -- -
@@ -479,11 +483,101 @@ public class CarDaoImpl implements CarDao {
 `brand_id` int,
 `model_id` int,
 `series_id` int,
+  PRIMARY KEY (`car_id`),
+  KEY `sfk_0001` (`brand_id`),
+  CONSTRAINT `sfk_0001` FOREIGN KEY (`brand_id`) REFERENCES `brand` (`brand_id`),
+  KEY `sfk_0002` (`model_id`),
+  CONSTRAINT `sfk_0002` FOREIGN KEY (`model_id`) REFERENCES `model` (`model_id`),
+  KEY `sfk_0003` (`series_id`),
+  CONSTRAINT `sfk_0003` FOREIGN KEY (`series_id`) REFERENCES `series` (`series_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+LOCK TABLES `car` WRITE;
+
+INSERT INTO `car`
+(`car_id`,
+  `car_name` ,
+  `car_date` ,
+  `is_hot` ,
+`car_flag` ,
+`guide_price`,
+`deposit` ,
+`down_payment` ,
+`month_payment` ,
+`pay_description` ,
+`car_image`,
+`hot_image`,
+`cheshenjiegou`,
+`length`,	
+`width` ,
+`height` ,
+`fadongji`,
+`biansuxiang`,
+`qudongfangshi`,
+`ranliaoxingshi`, 
+`zongheyouhao`,
+`cheliangpeise`,
+`description` ,
+`brand_id` ,
+`model_id` ,
+`series_id` )
  */
 	@Override
 	public void add(Car bean) throws Exception {
 		QueryRunner qr = new QueryRunner(DataSourceUtils.getDataSource());
-		String sql = "insert into car values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+		String sql = "insert into car"+
+		" (car_id,car_name,car_date,is_hot,car_flag,guide_price,deposit,down_payment,month_payment,"+
+				"pay_description,car_image,hot_image,whole_image,whole_title,whole_description,part_image1,"+
+		"part_title1,part_description1,part_image2,part_title2,part_description2,part_image3,part_title3,part_description3,"+
+		"part_image4,part_title4,part_description4,length,width,height,fadongji,biansuxiang,"+
+		"zongheyouhao,cheliangpeise,zhouju,qianlunju,houlunju,zuixiaolidijianxi,"+
+		"zhengchezhiliang,cheshenjiegou,chemenshu,zuoweishu,youxiangrongji,"+
+		"xinglixiangrongji,fadongjixinghao,pailiang,jinqixingshi,qigangpailiexingshi,"+
+		"qigangshu,meigangqimenshu,gangjing,xingcheng,zuidamali,zuidagonglv,"+
+		"zuidagonglvzhuansu,zuidaniuju,zuidaniujuzhuansu,fadongjiteyoujishu,"+
+		"ranliaoxingshi,ranyoubiaohao,gongyoufangshi,ganggaicailiao,gangticailiao,"+
+		"huanbaobiaozhun,dangweigeshu,biansuxiangleixing,qudongfangshi,siquxingshi,"+
+		"zhongyangchasuqijiegou,qianxuanjialeixing,houxuanjialeixing,zhulileixing,"+
+		"chetijiegou,qianzhidongqileixing,houzhidongqileixing,zhuchezhidongleixing,"+
+		"qianluntaiguige,houluntaiguige,beitaiguige,zhujiashizuoanquanqinang,"+
+		"fujiashizuoanquanqinang,qianpaiceqinang,houpaiceqinang,qianpaitoubuqinang,"+
+		"houpaitoubuqinang,xibuqinang,taiyajiancezhuangzhi,lingtaiyajixuxingshi,"+
+		"anquandaiweijitishi,isofixertongzuoyijiekou,fadongjidianzifangdao,"+
+		"cheneizhongkongsuo,yaokongyaoshi,wuyaoshiqidongxitong,wuyaoshijinruxitong,"+
+		"absfangbaosi,zhidonglifenpei,shachefuzhu,qianyinlikongzhi,"+
+		"cheshenwendingkongzhi,shangpofuzhu,zidongzhuche,doupohuanjiang,"+
+		"kebianxuanjia,kongqixuanjia,diandongtianchuang,quanjingtianchuang,"+
+		"yundongwaiguantaojian,lvhejinlunquan,diandongxihemen,cehuamen,"+
+		"diandonghoubeixiang,ganyinghoubeixiang,chedingxinglijia,zhenpifangxiangpan,"+
+		"fangxiangpantiaojie,fangxiangpandiandongtiaojie,duogongnengfangxiangpan,"+
+		"fangxiangpanhuandang,fangxiangpanjiare,dingsuxunhang,qianzhucheleida,"+
+		"houzhucheleida,daocheshipinyingxiang,xingchediannaoxianshiping,"+
+		"quanyejingyibiaopan,zuoyicaizhi,zuoyigaoditiaojie,yaobuzhichengtiaojie,"+                
+        "jianbuzhichengtiaojie,zhujiashizuodiandongtiaojie,fujiashizuodiandongtiaojie,"+
+		"houpaizuoyidiandongtiaojie,qianpaizuoyijiare,houpaizuoyijiare,"+
+        "qianpaizuoyitongfeng,houpaizuoyitongfeng,gpsdaohangxitong,zhongkongtaicaisedaping,"+
+		"lanyachezaidianhua,waijieyinyuanjiekou,duomeitixitong,yangshengqishuliang,"+
+        "jinguangdeng,yuanguangdeng,rijianxingchedeng,zishiyingyuanjindeng,zidongtoudeng,"+
+		"zhuanxiangfuzhudeng,zhuangxiangtoudeng,qianwudeng,dadenggaoduketiao,"+
+        "dadengqingxizhuangzhi,qiandiandongchechuang,houdiandongchengchuang,"+
+		"chechuangfangjiashougongneng,houshijingdiandongtiaojie,houshijingjiare,"+
+        "neihoushijingzidongfangxunmu,waihoushijingzidongfangxunmu,houshijingdiandongzhedie,"+
+		"zheyangbanhuazhuangjing,houyushua,ganyingyushua,kongtiaokongzhifangshi,"+
+        "houpaidulikongtiao,houzuochufengkou,wendufenqukongzhi,cheneikongqitiaojie,"+
+		"chezaibingxiang,zidongpocheruwei,fadongjiqitingjishu,bingxianfuzhu,"+
+        "chedaopianliyujingxitong,zhudongshachexitong,zhengtizhudongzhuanxiangxitong,"+
+		"yeshixitong,zhongkongyejingpingfenpingxianshi,zishiyingxunhang,quanjingshexiangtou,"+
+        "description,brand_id,model_id,series_id)"+
+		" values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,"+
+				"?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,"+
+				"?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,"+
+				"?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,"+
+				"?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,"+
+				"?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,"+
+				"?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,"+
+				"?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,"+
+				"?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?"+
+				")";
 		qr.update(sql, bean.getCar_id(),
 				bean.getCar_name(),
 				bean.getCar_date(),
@@ -497,13 +591,20 @@ public class CarDaoImpl implements CarDao {
 				bean.getCar_image(),
 				bean.getHot_image(), 
 				bean.getWhole_image(),
+				bean.getWhole_title(),
 				bean.getWhole_description(),
 				bean.getPart_image1(),
+				bean.getPart_title1(),
 				bean.getPart_description1(),
 				bean.getPart_image2(),
+				bean.getPart_title2(),
 				bean.getPart_description2(),
 				bean.getPart_image3(),
+				bean.getPart_title3(),
 				bean.getPart_description3(),
+				bean.getPart_image4(),
+				bean.getPart_title4(),
+				bean.getPart_description4(),
 				bean.getLength(), 
 				bean.getWidth(),
 				bean.getHeight(), 
@@ -603,7 +704,7 @@ public class CarDaoImpl implements CarDao {
 				bean.getDaocheshipinyingxiang(),
 				bean.getXingchediannaoxianshiping(),
 				bean.getQuanyejingyibiaopan(),
-				bean.getZuoyipizhi(),
+				bean.getZuoyicaizhi(),
 				bean.getZuoyigaoditiaojie(),
 				bean.getYaobuzhichengtiaojie(),
 				bean.getJianbuzhichengtiaojie(),
@@ -680,18 +781,238 @@ public class CarDaoImpl implements CarDao {
 	@Override
 	public void update(Car bean) throws Exception {
 		QueryRunner qr = new QueryRunner(DataSourceUtils.getDataSource());
-		String sql = "update car set " + "car_name=?,is_hot=?,car_flag=?,guide_price=?,"
-				+ "deposit=?,down_payment=?,month_payment=?,pay_description=?,"
-				+ "car_image=?, hot_image=?,body_structure=?,length=?," + "width=?,height=?,engine=?,gearbox=?,"
-				+ "drive_mode=?,fuel_form=?,com_fuel_consumption=?,body_color=?,"
-				+ "description=?,brand_id=?,model_id=?,series_id=? " + "where car_id=?";
-		qr.update(sql, bean.getCar_name(), bean.getIs_hot(), bean.getCar_flag(), bean.getGuide_price(),
-				bean.getDeposit(), bean.getDown_payment(), bean.getMonth_payment(), bean.getPay_description(),
-				bean.getCar_image(), bean.getHot_image(), bean.getBody_structure(), bean.getLength(), bean.getWidth(),
-				bean.getHeight(), bean.getEngine(), bean.getGearbox(), bean.getDrive_mode(), bean.getFuel_form(),
-				bean.getCom_fuel_consumption(), bean.getBody_color(), bean.getDescription(),
-				bean.getBrand().getBrand_id(), bean.getModel().getModel_id(), bean.getSeries().getSeries_id(),
-				bean.getCar_id());
+		String sql = "update car set "+
+				"car_name=?,car_date=?,is_hot=?,car_flag=?,guide_price=?,deposit=?,down_payment=?,month_payment=?,"+
+						"pay_description=?,car_image=?,hot_image=?,whole_image=?,whole_title=?,whole_description=?,part_image1=?,"+
+				"part_title1=?,part_description1=?,part_image2=?,part_title2=?,part_description2=?,part_image3=?,part_title3=?,part_description3=?,"+
+				"part_image4=?,part_title4=?,part_description4=?,length=?,width=?,height=?,fadongji=?,biansuxiang=?,"+
+				"zongheyouhao=?,cheliangpeise=?,zhouju=?,qianlunju=?,houlunju=?,zuixiaolidijianxi=?,"+
+				"zhengchezhiliang=?,cheshenjiegou=?,chemenshu=?,zuoweishu=?,youxiangrongji=?,"+
+				"xinglixiangrongji=?,fadongjixinghao=?,pailiang=?,jinqixingshi=?,qigangpailiexingshi=?,"+
+				"qigangshu=?,meigangqimenshu=?,gangjing=?,xingcheng=?,zuidamali=?,zuidagonglv=?,"+
+				"zuidagonglvzhuansu=?,zuidaniuju=?,zuidaniujuzhuansu=?,fadongjiteyoujishu=?,"+
+				"ranliaoxingshi=?,ranyoubiaohao=?,gongyoufangshi=?,ganggaicailiao=?,gangticailiao=?,"+
+				"huanbaobiaozhun=?,dangweigeshu=?,biansuxiangleixing=?,qudongfangshi=?,siquxingshi=?,"+
+				"zhongyangchasuqijiegou=?,qianxuanjialeixing=?,houxuanjialeixing=?,zhulileixing=?,"+
+				"chetijiegou=?,qianzhidongqileixing=?,houzhidongqileixing=?,zhuchezhidongleixing=?,"+
+				"qianluntaiguige=?,houluntaiguige=?,beitaiguige=?,zhujiashizuoanquanqinang=?,"+
+				"fujiashizuoanquanqinang=?,qianpaiceqinang=?,houpaiceqinang=?,qianpaitoubuqinang=?,"+
+				"houpaitoubuqinang=?,xibuqinang=?,taiyajiancezhuangzhi=?,lingtaiyajixuxingshi=?,"+
+				"anquandaiweijitishi=?,isofixertongzuoyijiekou=?,fadongjidianzifangdao=?,"+
+				"cheneizhongkongsuo=?,yaokongyaoshi=?,wuyaoshiqidongxitong=?,wuyaoshijinruxitong=?,"+
+				"absfangbaosi=?,zhidonglifenpei=?,shachefuzhu=?,qianyinlikongzhi=?,"+
+				"cheshenwendingkongzhi=?,shangpofuzhu=?,zidongzhuche=?,doupohuanjiang=?,"+
+				"kebianxuanjia=?,kongqixuanjia=?,diandongtianchuang=?,quanjingtianchuang=?,"+
+				"yundongwaiguantaojian=?,lvhejinlunquan=?,diandongxihemen=?,cehuamen=?,"+
+				"diandonghoubeixiang=?,ganyinghoubeixiang=?,chedingxinglijia=?,zhenpifangxiangpan=?,"+
+				"fangxiangpantiaojie=?,fangxiangpandiandongtiaojie=?,duogongnengfangxiangpan=?,"+
+				"fangxiangpanhuandang=?,fangxiangpanjiare=?,dingsuxunhang=?,qianzhucheleida=?,"+
+				"houzhucheleida=?,daocheshipinyingxiang=?,xingchediannaoxianshiping=?,"+
+				"quanyejingyibiaopan=?,zuoyicaizhi=?,zuoyigaoditiaojie=?,yaobuzhichengtiaojie=?,"+                
+		        "jianbuzhichengtiaojie=?,zhujiashizuodiandongtiaojie=?,fujiashizuodiandongtiaojie=?,"+
+				"houpaizuoyidiandongtiaojie=?,qianpaizuoyijiare=?,houpaizuoyijiare=?,"+
+		        "qianpaizuoyitongfeng=?,houpaizuoyitongfeng=?,gpsdaohangxitong=?,zhongkongtaicaisedaping=?,"+
+				"lanyachezaidianhua=?,waijieyinyuanjiekou=?,duomeitixitong=?,yangshengqishuliang=?,"+
+		        "jinguangdeng=?,yuanguangdeng=?,rijianxingchedeng=?,zishiyingyuanjindeng=?,zidongtoudeng=?,"+
+				"zhuanxiangfuzhudeng=?,zhuangxiangtoudeng=?,qianwudeng=?,dadenggaoduketiao=?,"+
+		        "dadengqingxizhuangzhi=?,qiandiandongchechuang=?,houdiandongchengchuang=?,"+
+				"chechuangfangjiashougongneng=?,houshijingdiandongtiaojie=?,houshijingjiare=?,"+
+		        "neihoushijingzidongfangxunmu=?,waihoushijingzidongfangxunmu=?,houshijingdiandongzhedie=?,"+
+				"zheyangbanhuazhuangjing=?,houyushua=?,ganyingyushua=?,kongtiaokongzhifangshi=?,"+
+		        "houpaidulikongtiao=?,houzuochufengkou=?,wendufenqukongzhi=?,cheneikongqitiaojie=?,"+
+				"chezaibingxiang=?,zidongpocheruwei=?,fadongjiqitingjishu=?,bingxianfuzhu=?,"+
+		        "chedaopianliyujingxitong=?,zhudongshachexitong=?,zhengtizhudongzhuanxiangxitong=?,"+
+				"yeshixitong=?,zhongkongyejingpingfenpingxianshi=?,zishiyingxunhang=?,quanjingshexiangtou=?,"+
+		        "description=?,brand_id=?,model_id=?,series_id=?"+
+				" where car_id=?";
+				qr.update(sql,
+						bean.getCar_name(),
+						bean.getCar_date(),
+						bean.getIs_hot(),
+						bean.getCar_flag(),
+						bean.getGuide_price(),
+						bean.getDeposit(), 
+						bean.getDown_payment(), 
+						bean.getMonth_payment(),
+						bean.getPay_description(),
+						bean.getCar_image(),
+						bean.getHot_image(), 
+						bean.getWhole_image(),
+						bean.getWhole_title(),
+						bean.getWhole_description(),
+						bean.getPart_image1(),
+						bean.getPart_title1(),
+						bean.getPart_description1(),
+						bean.getPart_image2(),
+						bean.getPart_title2(),
+						bean.getPart_description2(),
+						bean.getPart_image3(),
+						bean.getPart_title3(),
+						bean.getPart_description3(),
+						bean.getPart_image4(),
+						bean.getPart_title4(),
+						bean.getPart_description4(),
+						bean.getLength(), 
+						bean.getWidth(),
+						bean.getHeight(), 
+						bean.getFadongji(),
+						bean.getBiansuxiang(),
+						bean.getZongheyouhao(),
+						bean.getCheliangpeise(), 
+						bean.getZhouju(),
+						bean.getQianlunju(),
+						bean.getHoulunju(),
+						bean.getZuixiaolidijianxi(),
+						bean.getZhengchezhiliang(),
+						bean.getCheshenjiegou(),
+						bean.getChemenshu(),
+						bean.getZuoweishu(),
+						bean.getYouxiangrongji(),
+						bean.getXinglixiangrongji(),
+						bean.getFadongjixinghao(),
+						bean.getPailiang(),
+						bean.getJinqixingshi(),
+						bean.getQigangpailiexingshi(),
+						bean.getQigangshu(),
+						bean.getMeigangqimenshu(),
+						bean.getGangjing(),
+						bean.getXingcheng(),
+						bean.getZuidamali(),
+						bean.getZuidagonglv(),
+						bean.getZuidagonglvzhuansu(),
+						bean.getZuidaniuju(),
+						bean.getZuidaniujuzhuansu(),
+						bean.getFadongjiteyoujishu(),
+						bean.getRanliaoxingshi(),
+						bean.getRanyoubiaohao(),
+						bean.getGongyoufangshi(),
+						bean.getGanggaicailiao(),
+						bean.getGangticailiao(),
+						bean.getHuanbaobiaozhun(),
+						bean.getDangweigeshu(),
+						bean.getBiansuxiangleixing(),
+						bean.getQudongfangshi(),
+						bean.getSiquxingshi(),
+						bean.getZhongyangchasuqijiegou(),
+						bean.getQianxuanjialeixing(),
+						bean.getHouxuanjialeixing(),
+						bean.getZhulileixing(),
+						bean.getChetijiegou(),
+						bean.getQianzhidongqileixing(),
+						bean.getHouzhidongqileixing(),
+						bean.getZhuchezhidongleixing(),
+						bean.getQianluntaiguige(),
+						bean.getHouluntaiguige(),
+						bean.getBeitaiguige(),
+						bean.getZhujiashizuoanquanqinang(),
+						bean.getFujiashizuoanquanqinang(),
+						bean.getQianpaiceqinang(),
+						bean.getHoupaiceqinang(),
+						bean.getQianpaitoubuqinang(),
+						bean.getHoupaitoubuqinang(),
+						bean.getXibuqinang(),
+						bean.getTaiyajiancezhuangzhi(),
+						bean.getLingtaiyajixuxingshi(),
+						bean.getAnquandaiweijitishi(),
+						bean.getIsofixertongzuoyijiekou(),
+						bean.getFadongjidianzifangdao(),
+						bean.getCheneizhongkongsuo(),
+						bean.getYaokongyaoshi(),
+						bean.getWuyaoshiqidongxitong(),
+						bean.getWuyaoshijinruxitong(),
+						bean.getAbsfangbaosi(),
+						bean.getZhidonglifenpei(),
+						bean.getShachefuzhu(),
+						bean.getQianyinlikongzhi(),
+						bean.getCheshenwendingkongzhi(),
+						bean.getShangpofuzhu(),
+						bean.getZidongzhuche(),
+						bean.getDoupohuanjiang(),
+						bean.getKebianxuanjia(),
+						bean.getKongqixuanjia(),
+						bean.getDiandongtianchuang(),
+						bean.getQuanjingtianchuang(),
+						bean.getYundongwaiguantaojian(),
+						bean.getLvhejinlunquan(),
+						bean.getDiandongxihemen(),
+						bean.getCehuamen(),
+						bean.getDiandonghoubeixiang(),
+						bean.getGanyinghoubeixiang(),
+						bean.getChedingxinglijia(),
+						bean.getZhenpifangxiangpan(),
+						bean.getFangxiangpantiaojie(),
+						bean.getFangxiangpandiandongtiaojie(),
+						bean.getDuogongnengfangxiangpan(),
+						bean.getFangxiangpanhuandang(),
+						bean.getFangxiangpanjiare(),
+						bean.getDingsuxunhang(),
+						bean.getQianzhucheleida(),
+						bean.getHouzhucheleida(),
+						bean.getDaocheshipinyingxiang(),
+						bean.getXingchediannaoxianshiping(),
+						bean.getQuanyejingyibiaopan(),
+						bean.getZuoyicaizhi(),
+						bean.getZuoyigaoditiaojie(),
+						bean.getYaobuzhichengtiaojie(),
+						bean.getJianbuzhichengtiaojie(),
+						bean.getZhujiashizuodiandongtiaojie(),
+						bean.getFujiashizuodiandongtiaojie(),
+						bean.getHoupaizuoyidiandongtiaojie(),
+						bean.getQianpaizuoyijiare(),
+						bean.getHoupaizuoyijiare(),
+						bean.getQianpaizuoyitongfeng(),
+						bean.getHoupaizuoyitongfeng(),
+						bean.getGpsdaohangxitong(),
+						bean.getZhongkongtaicaisedaping(),
+						bean.getLanyachezaidianhua(),
+						bean.getWaijieyinyuanjiekou(),
+						bean.getDuomeitixitong(),
+						bean.getYangshengqishuliang(),
+						bean.getJinguangdeng(),
+						bean.getYuanguangdeng(),
+						bean.getRijianxingchedeng(),
+						bean.getZishiyingyuanjindeng(),
+						bean.getZidongtoudeng(),
+						bean.getZhuanxiangfuzhudeng(),
+						bean.getZhuangxiangtoudeng(),
+						bean.getQianwudeng(),
+						bean.getDadenggaoduketiao(),
+						bean.getDadengqingxizhuangzhi(),
+						bean.getQiandiandongchechuang(),
+						bean.getHoudiandongchengchuang(),
+						bean.getChechuangfangjiashougongneng(),
+						bean.getHoushijingdiandongtiaojie(),
+						bean.getHoushijingjiare(),
+						bean.getNeihoushijingzidongfangxunmu(),
+						bean.getWaihoushijingzidongfangxunmu(),
+						bean.getHoushijingdiandongzhedie(),
+						bean.getZheyangbanhuazhuangjing(),
+						bean.getHouyushua(),
+						bean.getGanyingyushua(),
+						bean.getKongtiaokongzhifangshi(),
+						bean.getHoupaidulikongtiao(),
+						bean.getHouzuochufengkou(),
+						bean.getWendufenqukongzhi(),
+						bean.getCheneikongqitiaojie(),
+						bean.getChezaibingxiang(),
+						bean.getZidongpocheruwei(),
+						bean.getFadongjiqitingjishu(),
+						bean.getBingxianfuzhu(),
+						bean.getChedaopianliyujingxitong(),
+						bean.getZhudongshachexitong(),
+						bean.getZhengtizhudongzhuanxiangxitong(),
+						bean.getYeshixitong(),
+						bean.getZhongkongyejingpingfenpingxianshi(),
+						bean.getZishiyingxunhang(),
+						bean.getQuanjingshexiangtou(),
+						bean.getDescription(), 
+						bean.getBrand().getBrand_id(), 
+						bean.getModel().getModel_id(),
+						bean.getSeries().getSeries_id(),
+						bean.getCar_id());
+
+		
+		
 	}
 /**
  * 删除该款车，但不提交事务
@@ -703,5 +1024,18 @@ public class CarDaoImpl implements CarDao {
 		qr.update(DataSourceUtils.getConnection(), sql, car_id);
 
 	}
+
+/* (non-Javadoc)
+ * @see com.ynlqc.dao.CarDao#getShopByCarId(java.lang.String)
+ */
+@Override
+public List<Shop> getShopByCarId(String car_id) throws Exception {
+	QueryRunner qr = new QueryRunner(DataSourceUtils.getDataSource());
+	String sql = "select shop.shop_id ,shop.name,shop.addr,shop.tel from shop "
+			+ "inner join shop_car where shop.shop_id=shop_car.shop_id and shop_car.car_id=? limit 4 ";
+
+	return qr.query(sql, new BeanListHandler<>(Shop.class),car_id);
+
+}
 
 }

@@ -45,6 +45,16 @@
   </servlet-mapping>
   <servlet>
     <description></description>
+    <display-name>UpdateShopServlet</display-name>
+    <servlet-name>UpdateShopServlet</servlet-name>
+    <servlet-class>com.ynlqc.web.servlet.UpdateShopServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UpdateShopServlet</servlet-name>
+    <url-pattern>/updateShop</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
     <display-name>AddShopServlet</display-name>
     <servlet-name>AddShopServlet</servlet-name>
     <servlet-class>com.ynlqc.web.servlet.AddShopServlet</servlet-class>

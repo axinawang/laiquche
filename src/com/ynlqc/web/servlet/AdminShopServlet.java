@@ -76,27 +76,26 @@ public class AdminShopServlet extends BaseServlet {
 	
 	public String getById(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		//1.接受cid
-		String car_id = request.getParameter("car_id");
+		String shop_id = request.getParameter("shop_id");
 		
 		//2 调用service完成 查询操作 返回值:category
-		CarService cs=(CarService) BeanFactory.getBean("CarService");
-		Car c=cs.getByCarId(car_id);
+		ShopService service=(ShopService) BeanFactory.getBean("ShopService");
+		Shop bean=service.getById(shop_id);
+		List<Car> selectedCarList=service.getCarsByShopId(shop_id);
 		
 		//3.将category放入request域中, 请求转发  /admin/category/edit.jsp
-		request.setAttribute("bean", c);
+		request.setAttribute("bean", bean);	
+		request.setAttribute("selectedCarList", selectedCarList);
+		//2 调用service完成 查询操作 返回值:category
+				CityService cityService=(CityService) BeanFactory.getBean("CityService");
+				List<City> listCity=cityService.findAll();
+				
+				request.setAttribute("cityList", listCity);	
+				CarService carService=(CarService) BeanFactory.getBean("CarService");
+				List<Car> carList = carService.findAll();
+				request.setAttribute("carList", carList);
 		
-		BrandService brandService=(BrandService) BeanFactory.getBean("BrandService");
-		List<Brand> brandList = brandService.findAll();
-		request.setAttribute("brandList", brandList);
-		
-		ModelService modelService=(ModelService) BeanFactory.getBean("ModelService");
-		List<Model> modelList = modelService.findAll();
-		request.setAttribute("modelList", modelList);
-		
-		SeriesService seriesService=(SeriesService) BeanFactory.getBean("SeriesService");
-		List<Series> seriesList = seriesService.findAll();
-		request.setAttribute("seriesList", seriesList);
-		return "/admin/car/edit.jsp";
+		return "/admin/shop/edit.jsp";
 	}
 
 	/*public String add(HttpServletRequest request, HttpServletResponse response) throws Exception {

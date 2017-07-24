@@ -128,6 +128,62 @@ public class ShopServiceImpl implements ShopService {
 		
 	}
 
+	/* (non-Javadoc)
+	 * @see com.ynlqc.service.ShopService#getById(java.lang.String)
+	 */
+	@Override
+	public Shop getById(String shop_id) throws Exception {
+		ShopDao shopDao=(ShopDao) BeanFactory.getBean("ShopDao");
+		return shopDao.getById(shop_id);
+	}
+
+	/* (non-Javadoc)
+	 * @see com.ynlqc.service.ShopService#getCarsByShopId(java.lang.String)
+	 */
+	@Override
+	public List<Car> getCarsByShopId(String shop_id) throws Exception {
+		ShopAndCarDao shopAndCarDao = (ShopAndCarDao) BeanFactory.getBean("ShopAndCarDao");
+		
+		return shopAndCarDao.getCarsByShopId(shop_id);
+	}
+
+	/* (non-Javadoc)
+	 * 更新该门店的车辆信息
+	 */
+	@Override
+	public void update(Shop bean, List<Car> cars) throws Exception {
+		try {
+			//1.开启事务
+			DataSourceUtils.startTransaction();
+			//更新门店基本信息
+			ShopDao shopDao=(ShopDao) BeanFactory.getBean("ShopDao");
+			shopDao.update(bean);
+			//更新门店拥有的车辆
+			ShopAndCarDao shopAndCarDao = (ShopAndCarDao) BeanFactory.getBean("ShopAndCarDao");
+			shopAndCarDao.deleteByShop(bean);
+
+			//插入选择的车辆
+			for (Car car : cars) {
+				shopAndCarDao.add(car, bean);
+			}
+			//4.事务控制
+			DataSourceUtils.commitAndClose();
+			
+			/*//5.清空缓存
+			CacheManager cm = CacheManager.create(CategoryServiceImpl.class.getClassLoader().getResourceAsStream("ehcache.xml"));
+			Cache cache = cm.getCache("categoryCache");
+			cache.remove("clist");*/
+		} catch (Exception e) {
+			e.printStackTrace();
+			DataSourceUtils.rollbackAndClose();
+			throw e;
+		}
+		
+		
+		
+		
+	}
+
 
 	
 

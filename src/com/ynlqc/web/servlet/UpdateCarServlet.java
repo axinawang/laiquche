@@ -66,7 +66,7 @@ public class UpdateCarServlet extends HttpServlet {
 					String name = fi.getName();
 					//如果没有上传文件，该字段就不要加入map
 					if (name != "") {
-						// System.out.println("文件名称："+(name==""));
+						System.out.println("文件名称："+(name==""));
 						// 获取文件的真实名称 xxxx.xx
 						String realName = UploadUtils.getRealName(name);
 						// 获取文件的随机名称
@@ -127,7 +127,7 @@ public class UpdateCarServlet extends HttpServlet {
 			response.sendRedirect(request.getContextPath()+"/adminCar?method=findAll");
 		} catch (Exception e) {
 			e.printStackTrace();
-			request.setAttribute("msg", "商品修改失败~");
+			request.setAttribute("msg", "车辆修改失败~");
 			request.getRequestDispatcher("/jsp/msg.jsp").forward(request, response);
 			return;
 		}

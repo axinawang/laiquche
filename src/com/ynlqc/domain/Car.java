@@ -9,6 +9,8 @@ import java.util.Date;
  * @author Administrator
  *
  */
+
+
 public class Car implements Serializable {
 	
 	/**
@@ -32,6 +34,8 @@ public class Car implements Serializable {
 	`part_description2` text DEFAULT NULL,
 	`part_image3` varchar(200) DEFAULT NULL,
 	`part_description3` text DEFAULT NULL,
+	`part_image4` varchar(200) DEFAULT NULL,
+	`part_description4` text DEFAULT NULL,
 										-- 基本参数
 	`length` int(11) DEFAULT 0,						   -- 长	
 	`width` int(11) DEFAULT 0,						   -- 宽
@@ -362,88 +366,103 @@ public class Car implements Serializable {
 	`model_id` int,
 	`series_id` int,
 	 */
-	private String car_id;
-	private String car_name;
-	private Date car_date;
+	// 2 标配 1 选配 0 无 
+	private String  car_id;
+	private String  car_name;
+	private Date    car_date;
 	private Integer is_hot;// 是否热门 1:热门 0:否
 	private Integer car_flag;// 是否下架 1:下架 0:未下架
 
-	private Double guide_price;
-	private Double deposit;
-	private Double down_payment;
-	private Double month_payment;
-	private String pay_description;
-	private String car_image;
-	private String hot_image;
-	private String whole_image;//` varchar(200) DEFAULT NULL,          
-	private String whole_description;// text DEFAULT NULL,
-	private String part_image1;// varchar(200) DEFAULT NULL,
-	private String part_description1;// text DEFAULT NULL,
-	private String part_image2;// varchar(200) DEFAULT NULL,
-	private String part_description2;// text DEFAULT NULL,
-	private String part_image3;// varchar(200) DEFAULT NULL,
-	private String part_description3;// text DEFAULT NULL,
+	private Double  guide_price;
+	private Double  deposit;
+	private Double  down_payment;
+	private Double  month_payment;
+	private String  pay_description;
+	private String  car_image;
+	private String  hot_image;
+	private String  whole_image;//` varchar(200) DEFAULT NULL,
+	private String  whole_title;//` varchar(200) DEFAULT NULL,	
+	private String  whole_description;// text DEFAULT NULL,
+	
+	private String  part_image1;// varchar(200) DEFAULT NULL,
+	private String  part_title1;// varchar(200) DEFAULT NULL,
+	private String  part_description1;// text DEFAULT NULL,
+	private String  part_image2;// varchar(200) DEFAULT NULL,
+	private String  part_title2;// varchar(200) DEFAULT NULL,
+	private String  part_description2;// text DEFAULT NULL,
+	private String  part_image3;// varchar(200) DEFAULT NULL,
+	private String  part_title3;// varchar(200) DEFAULT NULL,
+	private String  part_description3;// text DEFAULT NULL,
+	private String  part_image4;// varchar(200) DEFAULT NULL,
+	private String  part_title4;// varchar(200) DEFAULT NULL,
+	private String  part_description4;// text DEFAULT NULL,
+	
+	
+	// 2 标配 1 选配 0 无 
+	private String  cheshenjiegou;//
 	private Integer length;
 	private Integer width;
 	private Integer height;
 
-	private String fadongji;// 发动机
-	private String biansuxiang;//变速箱
-	private String zongheyouhao;// 综合油耗
-	private String cheliangpeise;// 车辆配色
+	private String  fadongji;// 发动机
+	private String  biansuxiang;//变速箱
+	private String  qudongfangshi;//驱动方式
+	private String  ranliaoxingshi;//燃料形式
+	private String  zongheyouhao;// 综合油耗
+	private String  cheliangpeise;// 车辆配色
 									// 车身配置
 	private Integer zhouju;//                                          -- 轴距(mm)    
 	private Integer qianlunju;//                                                    -- 前轮距(mm)                       
 	private Integer houlunju;//                                                    -- 后轮距(mm)                       
 	private Integer zuixiaolidijianxi;//                                           -- 最小离地间隙(mm)                 
 	private Integer zhengchezhiliang;//                                            -- 整车质量(kg)                     
-	private String cheshenjiegou;//                                     -- 车身结构                         
+	//private String  cheshenjiegou;//                                     -- 车身结构                         
 	private Integer chemenshu;//                                                  -- 车门数(个)                       
 	private Integer zuoweishu;//                                                 -- 座位数(个)                       
 	private Integer youxiangrongji;//                                           -- 油箱容积(L)                      
 	private Integer xinglixiangrongji;//                                        -- 行李厢容积(L)                    
                                                                              ///-- 发动机配置                                                                             
-	private String fadongjixinghao;//                                -- 发动机型号                       
+	private String  fadongjixinghao;//                                -- 发动机型号                       
 	private Integer pailiang;//                                               -- 排量(mL)                         
-	private String jinqixingshi;//                                    -- 进气形式							
-	private String qigangpailiexingshi;//                              -- 气缸排列形式						
+	private String  jinqixingshi;//                                    -- 进气形式							
+	private String  qigangpailiexingshi;//                              -- 气缸排列形式						
 	private Integer qigangshu;//                                                -- 气缸数(个)						
 	private Integer meigangqimenshu;//                                          -- 每缸气门数(个)					
-	private Double gangjing;//                                            -- 缸径(mm)   						
-	private Double xingcheng;//                                             -- 行程(mm)							
+	private Double  gangjing;//                                            -- 缸径(mm)   						
+	private Double  xingcheng;//                                             -- 行程(mm)							
 	private Integer zuidamali;//                                                -- 最大马力(Ps)						
 	private Integer zuidagonglv;//                                              -- 最大功率(kW)						
 	private Integer zuidagonglvzhuansu;//                                       -- 最大功率转速(rpm)				
 	private Integer zuidaniuju;//                                               -- 最大扭矩(N・m)					
 	private Integer zuidaniujuzhuansu;//                                        -- 最大扭矩转速(rpm)				
-	private String fadongjiteyoujishu;//                            -- 发动机特有技术                   
-	private String ranliaoxingshi;//                                  -- 燃料形式							
-	private String ranyoubiaohao;//                                   -- 燃油标号							
-	private String gongyoufangshi;//                                  -- 供油方式							
-	private String ganggaicailiao;//	                                 -- 缸盖材料							
-	private String gangticailiao;//                                  -- 缸体材料							
-	private String huanbaobiaozhun;//                                 -- 环保标准							
+	private String  fadongjiteyoujishu;//                            -- 发动机特有技术                   
+	//private String  ranliaoxingshi;//                                  -- 燃料形式							
+	private String  ranyoubiaohao;//                                   -- 燃油标号							
+	private String  gongyoufangshi;//                                  -- 供油方式							
+	private String  ganggaicailiao;//	                                 -- 缸盖材料							
+	private String  gangticailiao;//                                  -- 缸体材料							
+	private String  huanbaobiaozhun;//                                 -- 环保标准							
 //                                                                             -- 变速箱配置
                                                                              
 	private Integer dangweigeshu;//                                             -- 挡位个数							
-	private String biansuxiangleixing;//                              -- 变速箱类型						
+	private String  biansuxiangleixing;//                              -- 变速箱类型						
 //                                                                             -- 底盘转向
                                                                              
-	private String qudongfangshi;//                                   -- 驱动方式							
-	private String siquxingshi;//                                     -- 四驱形式							
-	private String zhongyangchasuqijiegou;//                          -- 中央差速器结构					
-	private String qianxuanjialeixing;//                              -- 前悬架类型						
-	private String houxuanjialeixing;//                              -- 后悬架类型						
-	private String zhulileixing;//                                    -- 助力类型							
-	private String chetijiegou;//                                     -- 车体结构							
+	//private String  qudongfangshi;//                                   -- 驱动方式							
+	private String  siquxingshi;//                                     -- 四驱形式							
+	private String  zhongyangchasuqijiegou;//                          -- 中央差速器结构					
+	private String  qianxuanjialeixing;//                              -- 前悬架类型						
+	private String  houxuanjialeixing;//                              -- 后悬架类型						
+	private String  zhulileixing;//                                    -- 助力类型							
+	private String  chetijiegou;//                                     -- 车体结构							
 //                                                                             -- 车轮制动
                                                                              
-	private String qianzhidongqileixing;//                            -- 前制动器类型						
-	private String houzhidongqileixing;//                             -- 后制动器类型						
-	private String zhuchezhidongleixing;//                            -- 驻车制动类型						
-	private String qianluntaiguige;//                                -- 前轮胎规格						
-	private String houluntaiguige;//		                             -- 后轮胎规格						
-	private String beitaiguige;//                                     -- 备胎规格							
+	private String  qianzhidongqileixing;//                            -- 前制动器类型						
+	private String  houzhidongqileixing;//                             -- 后制动器类型						
+	private String  zhuchezhidongleixing;//                            -- 驻车制动类型						
+	private String  qianluntaiguige;//                                -- 前轮胎规格						
+	private String  houluntaiguige;//		                             -- 后轮胎规格						
+	private String  beitaiguige;//                                     -- 备胎规格							
 //                                                                             -- 安全装备
                                                                              
 	private Integer zhujiashizuoanquanqinang;//                                    -- 主/副驾驶座安全气囊				
@@ -488,7 +507,7 @@ public class Car implements Serializable {
 //                                                                             -- 内部配置
                                                                              
 	private Integer zhenpifangxiangpan;//                                         -- 真皮方向盘						
-	private String fangxiangpantiaojie;//	                         -- 方向盘调节						
+	private String  fangxiangpantiaojie;//	                         -- 方向盘调节						
 	private Integer fangxiangpandiandongtiaojie;//                                 -- 方向盘电动调节					
 	private Integer duogongnengfangxiangpan;//                                    -- 多功能方向盘						
 	private Integer fangxiangpanhuandang;//                                       -- 方向盘换挡						
@@ -501,7 +520,7 @@ public class Car implements Serializable {
 	private Integer quanyejingyibiaopan;//                                         -- 全液晶仪表盘						
 //                                                                             -- 座椅配置
                                                                              
-	private String zuoyipizhi;//                                      -- 座椅材质							
+	private String  zuoyicaizhi;//                                      -- 座椅材质							
 	private Integer zuoyigaoditiaojie;//                                           -- 座椅高低调节						
 	private Integer yaobuzhichengtiaojie;//                                        -- 腰部支撑调节						
 	private Integer jianbuzhichengtiaojie;//	                                     -- 肩部支撑调节						
@@ -516,13 +535,13 @@ public class Car implements Serializable {
   	private Integer gpsdaohangxitong;//                                           -- GPS导航系统						
 	private Integer zhongkongtaicaisedaping;//                                    -- 中控台彩色大屏					
 	private Integer lanyachezaidianhua;//                                          -- 蓝牙/车载电话					
-	private String waijieyinyuanjiekou;//                             -- 外接音源接口						
-	private String duomeitixitong;//                                  -- 多媒体系统						
-	private String yangshengqishuliang;//                           -- 扬声器数量						
+	private String  waijieyinyuanjiekou;//                             -- 外接音源接口						
+	private String  duomeitixitong;//                                  -- 多媒体系统						
+	private String  yangshengqishuliang;//                           -- 扬声器数量						
 //                                                                             -- 灯光配置
                                                                              
-	private String jinguangdeng;//                                    -- 近光灯							
-	private String yuanguangdeng;//                                   -- 远光灯							
+	private String  jinguangdeng;//                                    -- 近光灯							
+	private String  yuanguangdeng;//                                   -- 远光灯							
 	private Integer rijianxingchedeng;//                                           -- 日间行车灯						
 	private Integer zishiyingyuanjindeng;//	                                     -- 自适应远近光						
 	private Integer zidongtoudeng;//                                              -- 自动头灯							
@@ -546,7 +565,7 @@ public class Car implements Serializable {
 	private Integer ganyingyushua;//                                              -- 感应雨刷							
 //                                                                             -- 空调/冰箱
                                                                              
-	private String kongtiaokongzhifangshi;//                         -- 空调控制方式						
+	private String  kongtiaokongzhifangshi;//                         -- 空调控制方式						
 	private Integer houpaidulikongtiao;//                                          -- 后排独立空调						
 	private Integer houzuochufengkou;//                                            -- 后座出风口						
 	private Integer wendufenqukongzhi;//                                          -- 温度分区控制						
@@ -566,16 +585,56 @@ public class Car implements Serializable {
 	private Integer quanjingshexiangtou;//                                        -- 全景摄像头						
 	
 	
-	private String description;
-	private Brand brand;
-	private Model model;
-	private Series series;
+	private String  description;
+	private Brand   brand;
+	private Model   model;
+	private Series  series;
 
 	public Car() {
 	}
 
 	public Car(String car_id) {
 		this.car_id = car_id;
+	}
+
+	public String getWhole_title() {
+		return whole_title;
+	}
+
+	public void setWhole_title(String whole_title) {
+		this.whole_title = whole_title;
+	}
+
+	public String getPart_title1() {
+		return part_title1;
+	}
+
+	public void setPart_title1(String part_title1) {
+		this.part_title1 = part_title1;
+	}
+
+	public String getPart_title2() {
+		return part_title2;
+	}
+
+	public void setPart_title2(String part_title2) {
+		this.part_title2 = part_title2;
+	}
+
+	public String getPart_title3() {
+		return part_title3;
+	}
+
+	public void setPart_title3(String part_title3) {
+		this.part_title3 = part_title3;
+	}
+
+	public String getPart_title4() {
+		return part_title4;
+	}
+
+	public void setPart_title4(String part_title4) {
+		this.part_title4 = part_title4;
 	}
 
 	public String getCar_id() {
@@ -736,6 +795,22 @@ public class Car implements Serializable {
 
 	public void setPart_description3(String part_description3) {
 		this.part_description3 = part_description3;
+	}
+
+	public String getPart_image4() {
+		return part_image4;
+	}
+
+	public void setPart_image4(String part_image4) {
+		this.part_image4 = part_image4;
+	}
+
+	public String getPart_description4() {
+		return part_description4;
+	}
+
+	public void setPart_description4(String part_description4) {
+		this.part_description4 = part_description4;
 	}
 
 	public Integer getLength() {
@@ -1530,12 +1605,14 @@ public class Car implements Serializable {
 		this.quanyejingyibiaopan = quanyejingyibiaopan;
 	}
 
-	public String getZuoyipizhi() {
-		return zuoyipizhi;
+
+
+	public String getZuoyicaizhi() {
+		return zuoyicaizhi;
 	}
 
-	public void setZuoyipizhi(String zuoyipizhi) {
-		this.zuoyipizhi = zuoyipizhi;
+	public void setZuoyicaizhi(String zuoyicaizhi) {
+		this.zuoyicaizhi = zuoyicaizhi;
 	}
 
 	public Integer getZuoyigaoditiaojie() {

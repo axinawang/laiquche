@@ -169,7 +169,7 @@
       <!-- end inProClaList-->
       <div class="proListPic" >
         <div class="proListPicF"> 
-        <a href="${pageContext.request.contextPath }/car?method=getByCarId&car_id=${hotCarList[0].car_id}" title="${hotCarList[0].car_name}">
+        <a href="${pageContext.request.contextPath }/car2?method=getByCarId&car_id=${hotCarList[0].car_id}" title="${hotCarList[0].car_name}">
         <img src="${pageContext.request.contextPath}/${hotCarList[0].hot_image}"  alt="${hotCarList[0].car_name}" width="288" height="216" class="PicAuto"></a>
           <div class="proListPicFT">
             <p class="proListPicFTT"><a href="${pageContext.request.contextPath }/car?method=getByCarId&car_id=${hotCarList[0].car_id}" title="${hotCarList[0].car_name}">${hotCarList[0].car_name}</a></p>
@@ -187,9 +187,9 @@
                 <img src="${pageContext.request.contextPath}/${car.hot_image}" rel="${pageContext.request.contextPath}/${car.hot_image}" alt="${car.car_name}" width="232" height="174" class="PicAuto" style="padding: 0px;">
             </div>
             <div class="intro" style="display: none;">
-                <p class="introT"><a href="${pageContext.request.contextPath }/car?method=getByCarId&car_id=${car.car_id}" title="${car.car_name}">${fn:substring(car.car_name,0,20)}</a></p>
+                <p class="introT"><a href="${pageContext.request.contextPath }/car2?method=getByCarId&car_id=${car.car_id}" title="${car.car_name}">${fn:substring(car.car_name,0,20)}</a></p>
                 <p class="introTro">　　${fn:substring(car.description,0,20) }...</p>
-                <p class="introI"><img src="${pageContext.request.contextPath}/jsp2/style/images/index_15.png" class="zoom"> <a href="${pageContext.request.contextPath }/car?method=getByCarId&car_id=${car.car_id}" title="${car.car_name}"><img src="${pageContext.request.contextPath}/jsp2/style/images/index_13.png"></a></p>
+                <p class="introI"><img src="${pageContext.request.contextPath}/jsp2/style/images/index_15.png" class="zoom"> <a href="${pageContext.request.contextPath }/car2?method=getByCarId&car_id=${car.car_id}" title="${car.car_name}"><img src="${pageContext.request.contextPath}/jsp2/style/images/index_13.png"></a></p>
             </div>
         </li>
         </c:if>
@@ -245,7 +245,7 @@
       <div id="casePicIdList1">
         <ul class="casePicUl clear-fix">
         <c:forEach items="${hotCarList}" var="car" varStatus="status">
-          <li> <a href="${pageContext.request.contextPath }/car?method=getByCarId&car_id=${car.car_id}" title="${car.car_name}">
+          <li> <a href="${pageContext.request.contextPath }/car2?method=getByCarId&car_id=${car.car_id}" title="${car.car_name}">
             <div class="casePicUlP"><img src="${pageContext.request.contextPath}/${car.hot_image}" alt="${car.car_name}" width="238" height="179" class="PicAuto"></div>
             <div class="casePicUlT">${fn:substring(car.car_name,5,25)}</div>
             <div class="casePicUlTr">${fn:substring(car.description,0,20) }...</div>
@@ -314,7 +314,7 @@
 					$(data).each(function(index,element){
 						//$ul.append($("<li><a href='${pageContext.request.contextPath}/car?method=findByBrandInPage&brand_id="+this.brand_id+"&currPage=1'>"+this.brand_name+"</a></li>"));
 						
-						$ul.append($("<dd><li><a href='${pageContext.request.contextPath}/car?method=findByPage&brand_id="+this.brand_id+"'>"+this.brand_name+"</a></li></dd>"));
+						$ul.append($("<dd><li><a href='${pageContext.request.contextPath}/car2?method=findByPage&brand_id="+this.brand_id+"'>"+this.brand_name+"</a></li></dd>"));
 						
 					});
 					
@@ -326,7 +326,7 @@
 					
 					//遍历数组
 					$(data).each(function(){
-						$ul.append($("<li><a href='${pageContext.request.contextPath}/car?method=findByPage&series_id="+this.series_id+"'>"+this.series_name+"</a></li>"));
+						$ul.append($("<li><a href='${pageContext.request.contextPath}/car2?method=findByPage&series_id="+this.series_id+"'>"+this.series_name+"</a></li>"));
 					});
 				},"json");
 			});

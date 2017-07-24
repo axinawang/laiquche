@@ -18,5 +18,26 @@ public interface ShopService {
 	 */
 	void delete(String shop_id) throws Exception;
 
+	/**
+	 * @param shop_id
+	 * @return
+	 * @throws Exception 
+	 */
+	Shop getById(String shop_id) throws Exception;
+
+	/**
+	 * @param shop_id
+	 * @return
+	 * @throws Exception 
+	 */
+	List<Car> getCarsByShopId(String shop_id) throws Exception;
+
+	/**
+	 * @param bean
+	 * @param cars
+	 * @throws Exception 
+	 */
+	void update(Shop bean, List<Car> cars) throws Exception;
+
 
 }

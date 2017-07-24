@@ -129,6 +129,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `car`;
 CREATE TABLE `car` (
+`date` timestamp,   -- 更新时间
   `car_id` varchar(32)  NOT NULL,
   `car_name` varchar(100) DEFAULT NULL,
   `car_date` datetime DEFAULT NULL,
@@ -139,16 +140,23 @@ CREATE TABLE `car` (
 `down_payment` double DEFAULT NULL,
 `month_payment` double DEFAULT NULL,
 `pay_description` text DEFAULT NULL,
-`car_image` varchar(20000) DEFAULT NULL,
+`car_image` text DEFAULT NULL,
 `hot_image` varchar(200) DEFAULT NULL,
-`whole_image` varchar(200) DEFAULT NULL,          
+`whole_image` varchar(200) DEFAULT NULL,   
+`whole_title` varchar(200) DEFAULT NULL,       
 `whole_description` text DEFAULT NULL,
 `part_image1` varchar(200) DEFAULT NULL,
+`part_title1` varchar(200) DEFAULT NULL,  
 `part_description1` text DEFAULT NULL,
 `part_image2` varchar(200) DEFAULT NULL,
+`part_title2` varchar(200) DEFAULT NULL,
 `part_description2` text DEFAULT NULL,
 `part_image3` varchar(200) DEFAULT NULL,
+`part_title3` varchar(200) DEFAULT NULL,
 `part_description3` text DEFAULT NULL,
+`part_image4` varchar(200) DEFAULT NULL,
+`part_title4` varchar(200) DEFAULT NULL,
+`part_description4` text DEFAULT NULL,
 									-- 基本参数
 `length` int(11) DEFAULT 0,						   -- 长	
 `width` int(11) DEFAULT 0,						   -- 宽
@@ -361,7 +369,7 @@ CREATE TABLE `car` (
                                                                              
                                                                              -- 座椅配置
                                                                              
-	`zuoyipizhi` varchar(100) DEFAULT NULL,                                      -- 座椅材质							
+	`zuoyicaizhi` varchar(100) DEFAULT NULL,                                      -- 座椅材质							
                                                                                  -- 皮/织物混搭(选装真皮)
 	`zuoyigaoditiaojie` int DEFAULT 0,                                           -- 座椅高低调节						
                                                                                  -- -
@@ -686,5 +694,11 @@ CREATE TABLE `test` (
 LOCK TABLES `test` WRITE;
 INSERT INTO `test` (`test_id`)  VALUES ('1');
 UNLOCK TABLES;
+
+
+ desc car;
+
+SELECT zhujiashizuoanquanqinang from car WHERE car_id ='3301EF38EF2E46C88CE0B148CF52A6C1';
+select shop.shop_id ,shop.name,shop.addr,shop.tel from shop inner join shop_car where shop.shop_id=shop_car.shop_id and shop_car.car_id=16; 
 
 

@@ -10,6 +10,7 @@ import com.ynlqc.dao.ShopDao;
 import com.ynlqc.dao.UserDao;
 import com.ynlqc.domain.Car;
 import com.ynlqc.domain.PageBean;
+import com.ynlqc.domain.Shop;
 import com.ynlqc.service.CarService;
 import com.ynlqc.utils.BeanFactory;
 import com.ynlqc.utils.DataSourceUtils;
@@ -119,6 +120,16 @@ public class CarServiceImpl implements CarService {
 			DataSourceUtils.rollbackAndClose();
 			throw e;
 		}
+	}
+
+	/* (non-Javadoc)
+	 * @see com.ynlqc.service.CarService#getShopByCarId(java.lang.String)
+	 */
+	@Override
+	public List<Shop> getShopByCarId(String car_id) throws Exception {
+		CarDao dao = (CarDao) BeanFactory.getBean("CarDao");
+		return dao.getShopByCarId(car_id);
+
 	}
 
 }
