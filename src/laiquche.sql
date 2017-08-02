@@ -72,7 +72,11 @@ CREATE TABLE `admin` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
-
+LOCK TABLES `admin` WRITE;
+/*!40000 ALTER TABLE `user` DISABLE KEYS */;
+INSERT INTO `admin` VALUES ('1','admin','de43e169358552cc24bbd1564e7dc586','小王','ynlqcba@163.com','15757818156','2000-02-01','男',1,NULL);
+/*!40000 ALTER TABLE `user` ENABLE KEYS */;
+UNLOCK TABLES;
 
 		
 DROP TABLE IF EXISTS `brand`;
@@ -613,6 +617,7 @@ CREATE TABLE `appointment_info` (
   `shop_id` varchar(32) DEFAULT NULL,
   `description` text DEFAULT NULL,
   `date` timestamp,
+  `state` int DEFAULT 0,
   `admin_id`	varchar(32) DEFAULT NULL,
 `car_id` varchar(32) DEFAULT NULL,
 `user_id` varchar(32) DEFAULT NULL,
@@ -655,6 +660,7 @@ CREATE TABLE `user_car` (
   `user_car_id` varchar(32) NOT NULL,
   `user_id` varchar(32) DEFAULT NULL,
   `car_id` varchar(32) DEFAULT NULL,
+`date` timestamp,
   PRIMARY KEY (`user_car_id`),
 KEY `fk_user_car_user_id` (`user_id`),
   CONSTRAINT `fk_user_car_user_id` FOREIGN KEY (`user_id`) REFERENCES `user` (`uid`),
@@ -663,7 +669,7 @@ KEY `fk_user_car_car_id` (`car_id`),
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 LOCK TABLES `user_car` WRITE;
-INSERT INTO `user_car`VALUES ('1','1','1');
+INSERT INTO `user_car` (`user_car_id`,`user_id`,`car_id`) VALUES ('1','1','1');
 UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `shop_car`;
@@ -683,6 +689,7 @@ LOCK TABLES `shop_car` WRITE;
 INSERT INTO `shop_car` (`shop_car_id`,`shop_id`,`car_id`) VALUES ('1','1','1');
 UNLOCK TABLES;
 
+
 DROP TABLE IF EXISTS `test`;
 CREATE TABLE `test` (
   `test_id` varchar(32) NOT NULL,
@@ -700,5 +707,5 @@ UNLOCK TABLES;
 
 SELECT zhujiashizuoanquanqinang from car WHERE car_id ='3301EF38EF2E46C88CE0B148CF52A6C1';
 select shop.shop_id ,shop.name,shop.addr,shop.tel from shop inner join shop_car where shop.shop_id=shop_car.shop_id and shop_car.car_id=16; 
-
+select count(*) from car where is_hot=1;
 

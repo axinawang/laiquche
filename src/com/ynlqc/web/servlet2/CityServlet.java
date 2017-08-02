@@ -11,6 +11,7 @@ import com.ynlqc.domain.City;
 import com.ynlqc.service.CityService;
 import com.ynlqc.utils.BeanFactory;
 import com.ynlqc.utils.JsonUtil;
+import com.ynlqc.web.servlet.BaseServlet;
 
 /**
  * Servlet implementation class CityServlet

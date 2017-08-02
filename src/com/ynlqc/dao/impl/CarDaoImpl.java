@@ -36,7 +36,7 @@ public class CarDaoImpl implements CarDao {
 	@Override
 	public List<Car> findHot() throws Exception {
 		QueryRunner qr = new QueryRunner(DataSourceUtils.getDataSource());
-		String sql = "select * from car where is_hot = 1 order by car_date desc limit 9";
+		String sql = "select * from car where is_hot = 1 order by car_date desc";
 		return qr.query(sql, new BeanListHandler<>(Car.class));
 	}
 
@@ -114,14 +114,6 @@ public class CarDaoImpl implements CarDao {
 				(month_payment == -1.0 ? 10000000.0 : (month_payment == 5000 ? 10000000.0 : month_payment + 1000)),
 				"%" + search_key + "%", "%" + search_key + "%");
 	}
-
-	@Override
-	public int getTotalCount(int type_id, int model_id, double down_payment, double month_payment, String search_key)
-			throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
 	/**
 	 * 查询所有车子
 	 */
@@ -1032,10 +1024,44 @@ INSERT INTO `car`
 public List<Shop> getShopByCarId(String car_id) throws Exception {
 	QueryRunner qr = new QueryRunner(DataSourceUtils.getDataSource());
 	String sql = "select shop.shop_id ,shop.name,shop.addr,shop.tel from shop "
-			+ "inner join shop_car where shop.shop_id=shop_car.shop_id and shop_car.car_id=? limit 4 ";
+			+ "inner join shop_car where shop.shop_id=shop_car.shop_id and shop_car.car_id=? ";
 
 	return qr.query(sql, new BeanListHandler<>(Shop.class),car_id);
 
+}
+
+/* (non-Javadoc)
+ * @see com.ynlqc.dao.CarDao#getHotCarTotalCount()
+ * 获取热门车的总数
+ */
+@Override
+public int getHotCarTotalCount() throws Exception {
+	QueryRunner qr = new QueryRunner(DataSourceUtils.getDataSource());
+	String sql = "select count(*) from car where is_hot=1 ";
+	return ((Long)qr.query(sql, new ScalarHandler())).intValue();
+}
+
+/* (non-Javadoc)
+ * @see com.ynlqc.dao.CarDao#getTotalCount(int, int, int, double, double, java.lang.String)
+ */
+@Override
+public int getTotalCount(int brand_id, int model_id, int series_id, double down_payment, double month_payment,
+		String search_key) throws Exception {
+	QueryRunner qr = new QueryRunner(DataSourceUtils.getDataSource());
+	String sql = "select count(*) from car where " + (brand_id == -1 ? "brand_id > ?" : "brand_id = ? ") + " and "
+			+ (model_id == -1 ? "model_id > ?" : "model_id = ? ") + " and "
+			+ (series_id == -1 ? "series_id > ?" : "series_id = ? ") + " and "
+			+ "down_payment >= ? and down_payment<= ?" + " and " + "month_payment >= ? and month_payment<= ?"
+			+ " and "
+			+ "(brand_id in (SELECT brand_id from brand where brand_name like ?) or series_id in (SELECT series_id from series where series_name like ?))";
+	logger.debug("findByPage sql:" + sql);
+	System.out.println("CarDaoImpl like :" + "%" + search_key + "%");
+	return ((Long)qr.query(sql, new ScalarHandler(), brand_id, model_id, series_id, down_payment, // 如果首付是5万以上，首付的上限是一千万
+			(down_payment == -1.0 ? 10000000.0 : (down_payment == 50000 ? 10000000.0 : down_payment + 10000)),
+			month_payment, // 如果月供是5千以上，月供的上限是一千万
+			(month_payment == -1.0 ? 10000000.0 : (month_payment == 5000 ? 10000000.0 : month_payment + 1000)),
+			"%" + search_key + "%", "%" + search_key + "%")).intValue();
+	
 }
 
 }

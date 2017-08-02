@@ -52,7 +52,8 @@ public class CarServiceImpl implements CarService {
 
 	/**
 	 * @throws Exception
-	 * 
+	 * 联合查询到的车
+	 * 还没有做分页
 	 */
 	@Override
 	public PageBean<Car> findByPage(int currPage, int pageSize, int brand_id, int model_id, int series_id,
@@ -61,7 +62,22 @@ public class CarServiceImpl implements CarService {
 		List<Car> list = dao.findByPage(currPage, pageSize, brand_id, model_id, series_id, down_payment, month_payment,
 				search_key);
 		// 总条数
-		int totalCount = dao.getTotalCount(brand_id, model_id, down_payment, month_payment, search_key);
+		int totalCount = dao.getTotalCount(brand_id, model_id, series_id,down_payment, month_payment, search_key);
+		System.out.println("联合查询得到的车TotalCount:"+totalCount);
+		return new PageBean<>(list, currPage, pageSize, totalCount);
+	}
+	/**
+	 * @throws Exception
+	 * 
+	 */
+	@Override
+	public PageBean<Car> findHotCar(int currPage, int pageSize) throws Exception {
+		CarDao dao = (CarDao) BeanFactory.getBean("CarDao");
+		List<Car> list = dao.findHot();
+
+		// 总条数
+		int totalCount = dao.getHotCarTotalCount();
+		System.out.println("HotCarTotalCount:"+totalCount);
 		return new PageBean<>(list, currPage, pageSize, totalCount);
 	}
 

@@ -4,14 +4,18 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
+import java.util.List;
 
 import org.apache.log4j.Logger;
 
 import com.ynlqc.constant.Constant;
+import com.ynlqc.dao.CarDao;
 import com.ynlqc.dao.UserDao;
 import com.ynlqc.dao.impl.UserDaoImpl;
+import com.ynlqc.domain.Car;
 import com.ynlqc.domain.User;
 import com.ynlqc.service.UserService;
+import com.ynlqc.utils.BeanFactory;
 import com.ynlqc.utils.MailUtils;
 import com.ynlqc.utils.PropertiesUtil;
 
@@ -83,6 +87,42 @@ public class UserServiceImpl implements UserService {
 		UserDao dao=new UserDaoImpl();
 		dao.add(user);
 		
+	}
+
+	/* (non-Javadoc)
+	 * @see com.ynlqc.service.UserService#getCarsByUserId(java.lang.String)
+	 */
+	@Override
+	public List<Car> getCarsByUserId(String uid) throws Exception {
+		UserDao dao = (UserDao) BeanFactory.getBean("UserDao");
+		return dao.getCarsByUserId(uid);
+	}
+
+	/* (non-Javadoc)
+	 * @see com.ynlqc.service.UserService#collectCar(java.lang.String, java.lang.String)
+	 */
+	@Override
+	public String collectCar(String uid, String car_id) {
+		UserDao dao = (UserDao) BeanFactory.getBean("UserDao");
+		return dao.collectCar(uid,car_id);
+	}
+
+	/* (non-Javadoc)
+	 * @see com.ynlqc.service.UserService#isCarCollected(java.lang.String, java.lang.String)
+	 */
+	@Override
+	public String isCarCollected(String uid, String car_id) throws Exception {
+		UserDao dao = (UserDao) BeanFactory.getBean("UserDao");
+		return dao.isCarCollected(uid,car_id);
+	}
+
+	/* (non-Javadoc)
+	 * @see com.ynlqc.service.UserService#cancelCollectCar(java.lang.String, java.lang.String)
+	 */
+	@Override
+	public String cancelCollectCar(String uid, String car_id) {
+		UserDao dao = (UserDao) BeanFactory.getBean("UserDao");
+		return dao.cancelCollectCar(uid,car_id);
 	}
 
 }

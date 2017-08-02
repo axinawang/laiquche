@@ -1,5 +1,7 @@
 package com.ynlqc.service;
 
+import java.util.List;
+
 import com.ynlqc.domain.Appointment;
 
 public interface AppointmentService {
@@ -13,4 +15,21 @@ public interface AppointmentService {
 
 
 	void add(Appointment appointment) throws Exception;
+
+	/**
+	 * @param uid
+	 * @throws Exception 
+	 */
+	List<Appointment> getAppointmentsByUserId(String uid) throws Exception;
+
+	/**
+	 * @return
+	 */
+	List<Appointment> findAll() throws Exception;
+
+	/**
+	 * @param appointment_id
+	 * @return
+	 */
+	Appointment getDetailByAid(String appointment_id) throws Exception;
 }

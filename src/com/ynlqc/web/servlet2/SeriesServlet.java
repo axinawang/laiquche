@@ -11,6 +11,7 @@ import com.ynlqc.domain.Series;
 import com.ynlqc.service.SeriesService;
 import com.ynlqc.utils.BeanFactory;
 import com.ynlqc.utils.JsonUtil;
+import com.ynlqc.web.servlet.BaseServlet;
 
 /**
  * Servlet implementation class SeriesServlet

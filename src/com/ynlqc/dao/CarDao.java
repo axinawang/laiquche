@@ -20,7 +20,7 @@ public interface CarDao {
 
 	List<Car> findByPage(int currPage, int pageSize, int type_id, int model_id,int series_id, double down_payment, double month_payment, String search_key) throws Exception;
 
-	int getTotalCount(int type_id, int model_id, double down_payment, double month_payment, String search_key) throws Exception;
+	
 
 	List<Car> findByBrand(int type_id) throws Exception;
 
@@ -38,6 +38,25 @@ public interface CarDao {
 	 * @throws Exception 
 	 */
 	List<Shop> getShopByCarId(String car_id) throws Exception;
+
+	/**
+	 * @return 获取热门车总条数
+	 * @throws Exception 
+	 */
+	int getHotCarTotalCount() throws Exception;
+
+	/**
+	 * @param brand_id
+	 * @param model_id
+	 * @param series_id
+	 * @param down_payment
+	 * @param month_payment
+	 * @param search_key
+	 * @return 获取综合搜索后的车条数
+	 * @throws Exception 
+	 */
+	int getTotalCount(int brand_id, int model_id, int series_id, double down_payment, double month_payment,
+			String search_key) throws Exception;
 
 	
 

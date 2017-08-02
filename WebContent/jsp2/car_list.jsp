@@ -47,6 +47,31 @@
     });
 </SCRIPT>
 <![endif]-->
+<style>
+body {
+	margin-top: 20px;
+	margin: 0 auto;
+	width: 100%;
+}
+
+.carousel-inner .item img {
+	width: 100%;
+	height: 300px;
+}
+
+.lqcleft ul .active {
+	background-color: red;
+}
+.lqcleft li{
+text-align:center;
+}
+.lqcleft li:hover {
+	cursor: pointer;
+	background-color: #888;
+	color: #fff;
+	
+}
+</style>
 
 </head>
 
@@ -229,7 +254,7 @@
 			$(data).each(function(){
 		
 			var content="<dl class='pic1'>"+
-			"<a target='_blank' href='${pageContext.request.contextPath}/car?method=getByCarId&car_id="+this.car_id+"' title='"+this.car_name.substring(0,30)+"...'>"+
+			"<a target='_blank' href='${pageContext.request.contextPath}/car2?method=getByCarId&car_id="+this.car_id+"' title='"+this.car_name.substring(0,30)+"...'>"+
 				"<dt class='pic'> "+
 				   "<img src='${pageContext.request.contextPath}/"+this.car_image+"' alt='"+this.car_name.substring(0,30)+"...' width='320' height='240' class='PicAuto'/>"+
 				   "<div class='intro'>"+this.description.substring(0,30)+"...</div>"+

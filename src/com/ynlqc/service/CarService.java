@@ -39,5 +39,13 @@ public interface CarService {
 	 */
 	List<Shop> getShopByCarId(String car_id) throws Exception;
 
+	/**
+	 * @param currPage
+	 * @param pageSize
+	 * @return
+	 * @throws Exception
+	 */
+	PageBean<Car> findHotCar(int currPage, int pageSize) throws Exception;
+
 
 }

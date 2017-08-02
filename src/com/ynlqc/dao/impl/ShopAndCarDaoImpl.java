@@ -53,21 +53,7 @@ public class ShopAndCarDaoImpl implements ShopAndCarDao {
 		return qr.query(sql, new BeanListHandler<>(Car.class), shop_id);
 	}
 
-	/* (non-Javadoc)
-	 * @see com.ynlqc.dao.ShopAndCarDao#updateByShop(com.ynlqc.domain.Shop, java.util.List)
-	 */
-	@Override
-	public void updateByShop(Shop bean, List<Car> cars) throws Exception {
-		QueryRunner qr = new QueryRunner(DataSourceUtils.getDataSource());
-		String sql=null;
-		for (Car car : cars) {
-			
-			 sql= "update shop_car set car_id = ? where shop_id = ?";
-			qr.update(DataSourceUtils.getConnection(), sql, car.getCar_id(),bean.getShop_id());
-		}
-		
-		
-	}
+	
 
 	/* (non-Javadoc)
 	 * @see com.ynlqc.dao.ShopAndCarDao#deleteByShop(com.ynlqc.domain.Shop)

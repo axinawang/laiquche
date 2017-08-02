@@ -6,6 +6,7 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>会员登录</title>
+
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/css/bootstrap.min.css"
 	type="text/css" />
@@ -13,6 +14,8 @@
 	type="text/javascript"></script>
 <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"
 	type="text/javascript"></script>
+
+
 <!-- 引入自定义css文件 style.css -->
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/css/style.css" type="text/css" />
@@ -41,18 +44,10 @@ font {
 	padding-right: 17px;
 }
 </style>
+
+
 </head>
 <body>
-
-
-
-
-	<jsp:include page="/jsp/head.jsp" />
-
-
-
-
-
 
 	<div class="container"
 		style="width:100%;height:460px;background:#FF2C4C url('${pageContext.request.contextPath}/images/loginbg.jpg') no-repeat;">
@@ -61,7 +56,7 @@ font {
 				<!--<img src="${pageContext.request.contextPath}/image/login.jpg" width="500" height="330" alt="会员登录" title="会员登录">-->
 			</div>
 
-			<div class="col-md-5">
+			<div id="login" class="col-md-5">
 				<div
 					style="width: 440px; border: 1px solid #E7E7E7; padding: 20px 0 20px 30px; border-radius: 5px; margin-top: 60px; background: #fff;">
 					<font>会员登录</font>USER LOGIN ${ msg }
@@ -113,14 +108,13 @@ font {
 									border="0"
 									style="background: url('${pageContext.request.contextPath}/images/login.gif') no-repeat scroll 0 0 rgba(0, 0, 0, 0);
     height:35px;width:100px;color:white;">
+    							<span>若没有账户，请<a href="${pageContext.request.contextPath}/user2?method=registerUI">注册</a></span>
 							</div>
 						</div>
 					</form>
 				</div>
 			</div>
 		</div>
-	</div>
-
-	<jsp:include page="/jsp/foot.jsp"></jsp:include>
+	</div>	
 </body>
 </html>

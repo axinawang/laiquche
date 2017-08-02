@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
+import java.util.List;
 
 import org.apache.log4j.Logger;
 
@@ -87,6 +88,31 @@ public class AppointmentServiceImpl implements AppointmentService {
 		AppointmentDao dao=(AppointmentDao) BeanFactory.getBean("AppointmentDao");
 		dao.add(bean);
 		
+	}
+	/* (non-Javadoc)
+	 * @see com.ynlqc.service.AppointmentService#getAppointmentsByUserId(java.lang.String)
+	 */
+	@Override
+	public List<Appointment> getAppointmentsByUserId(String uid) throws Exception {
+		AppointmentDao dao=(AppointmentDao) BeanFactory.getBean("AppointmentDao");
+		return dao.getAppointmentsByUserId(uid);
+		
+	}
+	/* (non-Javadoc)
+	 * @see com.ynlqc.service.AppointmentService#findAll()
+	 */
+	@Override
+	public List<Appointment> findAll() throws Exception {
+		AppointmentDao dao=(AppointmentDao) BeanFactory.getBean("AppointmentDao");
+		return dao.findAll();
+	}
+	/* (non-Javadoc)
+	 * @see com.ynlqc.service.AppointmentService#getDetailByAid(java.lang.String)
+	 */
+	@Override
+	public Appointment getDetailByAid(String appointment_id) throws Exception {
+		AppointmentDao dao=(AppointmentDao) BeanFactory.getBean("AppointmentDao");
+		return dao.getDetailByAid(appointment_id);
 	}
 
 }

@@ -16,11 +16,12 @@ public class Admin implements Serializable{
 	public void setAdmin_id(String admin_id) {
 		this.admin_id = admin_id;
 	}
-	public String getUsername() {
-		return username;
+	
+	public String getAdmin_name() {
+		return admin_name;
 	}
-	public void setUsername(String username) {
-		this.username = username;
+	public void setAdmin_name(String admin_name) {
+		this.admin_name = admin_name;
 	}
 	public String getPassword() {
 		return password;
@@ -74,7 +75,7 @@ public class Admin implements Serializable{
 	 * 
 	 */
 	private String admin_id;
-	private String username;
+	private String admin_name;
 	private String password;
 	
 	private String name;

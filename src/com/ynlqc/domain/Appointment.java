@@ -29,7 +29,7 @@ public class Appointment {
 
 	private String telephone;	
 	private Date  arrive_time;
-
+	private Integer state;//0 未处理   1 已处理
 	 
 	private Shop shop;
 	private Admin admin;
@@ -68,6 +68,13 @@ public class Appointment {
 		this.arrive_time = arrive_time;
 	}
 
+	
+	public Integer getState() {
+		return state;
+	}
+	public void setState(Integer state) {
+		this.state = state;
+	}
 	public String getDescription() {
 		return description;
 	}

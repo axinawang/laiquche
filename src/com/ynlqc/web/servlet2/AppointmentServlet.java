@@ -26,6 +26,7 @@ import com.ynlqc.utils.BeanFactory;
 import com.ynlqc.utils.JsonUtil;
 import com.ynlqc.utils.MD5Utils;
 import com.ynlqc.utils.UUIDUtils;
+import com.ynlqc.web.servlet.BaseServlet;
 
 import net.sf.json.JSONObject;
 

@@ -95,13 +95,13 @@ $("document").ready(function(){
 
 	
 
-  $(".contactnr dl:nth-child(1) dt").css("background","url(/style/images/mobile.png) 14px 6px no-repeat");
+  $(".contactnr dl:nth-child(1) dt").css("background","url(/jsp2/style/images/mobile.png) 14px 6px no-repeat");
 
-  $(".contactnr dl:nth-child(2) dt").css("background","url(/style/images/tel.png) 10px 4px no-repeat");
+  $(".contactnr dl:nth-child(2) dt").css("background","url(/jsp2/style/images/tel.png) 10px 4px no-repeat");
 
-  $(".contactnr dl:nth-child(3) dt").css("background","url(/style/images/mail.png) 10px 8px no-repeat");
+  $(".contactnr dl:nth-child(3) dt").css("background","url(/jsp2/style/images/mail.png) 10px 8px no-repeat");
 
-  $(".contactnr dl:nth-child(4) dt").css("background","url(/style/images/address.png) 12px 4px no-repeat");
+  $(".contactnr dl:nth-child(4) dt").css("background","url(/jsp2/style/images/address.png) 12px 4px no-repeat");
 
 	
 
@@ -112,11 +112,11 @@ $("document").ready(function(){
 
   $(".share .qq").hover(function(){
 
-  	$(this).css("background","url(/style/images/qq2.png) left top no-repeat");
+  	$(this).css("background","url(/jsp2/style/images/qq2.png) left top no-repeat");
 
   },function(){
 
-  	$(this).css("background","url(/style/images/qq.png) left top no-repeat");
+  	$(this).css("background","url(/jsp2/style/images/qq.png) left top no-repeat");
 
   });
 

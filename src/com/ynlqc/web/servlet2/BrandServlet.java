@@ -11,6 +11,7 @@ import com.ynlqc.domain.Brand;
 import com.ynlqc.service.BrandService;
 import com.ynlqc.utils.BeanFactory;
 import com.ynlqc.utils.JsonUtil;
+import com.ynlqc.web.servlet.BaseServlet;
 
 /**
  * Servlet implementation class BrandServlet

@@ -58,7 +58,20 @@
     
     <div class="toptel">
       <ul class="topNav" id="navUl">
-        <li><a href="${pageContext.request.contextPath}/jsp2/login.jsp">登录</a></li>
+        <c:if test="${ empty user}">
+				<li><a
+					href="${pageContext.request.contextPath}/user2?method=registerUI">注册</a></li>
+				<li><a
+					href="${pageContext.request.contextPath}/user2?method=loginUI">登录/</a></li>
+				
+			</c:if>
+			<c:if test="${not empty user }">
+				<li><a
+					href="${pageContext.request.contextPath}/user2?method=logout">logout</a></li>
+				<li>hello:${user.username}/</li>
+				
+			</c:if>
+        <li><a href="${pageContext.request.contextPath}/jsp2/message.jsp">留言/</a></li>
       </ul>
       
       <!-- end topNav--> 
@@ -80,38 +93,24 @@
           
           </div>
         </li><li><a href="${pageContext.request.contextPath}/car2?method=findByPage">合作品牌</a>
-          <div id="navChild"> 
           
-           <a href="/a/car/c1/">本田系列</a> 
-          
-           <a href="/a/car/c2/">尼桑系列</a> 
-          
-           <a href="/a/car/c3/">现代系列</a> 
-          
-           <a href="/a/car/c4/">别克系列</a> 
-          
-           <a href="/a/car/c5/">斯柯达系列</a> 
-          
-           <a href="/a/car/c6/">比亚迪系列</a> 
-          
-          </div>
-        </li><li><a href="/a/case/">热销车型</a>
+        </li><li><a href="${pageContext.request.contextPath}/car2?method=findHotCar">热销车型</a>
           <div id="navChild"> 
           
           </div>
-        </li><li><a href="/a/xuzhi/">售后服务</a>
+        </li><li><a href="${pageContext.request.contextPath}/jsp2/shouhoufuwu.jsp">售后服务</a>
           <div id="navChild"> 
           
           </div>
-        </li><li><a href="/a/news/">司机招募</a>
+        </li><li><a href="${pageContext.request.contextPath}/jsp2/sijizhaomu.jsp">司机招募</a>
           <div id="navChild"> 
           
           </div>
-        </li><li><a href="/a/rongyu/">个人中心</a>
+        </li><li><a href="${pageContext.request.contextPath}/user2?method=userUI">个人中心</a>
           <div id="navChild"> 
           
           </div>
-        </li><li><a href="/a/contact/">联系我们</a>
+        </li><li><a href="${pageContext.request.contextPath}/jsp2/lianxiwomen.jsp">联系我们</a>
           <div id="navChild"> 
           
           </div>

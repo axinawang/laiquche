@@ -39,11 +39,6 @@ font {
 
 
 
-			<jsp:include page="/jsp/head.jsp" />
-
-
-
-
 <div class="container" style="width:100%;background:url('${pageContext.request.contextPath}/image/regist_bg.jpg');">
 <div class="row"> 
 
@@ -80,30 +75,29 @@ font {
 			    </div>
 			  </div>
 			 <div class="form-group">
-			    <label for="usercaption" class="col-sm-2 control-label">姓名</label>
+			    <label for="telephonecaption" class="col-sm-2 control-label">手机号码</label>
 			    <div class="col-sm-6">
-			      <input type="text" class="form-control" id="usercaption" placeholder="请输入姓名"  name="name">
+			      <input type="text" class="form-control" id="telephonecaption" placeholder="请输入手机号码"  name="telephone">
 			    </div>
-			  </div>
-			  <div class="form-group opt">  
-			  <label for="inlineRadio1" class="col-sm-2 control-label">性别</label>  
-			  <div class="col-sm-6">
-			    <label class="radio-inline">
-			  <input type="radio" name="sex" id="inlineRadio1" value="男"> 男
-			</label>
-			<label class="radio-inline">
-			  <input type="radio" name="sex" id="inlineRadio2" value="女"> 女
-			</label>
-			</div>
-			  </div>		
-			  <div class="form-group">
-			    <label for="date" class="col-sm-2 control-label">出生日期</label>
-			    <div class="col-sm-6">
-			      <input type="date" class="form-control"  name="birthday">		      
-			    </div>
-			  </div>
-			  
-			  <div class="form-group">
+			  </div><!-- 
+					<div class="form-group opt">
+						<label for="inlineRadio1" class="col-sm-2 control-label">性别</label>
+						<div class="col-sm-6">
+							<label class="radio-inline"> <input type="radio"
+								name="sex" id="inlineRadio1" value="男"> 男
+							</label> <label class="radio-inline"> <input type="radio"
+								name="sex" id="inlineRadio2" value="女"> 女
+							</label>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="date" class="col-sm-2 control-label">出生日期</label>
+						<div class="col-sm-6">
+							<input type="date" class="form-control" name="birthday">
+						</div>
+					</div>
+
+					 --><div class="form-group">
 			    <label for="date" class="col-sm-2 control-label">验证码</label>
 			    <div class="col-sm-3">
 			      <input type="text" class="form-control"  >
@@ -130,9 +124,6 @@ font {
 </div>
 </div>
 
-	  
-	
-	<jsp:include page="/jsp/foot.jsp"></jsp:include>
 
 </body></html>
 

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <div class="header">
   <div class="ntbd">
     <div class="notice">
@@ -25,12 +26,22 @@
     
     <div class="toptel">
       <ul class="topNav" id="navUl">
-        <li><a href="${pageContext.request.contextPath}/jsp2/a/message">留言</a></li>
-        <li><a href="${pageContext.request.contextPath}/jsp2/member/index.php">登录</a></li>
+        <li><a href="${pageContext.request.contextPath}/jsp2/message.jsp">留言</a></li>
+        <c:if test="${ empty user}">
+				<li><a
+					href="${pageContext.request.contextPath}/user2?method=loginUI">登录</a></li>
+				<li><a
+					href="${pageContext.request.contextPath}/user2?method=registerUI">注册</a></li>
+				<!-- <li><a href="cart.htm">购物车</a></li> -->
+			</c:if>
+			<c:if test="${not empty user }">
+				<li>hello:${user.username}</li>
+				<li><a
+					href="${pageContext.request.contextPath}/user2?method=logout">logout</a></li>
+				<!-- <li><a href="cart.htm">购物车</a></li> -->
+			</c:if>
       </ul>
-      <script language="javascript" type="text/javascript">
-		CheckLogin();
-	  </script>
+
       <!-- end topNav--> 
       
       <span>400-0575-168</span>全国服务热线： </div>
@@ -50,7 +61,7 @@
           
           </div>
         </li><li><a href="${pageContext.request.contextPath}/car2?method=findByPage">合作品牌</a>
-          <div id="navChild"> 
+          <!-- <div id="navChild"> 
           
            <a href="/plus/list.php?tid=3">本田系列</a> 
           
@@ -64,24 +75,24 @@
           
            <a href="/a/car/c3/">现代系列</a> 
           
-          </div>
-        </li><li><a href="/a/case/">热销车型</a>
+          </div> -->
+        </li><li><a href="${pageContext.request.contextPath}/car2?method=findHotCar">热销车型</a>
           <div id="navChild"> 
           
           </div>
-        </li><li><a href="/a/xuzhi/">售后服务</a>
+        </li><li><a href="${pageContext.request.contextPath}/jsp2/shouhoufuwu.jsp">售后服务</a>
           <div id="navChild"> 
           
           </div>
-        </li><li><a href="/a/news/">司机招募</a>
+        </li><li><a href="${pageContext.request.contextPath}/jsp2/sijizhaomu.jsp">司机招募</a>
           <div id="navChild"> 
           
           </div>
-        </li><li><a href="/a/rongyu/">个人中心</a>
+        </li><li><a href="${pageContext.request.contextPath}/user2?method=userUI">个人中心</a>
           <div id="navChild"> 
           
           </div>
-        </li><li><a href="/a/contact/">联系我们</a>
+        </li><li><a href="${pageContext.request.contextPath}/jsp2/lianxiwomen.jsp">联系我们</a>
           <div id="navChild"> 
           
           </div>

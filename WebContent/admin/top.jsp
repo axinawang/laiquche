@@ -1,4 +1,5 @@
 <%@ page language="java" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
 	<head>
 		<meta http-equiv="Content-Language" content="zh-cn">
@@ -85,10 +86,13 @@ else
 												src="${pageContext.request.contextPath}/images/mis_05a.jpg"
 												width="6" height="18">
 										</td>
-										<td width="155" valign="bottom"
+										<td width="200" valign="bottom"
 											background="${pageContext.request.contextPath}/images/mis_05b.jpg">
-											用户名：
-											<font color="blue"><s:property value="#session.existAdminUser.username"/></font>
+											<c:if test="${not empty admin }">
+				${admin.admin_name}/
+				<a href="${pageContext.request.contextPath}/adminUser?method=logout" target="_top">退出</a>
+
+			</c:if>
 										</td>
 										<td width="10" align="right"
 											background="${pageContext.request.contextPath}/images/mis_05b.jpg">

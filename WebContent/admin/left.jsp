@@ -35,12 +35,10 @@
 		
 		d.add('0104','01','门店管理');
 		d.add('010401','0104','展示所有','${pageContext.request.contextPath}/adminShop?method=findAll','','mainFrame');
-		d.add('0105','01','订单管理');
-		d.add('010501','0105','所有订单','${pageContext.request.contextPath}/adminOrder?method=findAllByState','','mainFrame');
-		d.add('010502','0105','未支付订单','${pageContext.request.contextPath}/adminOrder?method=findAllByState&state=0','','mainFrame');
-		d.add('010503','0105','已支付订单','${pageContext.request.contextPath}/adminOrder?method=findAllByState&state=1','','mainFrame');
-		d.add('010504','0105','已发货订单','${pageContext.request.contextPath}/adminOrder?method=findAllByState&state=2','','mainFrame');
-		d.add('010505','0105','已完成订单','${pageContext.request.contextPath}/adminOrder?method=findAllByState&state=3','','mainFrame');
+		d.add('0105','01','预约管理');
+		d.add('010501','0105','所有预约','${pageContext.request.contextPath}/adminAppointment?method=findAll','','mainFrame');
+		d.add('010502','0105','未处理预约','${pageContext.request.contextPath}/adminAppointment?method=findAllByState&state=0','','mainFrame');
+		d.add('010503','0105','已处理预约','${pageContext.request.contextPath}/adminAppointment?method=findAllByState&state=1','','mainFrame');
 		document.write(d);
 		
 	</script>

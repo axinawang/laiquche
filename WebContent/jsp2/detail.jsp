@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%> 
 <!DOCTYPE html>
 <html>
 <head>
@@ -181,7 +181,10 @@
 				<small>品牌：</small><span>${bean.brand.brand_name}</span>
 				<small>支付说明：</small><span>${bean.pay_description}</span>
 				<div class="operinfo">
-				<span class='cont_title'><a href="/plus/stow.php?aid=45" target="_blank" style="color:#fcd500">收藏</a></span>
+				<span id="collectCar"class='cont_title'>
+				<img class="attention-cancle" src=" //assets.souche.com/projects/finance/vanille/images/detail/attention-icon.png?BIU=949384e48c26aaa0fbf14c63dd8350fd " alt="" width="24">
+				<img class="attentioned" src=" //assets.souche.com/projects/finance/vanille/images/detail/attention-yet-icon.png?BIU=19266e457b59b14db4b7f28f5cc7cf63 " alt="" width="24">
+				收藏</span>
 				
 				<span class='cont_title'><a id="appiont" onclick="showcomp();">在线预约</a></span>
 				
@@ -1722,60 +1725,116 @@ background-color:#efefef;
 <br />
 
         </div>
-        <div class="store">
+        <style>
+        #stores{
+        background-color: #efefef;
+        }
+        .store-info .map {
+	border: 1px solid #d9d9d9;
+	padding: 15px;
+}
+.ft-16 {
+	font-size: 16px;
+}
+.store-info .map .map-title {
+	width: 70%;
+	display: inline-block;
+}
+.ft-ellipsis2 {
+	overflow: hidden;
+	display: -webkit-box;
+	-webkit-line-clamp: 2;
+	-webkit-box-orient: vertical;
+	margin: 2px 0;
+}
+.ft-gray {
+	color: #666;
+}
+.store-info .map .phone {
+	height: 25px;
+	line-height: 25px;
+}
+.store-info .map .search-map {
+	padding: 10px 0 0;
+}
+.dialog-content {
+	height: 470px;
+	padding: 10px 0;
+	overflow-y: scroll;
+}
+#detail-pc-contain{
+	margin:15px 0;
+}
+        
+        </style>
+        <div class="store store-info">
 					
 						<p>
 							<span class="cont_title">门店信息</span>
-							<span class="all_store"><a onclick="showstore();">查看全部1家门店</a></span>
+							<span class="all_store"><a onclick="showstore();">查看全部${fn:length(shops)}家门店</a></span>
 							
 						</p>
-					
-					<ul >
-							<table width='100%' border='0' cellspacing='0' cellpadding='0'>
-							<c:forEach items="${shops}" var="shop">
-									<tr>
-										<td width='34%'>
-											<li><p class="storename">${shop.name }</p>
-												<p>${shop.addr }</p>
-												<p>${shop.tel }</p>
-												<p>
-													<a target="_blank"
-														href='http://map.baidu.com/?newmap=1&ie=utf-8&s=${shop.addr }'>查看地图</a>
-												</p></li>
-										</td>
-										
-									</tr>
 
-								</c:forEach>
+						<div class="row" id="detail-pc-contain">
+							<c:forEach items="${shops}" var="shop" varStatus="index">
+							<c:if test="${index.index<3}">
+								<div class="col-md-4 col-sm-4">
+									<div class="map ft-md">
+										<div class="ft-16">
+											<img class="map-icon"
+												src=" //assets.souche.com/projects/finance/vanille/images/detail/location-icon.png?BIU=ede00cfb493532e170aa54cf65002200 "
+												alt="" width="11"> <span class="map-title ft-ellipsis">${shop.name }</span>
+										</div>
+										<div class="ft-gray ft-ellipsis2">${shop.addr }</div>
+										<div class="ft-gray phone">${shop.tel }</div>
+										<div class="search-map">
+											<a class="hidden-xs pointer pos-bottom j-searchMap"
+												target="_blank"
+												href='http://map.baidu.com/?newmap=1&ie=utf-8&s=s%26wd%3D${shop.addr }'>查看地图</a>
+										</div>
+									</div>
+								</div>
+								</c:if>
+							</c:forEach>
+							</div>
 
-							</table>
 
-						</ul>
 					<div id="stores"class="stores">
 						<p>
 							<span class="cont_title">全部门店信息</span>
 							<span class="all_store"><a onclick="hidestore();">关闭</a></span>
 						</p>
-						<ul >
-								<table width='100%' border='0' cellspacing='0' cellpadding='0'
-									style='background-color: black'>
-									<tr>
-										<td width='50%'>
-											<li><p class="storename">绍兴现代</p>
-												<p>财智大厦</p>
-												<p>400</p>
-												<p>
-													<a target="_blank"
-														href="http://map.baidu.com/?newmap=1&ie=utf-8&s=s%26wd%3D">查看地图</a>
-												</p></li>
-										</td>
-										<td width='50%'></td>
-									</tr>
 
-								</table>
+							<div class="dialog-content">
+								<div class="dialog-shops" id="dialog-shops-container">
+									<div class="store-info">
+										<div class="row " id="detail-pc-dialog">
+										<c:forEach items="${shops}" var="shop">
+											<div class="col-md-6 col-sm-6">
+												<div class="map ft-md">
+													<div class="ft-16">
+														<img class="map-icon"
+															src=" //assets.souche.com/projects/finance/vanille/images/detail/location-icon.png?BIU=ede00cfb493532e170aa54cf65002200 "
+															alt="" width="11"> <span
+															class="map-title ft-ellipsis">${shop.name }</span>
 
-							</ul>
-					</div>
+													</div>
+													<div class="ft-gray ft-ellipsis2">${shop.addr }</div>
+													<div class="ft-gray">${shop.tel }</div>
+													<div class="search-map">
+														<a class="hidden-xs pointer pos-bottom j-searchMap"
+															target="_blank"
+												href='http://map.baidu.com/?newmap=1&ie=utf-8&s=s%26wd%3D${shop.addr }'>查看地图</a>
+													</div>
+												</div>
+											</div>
+											</c:forEach>
+										</div>
+									</div>
+								</div>
+							</div>
+
+						</div>
 					<script>
 								function showstore(){
 									var stores=document.getElementById("stores");
@@ -1837,6 +1896,33 @@ background-color:#efefef;
 
 //初始化
 $(function() {
+	//如果用户登录了，判断该车是否被收藏了，如果没登录，显示未收藏的图标
+	if(${empty user}){
+		alert("user empty");
+		$(".attention-cancle").show();
+		$(".attentioned").hide();
+		
+	}else{
+		//发送ajax请求
+		$.get("${pageContext.request.contextPath}/user2?method=isCarCollected&car_id=${bean.car_id}",function(data){
+			//获取brand的ul标签
+			var $collectCar=$("#collectCar");
+			$(data).each(function(){
+				//$ul.append($("<li><a href='${pageContext.request.contextPath}/car?method=findByBrandInPage&brand_id="+this.brand_id+"&currPage=1'>"+this.brand_name+"</a></li>"));
+				if(this.result=="true"){
+					//alert("已经被收藏");
+					$(".attention-cancle").hide();
+					$(".attentioned").show();
+				}else{
+					//alert("未被收藏"+this.result);
+					$(".attention-cancle").show();
+					$(".attentioned").hide();
+				}				
+			});		
+			
+		},"json");
+	}
+	
 	$("#appiont").click(function(){
 		//发送ajax请求
 		$.get("${pageContext.request.contextPath}/city?method=findAll",function(data){
@@ -1870,21 +1956,51 @@ $(function() {
 		},"json");
 		//$('#myModal').modal('show');
 	});
-	/* $("#appiont").click(function(){
-		//发送ajax请求
-		$.get("${pageContext.request.contextPath}/shop?method=findAll",function(data){
+	
+	
+	//收藏车辆
+ $("#collectCar").click(function(){
+	 if($(".attention-cancle").is(":hidden")){
+	       alert("取消收藏");    //如果未收藏元素为隐藏,则将取消收藏
+	     //发送ajax请求,取消收藏
+		$.get("${pageContext.request.contextPath}/user2?method=cancelCollectCar&car_id=${bean.car_id}",function(data){
+				$(data).each(function(){
+					if(this.result=="success"){
+						alert("取消成功");
+						$(".attention-cancle").show();
+						$(".attentioned").hide();
+						
+					}else{
+						alert("取消失败，请再次取消，原因："+this.result);
+						$(".attention-cancle").hide();
+						$(".attentioned").show();
+					}			
+				});			
+			},"json");
+	}else{
+		//发送ajax请求,收藏元素
+		$.get("${pageContext.request.contextPath}/user2?method=collectCar&car_id=${bean.car_id}",function(data){
 			//获取brand的ul标签
-			var $selected=$("#shop");
-			$("#shop").empty();
-			//遍历数组
+			var $collectCar=$("#collectCar");
 			$(data).each(function(){
 				//$ul.append($("<li><a href='${pageContext.request.contextPath}/car?method=findByBrandInPage&brand_id="+this.brand_id+"&currPage=1'>"+this.brand_name+"</a></li>"));
-				$selected.append($("<option value='"+this.shop_id+"'>"+this.name+"</option>"));
-				
+				if(this.result=="success"){
+					alert("收藏成功");
+					$(".attention-cancle").hide();
+					$(".attentioned").show();
+				}else{
+					alert("收藏未成功，请再次收藏，原因："+this.result);
+					$(".attention-cancle").show();
+					$(".attentioned").hide();
+				}			
 			});
+			
+			
 		},"json");
-		//$('#myModal').modal('show');
-	}); */
+	}
+	 
+		
+	});
 	
 });
 </script>

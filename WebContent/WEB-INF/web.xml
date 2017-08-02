@@ -9,6 +9,14 @@
       <filter-name>EncodingFilter</filter-name>
       <url-pattern>/*</url-pattern>
   </filter-mapping>
+  <filter>
+      <filter-name>AdminbLoginFilter</filter-name>
+      <filter-class>com.ynlqc.web.filter.AdminbLoginFilter</filter-class>
+  </filter>
+  <filter-mapping>
+      <filter-name>AdminbLoginFilter</filter-name>
+      <url-pattern>/admin/*</url-pattern>
+  </filter-mapping>
   
   <servlet>
     <description></description>
@@ -20,6 +28,29 @@
     <servlet-name>IndexServlet</servlet-name>
     <url-pattern>/index</url-pattern>
   </servlet-mapping>
+  <!--管理servlet开始-->
+  <servlet>
+    <description></description>
+    <display-name>AdminAppointmentServlet</display-name>
+    <servlet-name>AdminAppointmentServlet</servlet-name>
+    <servlet-class>com.ynlqc.web.servlet.admin.AdminAppointmentServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AdminAppointmentServlet</servlet-name>
+    <url-pattern>/adminAppointment</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>AdminUserServlet</display-name>
+    <servlet-name>AdminUserServlet</servlet-name>
+    <servlet-class>com.ynlqc.web.servlet.admin.AdminUserServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AdminUserServlet</servlet-name>
+    <url-pattern>/adminUser</url-pattern>
+  </servlet-mapping>
+  <!--管理servlet结束-->
+  
  <!--织梦模版开始--> 
  <servlet>
     <description></description>
@@ -31,7 +62,16 @@
     <servlet-name>CarServlet2</servlet-name>
     <url-pattern>/car2</url-pattern>
   </servlet-mapping>
- 
+ <servlet>
+    <description></description>
+    <display-name>UserServlet2</display-name>
+    <servlet-name>UserServlet2</servlet-name>
+    <servlet-class>com.ynlqc.web.servlet2.UserServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UserServlet2</servlet-name>
+    <url-pattern>/user2</url-pattern>
+  </servlet-mapping>
   <!--织梦模版结束--> 
   <servlet>
     <description></description>

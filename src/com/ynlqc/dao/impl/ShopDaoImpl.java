@@ -85,7 +85,7 @@ public class ShopDaoImpl implements ShopDao {
 		QueryRunner qr = new QueryRunner(DataSourceUtils.getDataSource());
 		String sql="select * from shop where shop_id = ?";
 		Shop shop=qr.query(sql, new BeanHandler<>(Shop.class),shop_id);
-		// 设置该车的品牌对象
+		// 设置该车所属的城市
 		sql = "select * from city where city_id in (select city_id from shop where shop_id = ? ) limit 1";
 		City city = qr.query(sql, new BeanHandler<>(City.class), shop_id);
 		shop.setCity(city);

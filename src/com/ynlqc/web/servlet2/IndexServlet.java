@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.ynlqc.domain.Car;
 import com.ynlqc.service.CarService;
 import com.ynlqc.utils.BeanFactory;
+import com.ynlqc.web.servlet.BaseServlet;
 
 /**
  * Servlet implementation class IndexServlet

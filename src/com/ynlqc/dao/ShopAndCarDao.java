@@ -27,12 +27,7 @@ public interface ShopAndCarDao {
 	 */
 	List<Car> getCarsByShopId(String shop_id) throws Exception;
 
-	/**
-	 * @param bean
-	 * @param cars
-	 * @throws Exception 
-	 */
-	void updateByShop(Shop bean, List<Car> cars) throws Exception;
+	
 
 	/**
 	 * @param bean

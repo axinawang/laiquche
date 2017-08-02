@@ -25,6 +25,7 @@ import com.ynlqc.service.CategoryService;
 import com.ynlqc.service.impl.CarServiceImpl;
 import com.ynlqc.utils.BeanFactory;
 import com.ynlqc.utils.JsonUtil;
+import com.ynlqc.web.servlet.BaseServlet;
 
 /**
  * Servlet implementation class CategoryServlet
@@ -61,6 +62,7 @@ public class CarServlet extends BaseServlet {
 		request.setAttribute("bean", car);
 
 		List<Shop> shops=service.getShopByCarId(car_id);
+		
 		request.setAttribute("shops", shops);
 		return "/jsp2/detail.jsp";
 	}
@@ -207,6 +209,22 @@ public class CarServlet extends BaseServlet {
 		
 		//3.将结果放入request中 请求转发
 		request.setAttribute("page_bean", bean);
+		return "/jsp2/car_list.jsp";
+	}
+	public String  findHotCar(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		//当前页
+				int currPage=(request.getParameter("currPage")==null||request.getParameter("currPage")=="")?1:Integer.parseInt(request.getParameter("currPage"));
+				//品牌
+				int brand_id=request.getParameter("brand_id")==null?-1:Integer.parseInt(request.getParameter("brand_id"));
+						
+		CarService service=(CarService) BeanFactory.getBean("CarService");
+		PageBean<Car> bean = null;
+		
+		bean = service.findHotCar(currPage, Constant.PAGE_SIZE);
+		
+		//3.将结果放入request中 请求转发
+		request.setAttribute("page_bean", bean);
+		request.setAttribute("brand_id", brand_id);
 		return "/jsp2/car_list.jsp";
 	}
 }
