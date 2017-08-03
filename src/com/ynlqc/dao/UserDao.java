@@ -45,5 +45,24 @@ public interface UserDao {
 	 */
 	String cancelCollectCar(String uid, String car_id);
 
+	/**
+	 * @param username
+	 * @return
+	 */
+	boolean isUsernameExist(String username) throws Exception;
+
+	/**
+	 * @param email
+	 * @return
+	 */
+	boolean isEmailExist(String email) throws Exception;
+
+	/**
+	 * @param telephone
+	 * @return
+	 */
+	boolean isTelExist(String telephone) throws Exception;
+
+
 
 }

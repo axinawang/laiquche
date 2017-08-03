@@ -125,4 +125,31 @@ public class UserServiceImpl implements UserService {
 		return dao.cancelCollectCar(uid,car_id);
 	}
 
+	/* (non-Javadoc)
+	 * @see com.ynlqc.service.UserService#isUsernameExist(java.lang.String)
+	 */
+	@Override
+	public boolean isUsernameExist(String username) throws Exception {
+		UserDao dao = (UserDao) BeanFactory.getBean("UserDao");
+		return dao.isUsernameExist(username);
+	}
+
+	/* (non-Javadoc)
+	 * @see com.ynlqc.service.UserService#isEmailExist(java.lang.String)
+	 */
+	@Override
+	public boolean isEmailExist(String email) throws Exception {
+		UserDao dao = (UserDao) BeanFactory.getBean("UserDao");
+		return dao.isEmailExist(email);
+	}
+
+	/* (non-Javadoc)
+	 * @see com.ynlqc.service.UserService#isTelExist(java.lang.String)
+	 */
+	@Override
+	public boolean isTelExist(String telephone) throws Exception {
+		UserDao dao = (UserDao) BeanFactory.getBean("UserDao");
+		return dao.isTelExist(telephone);
+	}
+
 }

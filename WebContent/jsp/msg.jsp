@@ -6,11 +6,10 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>信息提示</title>
-		<link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.min.css" type="text/css" />
-		<script src="${pageContext.request.contextPath}/js/jquery-1.11.3.min.js" type="text/javascript"></script>
-		<script src="${pageContext.request.contextPath}/js/bootstrap.min.js" type="text/javascript"></script>
-<!-- 引入自定义css文件 style.css -->
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css" type="text/css"/>
+		<LINK href="${pageContext.request.contextPath}/jsp2/style/css/style.css" rel=stylesheet>
+<script language="JavaScript" type="text/javascript" src="${pageContext.request.contextPath}/jsp2/style/js/jquery.js"></script>
+<script language="JavaScript" type="text/javascript" src="${pageContext.request.contextPath}/jsp2/style/js/pic.js"></script>
+<script language="JavaScript" type="text/javascript" src="${pageContext.request.contextPath}/jsp2/style/js/inc.js"></script>
 
 <style>
   body{
@@ -28,7 +27,7 @@
  
 font {
     color: #3164af;
-    font-size: 18px;
+    font-size: 24px;
     font-weight: normal;
     padding: 0 10px;
 }
@@ -37,7 +36,7 @@ font {
 <body>
 
 
-<jsp:include page="/jsp/head.jsp"></jsp:include>
+<jsp:include page="/jsp2/head.jsp"></jsp:include>
 
 			
 
@@ -64,7 +63,7 @@ font {
 
 	  
 	
-	<jsp:include page="/jsp/foot.jsp"></jsp:include>
+	<jsp:include page="/jsp2/foot.jsp"></jsp:include>
 
 </body></html>
 

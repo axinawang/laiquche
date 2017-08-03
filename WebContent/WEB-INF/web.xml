@@ -17,6 +17,31 @@
       <filter-name>AdminbLoginFilter</filter-name>
       <url-pattern>/admin/*</url-pattern>
   </filter-mapping>
+<!-- kaptcha -->
+<servlet>	
+    <servlet-name>Kaptcha</servlet-name>
+    <servlet-class>com.google.code.kaptcha.servlet.KaptchaServlet</servlet-class>
+    <init-param>
+      <param-name>kaptcha.border</param-name>
+      <param-value>no</param-value>
+    </init-param>
+    <init-param>
+      <param-name>kaptcha.image.width</param-name>
+      <param-value>160</param-value>
+    </init-param>
+    <init-param>
+      <param-name>kaptcha.image.height</param-name>
+      <param-value>40</param-value>
+    </init-param>
+    <init-param>
+      <param-name>kaptcha.textproducer.font.size</param-name>
+      <param-value>35</param-value>
+    </init-param>
+</servlet>
+<servlet-mapping>
+    <servlet-name>Kaptcha</servlet-name>
+    <url-pattern>/kaptcha.jpg</url-pattern>
+</servlet-mapping>
   
   <servlet>
     <description></description>

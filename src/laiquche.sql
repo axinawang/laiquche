@@ -73,9 +73,9 @@ CREATE TABLE `admin` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 LOCK TABLES `admin` WRITE;
-/*!40000 ALTER TABLE `user` DISABLE KEYS */;
+/*!40000 ALTER TABLE `admin` DISABLE KEYS */;
 INSERT INTO `admin` VALUES ('1','admin','de43e169358552cc24bbd1564e7dc586','小王','ynlqcba@163.com','15757818156','2000-02-01','男',1,NULL);
-/*!40000 ALTER TABLE `user` ENABLE KEYS */;
+/*!40000 ALTER TABLE `admin` ENABLE KEYS */;
 UNLOCK TABLES;
 
 		

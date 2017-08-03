@@ -114,11 +114,11 @@ public class UserDaoImpl implements UserDao {
 		String sql = "select count(*) from  user_car "+
 		"  where user_id = ? and user_car.car_id= ? ";
 
-		if (((Long)qr.query(sql, new ScalarHandler(),uid,car_id)).intValue()==1) {
+		if (((Long)qr.query(sql, new ScalarHandler(),uid,car_id)).intValue()>=1) {
 			return "true";
 		}
 		
-		return "flase";
+		return "false";
 	}
 
 	/* (non-Javadoc)
@@ -139,6 +139,54 @@ public class UserDaoImpl implements UserDao {
 			result=e.getMessage();
 		}
 		return result;
+	}
+
+	/* (non-Javadoc)
+	 * @see com.ynlqc.dao.UserDao#isUsernameExist(java.lang.String)
+	 */
+	@Override
+	public boolean isUsernameExist(String username) throws Exception {
+		QueryRunner qr = new QueryRunner(DataSourceUtils.getDataSource());
+		String sql = "select count(*) from  user "+
+		"  where username= ? ";
+
+		if (((Long)qr.query(sql, new ScalarHandler(),username)).intValue()>=1) {
+			return true;
+		}
+		
+		return false;
+	}
+
+	/* (non-Javadoc)
+	 * @see com.ynlqc.dao.UserDao#isEmailExist(java.lang.String)
+	 */
+	@Override
+	public boolean isEmailExist(String email) throws Exception {
+		QueryRunner qr = new QueryRunner(DataSourceUtils.getDataSource());
+		String sql = "select count(*) from  user "+
+		"  where email= ? ";
+
+		if (((Long)qr.query(sql, new ScalarHandler(),email)).intValue()>=1) {
+			return true;
+		}
+		
+		return false;
+	}
+
+	/* (non-Javadoc)
+	 * @see com.ynlqc.dao.UserDao#isTelExist(java.lang.String)
+	 */
+	@Override
+	public boolean isTelExist(String telephone) throws Exception {
+		QueryRunner qr = new QueryRunner(DataSourceUtils.getDataSource());
+		String sql = "select count(*) from  user "+
+		"  where telephone= ? ";
+
+		if (((Long)qr.query(sql, new ScalarHandler(),telephone)).intValue()>=1) {
+			return true;
+		}
+		
+		return false;
 	}
 
 	

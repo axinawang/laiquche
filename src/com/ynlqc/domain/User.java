@@ -2,6 +2,12 @@ package com.ynlqc.domain;
 
 import java.util.Date;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.NotEmpty;
+
 import com.ynlqc.utils.UUIDUtils;
 /**
  * 用户实体
@@ -13,12 +19,37 @@ public class User {
 	 * 
 	 */
 	private String uid;
+	
+	@NotNull(message = "用户名不能为空 ")
+	@NotEmpty(message = "用户名不能为空 ")
+	@Size(max = 18,min=6 ,message = "用户名长度为6到18个字符")
 	private String username;
+	
+	@NotNull(message = "密码不能为空 ")
+	@NotEmpty(message = "密码不能为空 ")
+	@Size(max = 18,min=6 ,message = "密码长度为6到18个字符")
 	private String password;
 	
+	@NotNull(message = "确认密码不能为空 ")
+	@NotEmpty(message = "确认密码不能为空 ")
+	@Size(max = 18,min=6 ,message = "确认密码长度为6到18个字符")
+	private String confirm_password;
+	
 	private String name;
+	
+	@NotNull(message = "邮箱不能为空 ")
+	@NotEmpty(message = "邮箱不能为空 ")
+	@org.hibernate.validator.constraints.Email(message = "邮箱格式不正确")
 	private String email;
+	
+	@NotNull(message = "手机号码不能为空 ")
+	@NotEmpty(message = "手机号码不能为空 ")
+	@Pattern(regexp = "^((13[0-9])|(14[5|7])|(15([0-3]|[5-9]))|(18[0,5-9]))\\d{8}$", message = "手机号码错误") // 正则验证 
 	private String telephone;
+	@NotNull(message = "验证码不能为空 ")
+	@NotEmpty(message = "验证码不能为空 ")
+	@Size(max = 5,min=5 ,message = "验证码长度为5个字符")
+	private String  checkcode;
 	
 	private Date  birthday;
 	private String  sex;
@@ -97,6 +128,18 @@ public class User {
 	}
 	public void setWeixinOpenid(String weixinOpenid) {
 		this.weixinOpenid = weixinOpenid;
+	}
+	public String getConfirm_password() {
+		return confirm_password;
+	}
+	public void setConfirm_password(String confirm_password) {
+		this.confirm_password = confirm_password;
+	}
+	public String getCheckcode() {
+		return checkcode;
+	}
+	public void setCheckcode(String checkcode) {
+		this.checkcode = checkcode;
 	}
 	
 	
