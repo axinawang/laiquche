@@ -24,7 +24,7 @@ public class IndexServlet extends BaseServlet {
 		List<Car> hotList = null;
 		
 		try {
-			hotList = ps.findHot();
+			hotList = ps.findHot(7);
 			
 		} catch (Exception e) {
 			e.printStackTrace();

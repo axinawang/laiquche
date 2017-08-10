@@ -10,7 +10,7 @@ public interface CarDao {
 
 	List<Car> findNew() throws Exception;
 
-	List<Car> findHot() throws Exception;
+	List<Car> findHot(int i) throws Exception;
 
 	Car getByCarId(String car_id) throws Exception;
 
@@ -57,6 +57,11 @@ public interface CarDao {
 	 */
 	int getTotalCount(int brand_id, int model_id, int series_id, double down_payment, double month_payment,
 			String search_key) throws Exception;
+
+	/**
+	 * @return
+	 */
+	List<Car> findHot() throws Exception;
 
 	
 

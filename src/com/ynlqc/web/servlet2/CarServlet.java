@@ -25,7 +25,10 @@ import com.ynlqc.service.CategoryService;
 import com.ynlqc.service.impl.CarServiceImpl;
 import com.ynlqc.utils.BeanFactory;
 import com.ynlqc.utils.JsonUtil;
+import com.ynlqc.utils.PropertiesUtil;
 import com.ynlqc.web.servlet.BaseServlet;
+
+import net.sf.json.JSONObject;
 
 /**
  * Servlet implementation class CategoryServlet
@@ -79,8 +82,8 @@ public class CarServlet extends BaseServlet {
 		//车型
 		int model_id=request.getParameter("model_id")==null?-1:Integer.parseInt(request.getParameter("model_id"));
 		//车系
-				int series_id=request.getParameter("series_id")==null?-1:Integer.parseInt(request.getParameter("series_id"));
-				//首付
+		int series_id=request.getParameter("series_id")==null?-1:Integer.parseInt(request.getParameter("series_id"));
+		//首付
 		double down_payment=request.getParameter("down_payment")==null?-1.0:Double.parseDouble(request.getParameter("down_payment"));
 		//月供
 		double month_payment=request.getParameter("month_payment")==null?-1.0:Double.parseDouble(request.getParameter("month_payment"));
@@ -95,14 +98,11 @@ public class CarServlet extends BaseServlet {
 		//2.调用service 返回值pagebean
 		CarService service=(CarService) BeanFactory.getBean("CarService");
 		
-		/*PageBean<Car> bean=service.findByPage(
-				currPage,Constant.PAGE_SIZE,brand_id,
-				model_id,down_payment,month_payment);*/
-		
 		PageBean<Car> bean = null;
-
+		//从配置文件中获取一页显示数量
+		int pagesize=Integer.parseInt(PropertiesUtil.getValueByKey("/config.properties", "PAGE_SIZE"));
 			bean = service.findByPage(
-					currPage,Constant.PAGE_SIZE,brand_id,
+					currPage,pagesize,brand_id,
 					model_id,series_id,down_payment,month_payment,search_key);
 			
 			//3.将结果放入request中 请求转发
@@ -123,6 +123,8 @@ public class CarServlet extends BaseServlet {
 		int brand_id=(request.getParameter("brand_id")==null||request.getParameter("brand_id")=="")?-1:Integer.parseInt(request.getParameter("brand_id"));
 		//车型
 		int model_id=(request.getParameter("model_id")==null||request.getParameter("model_id")=="")?-1:Integer.parseInt(request.getParameter("model_id"));
+		//车系
+		int series_id=request.getParameter("series_id")==null?-1:Integer.parseInt(request.getParameter("series_id"));
 		//首付
 		double down_payment=(request.getParameter("down_payment")==null||request.getParameter("down_payment")=="")?-1.0:Double.parseDouble(request.getParameter("down_payment"));
 		//月供
@@ -140,45 +142,25 @@ public class CarServlet extends BaseServlet {
 		//search_key =  URLDecoder.decode((new String(search_key.getBytes("ISO8859-1"), "UTF-8")), "UTF-8");
 		search_key=URLDecoder.decode(search_key, "UTF-8");
 		System.out.println("brand_id:"+brand_id);
-		System.out.println("search_key:"+search_key);
+		System.out.println("CarServlet2 search_key:"+search_key);
 		
 		//2.调用service 返回值pagebean
 		CarService service=(CarService) BeanFactory.getBean("CarService");
-		
-		/*PageBean<Car> bean=service.findByPage(
-				currPage,Constant.PAGE_SIZE,brand_id,
-				model_id,down_payment,month_payment);*/
-		
+	
 		PageBean<Car> bean = null;
-
-			bean = service.findByPage(
-					currPage,Constant.PAGE_SIZE,brand_id,
-					model_id,-1,down_payment,month_payment,search_key);
+		//从配置文件中获取一页显示数量
+		int pagesize=Integer.parseInt(PropertiesUtil.getValueByKey("/config.properties", "PAGE_SIZE"));
+		
+			bean = service.findByPage(currPage,pagesize,brand_id,
+					model_id,series_id,down_payment,month_payment,search_key);
 			
-			// 2.将返回值转成json格式 返回到页面上
-			//request.setAttribute("clist", clist);
-			//String json = JsonUtil.object2json(bean);
-			List<Car> list=bean.getList();
-			List<CarJson> listCarJson=new ArrayList<CarJson>() ;
-			for (Car car : list) {
-				CarJson json=new CarJson();
-				json.setCar_id(car.getCar_id());
-				json.setCar_name(car.getCar_name());
-				json.setCar_image(car.getCar_image());
-				json.setCar_flag(car.getCar_flag());
-				json.setDeposit(car.getDeposit());
-				json.setDown_payment(car.getDown_payment());
-				json.setMonth_payment(car.getMonth_payment());
-				json.setGuide_price(car.getGuide_price());
-				listCarJson.add(json);
-			}
-			String listJson=JsonUtil.list2json(listCarJson);
-			System.out.println(listJson);
+			
+			String pageBeanJson=JSONObject.fromObject(bean).toString();
+			//System.out.println(pageBeanJson);
 			
 			//3.写回去
 			response.setContentType("text/html;charset=utf-8");
-			response.getWriter().println(listJson);
-			
+			response.getWriter().println(pageBeanJson);
 			return null;
 		
 		}

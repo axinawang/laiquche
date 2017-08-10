@@ -24,9 +24,9 @@ public class CarServiceImpl implements CarService {
 	}
 
 	@Override
-	public List<Car> findHot() throws Exception {
+	public List<Car> findHot(int i) throws Exception {
 		CarDao dao = (CarDao) BeanFactory.getBean("CarDao");
-		return dao.findHot();
+		return dao.findHot(i);
 	}
 
 	@Override
@@ -146,6 +146,15 @@ public class CarServiceImpl implements CarService {
 		CarDao dao = (CarDao) BeanFactory.getBean("CarDao");
 		return dao.getShopByCarId(car_id);
 
+	}
+
+	/* (non-Javadoc)
+	 * @see com.ynlqc.service.CarService#findHot()
+	 */
+	@Override
+	public List<Car> findHot() throws Exception {
+		CarDao dao = (CarDao) BeanFactory.getBean("CarDao");
+		return dao.findHot();
 	}
 
 }

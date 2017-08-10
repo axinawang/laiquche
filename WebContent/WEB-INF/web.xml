@@ -79,6 +79,16 @@
  <!--织梦模版开始--> 
  <servlet>
     <description></description>
+    <display-name>LiuYanServlet</display-name>
+    <servlet-name>LiuYanServlet</servlet-name>
+    <servlet-class>com.ynlqc.web.servlet2.LiuYanServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>LiuYanServlet</servlet-name>
+    <url-pattern>/liuYan</url-pattern>
+  </servlet-mapping>
+ <servlet>
+    <description></description>
     <display-name>CarServlet2</display-name>
     <servlet-name>CarServlet2</servlet-name>
     <servlet-class>com.ynlqc.web.servlet2.CarServlet</servlet-class>

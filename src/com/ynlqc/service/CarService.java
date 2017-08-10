@@ -20,7 +20,19 @@ public interface CarService {
 
 	List<Car> findByBrand(int type_id) throws Exception;
 
-	
+	/**
+	 * 
+	 * @param currPage 当前页码
+	 * @param pageSize 每页个数
+	 * @param brand_id 品牌id
+	 * @param model_id 车型id
+	 * @param series_id 车系id
+	 * @param down_payment 首付
+	 * @param month_payment 月供
+	 * @param searh_key 搜索关键词
+	 * @return
+	 * @throws Exception
+	 */
 	PageBean<Car> findByPage(int currPage, int pageSize, int brand_id, int model_id, int series_id,double down_payment,
 			double month_payment, String searh_key) throws Exception;
 
@@ -46,6 +58,12 @@ public interface CarService {
 	 * @throws Exception
 	 */
 	PageBean<Car> findHotCar(int currPage, int pageSize) throws Exception;
+
+	/**查找数量为i的热门车
+	 * @param i
+	 * @return
+	 */
+	List<Car> findHot(int i) throws Exception;
 
 
 }

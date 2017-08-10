@@ -637,6 +637,26 @@ LOCK TABLES `appointment_info` WRITE;
 INSERT INTO `appointment_info`(`appointment_id` ,`name`,`shop_id`,`car_id`,`user_id`) VALUES ('1','绍兴4s1','1','1','1');
 UNLOCK TABLES;
 
+-- 留言
+DROP TABLE IF EXISTS `message`;
+
+CREATE TABLE `message` (
+  `message_id` varchar(32) NOT NULL,
+  `name` varchar(20) DEFAULT NULL,
+  `tel` varchar(20) DEFAULT NULL,
+  `address` varchar(40) DEFAULT NULL,
+  `email` varchar(30) DEFAULT NULL,
+  `cartype` varchar(40) DEFAULT NULL,  
+  `content` text DEFAULT NULL,
+  `remark`  text DEFAULT NULL,
+  `commitTime` DATETIME DEFAULT NULL,
+  `date` timestamp,
+  `state` int DEFAULT 0 
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+LOCK TABLES `message` WRITE;
+INSERT INTO `message`(`message_id` ,`name`,commitTime) VALUES ('1','留言人姓名','2016-12-31 23:59:59');
+UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `intent_series`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;

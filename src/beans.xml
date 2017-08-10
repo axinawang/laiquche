@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans>
+	<bean id="LiuYanService" class="com.ynlqc.service.impl.LiuYanServiceImpl"></bean>
 	<bean id="CategoryService" class="com.ynlqc.service.impl.CategoryServiceImpl"></bean>
 	<bean id="BrandService" class="com.ynlqc.service.impl.BrandServiceImpl"></bean>
 	<bean id="SeriesService" class="com.ynlqc.service.impl.SeriesServiceImpl"></bean>
@@ -10,6 +11,7 @@
      <bean id="ShopService" class="com.ynlqc.service.impl.ShopServiceImpl"></bean>
      <bean id="CityService" class="com.ynlqc.service.impl.CityServiceImpl"></bean>
 
+	<bean id="LiuYanDao" class="com.ynlqc.dao.impl.LiuYanDaoImpl" />
 	<bean id="ModelDao" class="com.ynlqc.dao.impl.ModelDaoImpl" />
 	<bean id="CarDao" class="com.ynlqc.dao.impl.CarDaoImpl" />
 	<bean id="BrandDao" class="com.ynlqc.dao.impl.BrandDaoImpl" />

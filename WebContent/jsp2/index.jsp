@@ -17,20 +17,16 @@
 <script language="JavaScript" type="text/javascript" src="${pageContext.request.contextPath}/jsp2/style/js/inc.js"></script>
 <script language="JavaScript" type="text/javascript" src="${pageContext.request.contextPath}/jsp2/style/js/arrow.js"></script>
 <script language="JavaScript" type="text/javascript" src="${pageContext.request.contextPath}/jsp2/style/js/zoom.js"></script>
-<meta http-equiv="mobile-agent" content="format=xhtml;url=/m/index.php">
-<script type="text/javascript">if(window.location.toString().indexOf('pref=padindex') != -1){}else{if(/AppleWebKit.*Mobile/i.test(navigator.userAgent) || (/MIDP|SymbianOS|NOKIA|SAMSUNG|LG|NEC|TCL|Alcatel|BIRD|DBTEL|Dopod|PHILIPS|HAIER|LENOVO|MOT-|Nokia|SonyEricsson|SIE-|Amoi|ZTE/.test(navigator.userAgent))){if(window.location.href.indexOf("?mobile")<0){try{if(/Android|Windows Phone|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)){window.location.href="/m/index.php";}else if(/iPad/i.test(navigator.userAgent)){}else{}}catch(e){}}}}</script>
-<!--[if IE]>
-<script type="text/javascript" src="/style/js/PIE.js"></script>
-<SCRIPT>
-    $(function() {
-        if (window.PIE) {
-            $('#focus .btn span').each(function() {
-                PIE.attach(this);
-            });
-        }
-    });
-</SCRIPT>
-<![endif]-->
+<script>
+	$(function(){
+		$('.codepic').hover(function(){
+			$('.code').css('display','block')
+		})
+		$('.codepic').mouseout(function(){
+			$('.code').css('display','none')
+		})
+	})
+</script>
 </head>
 <body>
 <div class="header">
@@ -43,9 +39,8 @@
         </marquee>
       </div>
       <div class="search">
-        <form  name="formsearch" action="${pageContext.request.contextPath}/jsp2/plus/search.jsp">
-          <input type="hidden" name="kwtype" value="0" />
-          <input type="text" class="text" value="请输入搜索关键词" name="q" id="q" onFocus="this.value=''" onBlur="if(!value){value=defaultValue}"  />
+        <form  name="formsearch" action="${pageContext.request.contextPath}/car2?method=findByPage" method="post">
+          <input type="text" class="text" placeholder="请输入品牌或车系" value="" name="search_key" id="searchInput" onFocus="this.value=''"/>
           <input class="btnSubmit" type="submit" value="" >
         </form>
       </div>
@@ -138,7 +133,7 @@
     <!-- end bann--> 
     
   </div>
-  <div class="logo"> <a href="/" title="来取车"><img src="${pageContext.request.contextPath}/jsp2/style/images/logobg.gif" alt="来取车" ></a> </div>
+  <div class="logo"> <a href="${pageContext.request.contextPath}" title="来取车"><img src="${pageContext.request.contextPath}/jsp2/style/images/logobg.gif" alt="来取车" ></a> </div>
   
   <!-- end logo--> 
   
@@ -146,7 +141,7 @@
 
 <div class="section">
   <div class="inProBd">
-    <div class="Ttitle"><a href="/a/car/" title="查看更多">合作品牌 <span>Vehicles Show </span></a></div>
+    <div class="Ttitle"><a href="${pageContext.request.contextPath}/car2?method=findByPage" title="查看更多">合作品牌 <span>Vehicles Show </span></a></div>
     <!-- end Ttitle-->
     <div class="inProBdBox clear-fix">
       <div class="inProClaList">
@@ -208,17 +203,17 @@
 </div>
 <div class="section">
   <div class="newsListBd">
-    <div class="Ttitle"><a href="/a/news/" title="查看更多">司机招募</a></div>
+    <div class="Ttitle"><a href="${pageContext.request.contextPath}/jsp2/sijizhaomu.jsp" title="查看更多">司机招募</a></div>
     <!-- end Ttitle-->
     <div class="newsList clear-fix" id="gx">
      <dl class="newsListDl">
-        <a href="/a/news/3.html" title="司机招募条件">
+        <a href="${pageContext.request.contextPath}/jsp2/sijizhaomu.jsp" title="司机招募条件">
         <dt class="num"><span>06</span>26</dt>
         <dd> <span class="title">司机招募条件</span> <span class="intro">　要求：3年驾龄以上，无犯罪记录...</span> </dd>
         </a>
       </dl>
 <dl class="newsListDl">
-        <a href="/a/news/4.html" title="司机招募方案">
+        <a href="${pageContext.request.contextPath}/jsp2/sijizhaomu.jsp" title="司机招募方案">
         <dt class="num"><span>06</span>26</dt>
         <dd> <span class="title">司机招募方案</span> <span class="intro">　方案合理，可操作性强...</span> </dd>
         </a>
@@ -231,14 +226,14 @@
 </div>
 <div class="section">
   <div class="casePic clear-fix">
-    <div class="Ttitle"><a href="/a/case/" title="查看更多">热销车型</a></div>
+    <div class="Ttitle"><a href="${pageContext.request.contextPath}/car2?method=findHotCar" title="查看更多">热销车型</a></div>
     <!-- end Ttitle--> 
   </div>
   <!-- end casePic--> 
 </div>
 <div class="sectionOver casePicBR">
   <div class="nextC"><img src="${pageContext.request.contextPath}/jsp2/style/images/next.png"></div>
-  <div class="moreCa"><a href="/a/case/" title="查看更多"><img src="${pageContext.request.contextPath}/jsp2/style/images/more.png"></a></div>
+  <div class="moreCa"><a href="${pageContext.request.contextPath}/car2?method=findHotCar" title="查看更多"><img src="${pageContext.request.contextPath}/jsp2/style/images/more.png"></a></div>
   <div id="casePicId">
     <div id="casePicIdIn">
       <div id="casePicIdList1">
@@ -289,9 +284,9 @@
     </div>
     <!-- end contactnr-->
     <div class="circle">
-      <div class="positionC circleT"><a href="/a/xuzhi/" title="售后服务">售后服务<span>Car instructions</span></a></div>
-      <div class="positionA circleT"><a href="/a/about/" title="关于我们">关于我们<span>about us</span></a></div>
-      <div class="positionCon circleT"><a href="/a/contact/" title="联系我们">联系我们<span>contact us</span></a></div>
+      <div class="positionC circleT"><a href="${pageContext.request.contextPath}/jsp2/shouhoufuwu.jsp" title="售后服务">售后服务<span>after service</span></a></div>
+      <div class="positionA circleT"><a href="${pageContext.request.contextPath}/jsp2/about.jsp" title="关于我们">关于我们<span>about us</span></a></div>
+      <div class="positionCon circleT"><a href="${pageContext.request.contextPath}/jsp2/lianxiwomen.jsp" title="联系我们">联系我们<span>contact us</span></a></div>
     </div>
   </div>
   <!-- end ccbd--> 

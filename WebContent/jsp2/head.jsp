@@ -11,9 +11,8 @@
         </marquee>
       </div>
       <div class="search">
-        <form  name="formsearch" action="/plus/search.php">
-          <input type="hidden" name="kwtype" value="0" />
-          <input type="text" class="text" value="请输入搜索关键词" name="q" id="q" onFocus="this.value=''" onBlur="if(!value){value=defaultValue}"  />
+        <form  name="formsearch" action="${pageContext.request.contextPath}/car2?method=findByPage" method="post">
+          <input type="text" class="text" placeholder="请输入品牌或车系" value="" name="search_key" id="searchInput" onFocus="this.value=''" />
           <input class="btnSubmit" type="submit" value="" >
         </form>
       </div>
@@ -26,20 +25,20 @@
     
     <div class="toptel">
       <ul class="topNav" id="navUl">
-        <li><a href="${pageContext.request.contextPath}/jsp2/message.jsp">留言</a></li>
         <c:if test="${ empty user}">
 				<li><a
-					href="${pageContext.request.contextPath}/user2?method=loginUI">登录</a></li>
-				<li><a
 					href="${pageContext.request.contextPath}/user2?method=registerUI">注册</a></li>
-				<!-- <li><a href="cart.htm">购物车</a></li> -->
+				<li><a
+					href="${pageContext.request.contextPath}/user2?method=loginUI">登录/</a></li>
+				
 			</c:if>
 			<c:if test="${not empty user }">
-				<li>hello:${user.username}</li>
 				<li><a
 					href="${pageContext.request.contextPath}/user2?method=logout">logout</a></li>
-				<!-- <li><a href="cart.htm">购物车</a></li> -->
+				<li>hello:${user.username}/</li>
+				
 			</c:if>
+        <li><a href="${pageContext.request.contextPath}/jsp2/message.jsp">留言/</a></li>
       </ul>
 
       <!-- end topNav--> 
@@ -56,7 +55,7 @@
     <div class="navbd">
       <ul class="nav" id="nav">
         <li><a href="${pageContext.request.contextPath}" >网站首页</a></li>
-        <li><a href="${pageContext.request.contextPath}/jsp2/about.jsp/">关于我们</a>
+        <li><a href="${pageContext.request.contextPath}/jsp2/about.jsp">关于我们</a>
           <div id="navChild"> 
           
           </div>
@@ -110,7 +109,7 @@
       </div>
     </div>
   </div>
-  <div class="logo"> <a href="/" title="来取车"><img src="${pageContext.request.contextPath}/jsp2/style/images/logobg.gif" alt="来取车" ></a> </div>
+  <div class="logo"> <a href="${pageContext.request.contextPath}" title="来取车"><img src="${pageContext.request.contextPath}/jsp2/style/images/logobg.gif" alt="来取车" ></a> </div>
   
   <!-- end logo--> 
   

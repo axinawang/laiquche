@@ -105,14 +105,15 @@ public class CarDaoImpl implements CarDao {
 				+ (series_id == -1 ? "series_id > ?" : "series_id = ? ") + " and "
 				+ "down_payment >= ? and down_payment<= ?" + " and " + "month_payment >= ? and month_payment<= ?"
 				+ " and "
-				+ "(brand_id in (SELECT brand_id from brand where brand_name like ?) or series_id in (SELECT series_id from series where series_name like ?))";
+				+ "(brand_id in (SELECT brand_id from brand where brand_name like ?) or series_id in (SELECT series_id from series where series_name like ?)) "
+				+ " limit ?,?";
 		logger.debug("findByPage sql:" + sql);
 		System.out.println("CarDaoImpl like :" + "%" + search_key + "%");
 		return qr.query(sql, new BeanListHandler<>(Car.class), brand_id, model_id, series_id, down_payment, // 如果首付是5万以上，首付的上限是一千万
 				(down_payment == -1.0 ? 10000000.0 : (down_payment == 50000 ? 10000000.0 : down_payment + 10000)),
 				month_payment, // 如果月供是5千以上，月供的上限是一千万
 				(month_payment == -1.0 ? 10000000.0 : (month_payment == 5000 ? 10000000.0 : month_payment + 1000)),
-				"%" + search_key + "%", "%" + search_key + "%");
+				"%" + search_key + "%", "%" + search_key + "%",(currPage-1)*pageSize,pageSize);
 	}
 	/**
 	 * 查询所有车子
@@ -1062,6 +1063,16 @@ public int getTotalCount(int brand_id, int model_id, int series_id, double down_
 			(month_payment == -1.0 ? 10000000.0 : (month_payment == 5000 ? 10000000.0 : month_payment + 1000)),
 			"%" + search_key + "%", "%" + search_key + "%")).intValue();
 	
+}
+
+/* (non-Javadoc)
+ * @see com.ynlqc.dao.CarDao#findHot(int)
+ */
+@Override
+public List<Car> findHot(int i) throws Exception {
+	QueryRunner qr = new QueryRunner(DataSourceUtils.getDataSource());
+	String sql = "select * from car where is_hot = 1 order by car_date desc limit ? ";
+	return qr.query(sql, new BeanListHandler<>(Car.class),i);
 }
 
 }

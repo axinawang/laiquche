@@ -25,20 +25,7 @@
 </script>
 <script language="JavaScript" type="text/javascript" src="${pageContext.request.contextPath}/jsp2/style/js/pic.js"></script>
 <script language="JavaScript" type="text/javascript" src="${pageContext.request.contextPath}/jsp2/style/js/inc.js"></script>
-<meta http-equiv="mobile-agent" content="format=xhtml;url=/m/list.php?tid=1">
-<script type="text/javascript">if(window.location.toString().indexOf('pref=padindex') != -1){}else{if(/AppleWebKit.*Mobile/i.test(navigator.userAgent) || (/MIDP|SymbianOS|NOKIA|SAMSUNG|LG|NEC|TCL|Alcatel|BIRD|DBTEL|Dopod|PHILIPS|HAIER|LENOVO|MOT-|Nokia|SonyEricsson|SIE-|Amoi|ZTE/.test(navigator.userAgent))){if(window.location.href.indexOf("?mobile")<0){try{if(/Android|Windows Phone|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)){window.location.href="/m/list.php?tid=1";}else if(/iPad/i.test(navigator.userAgent)){}else{}}catch(e){}}}}</script>
-<!--[if IE]>
-<script type="text/javascript" src="/style/js/pie.js"></script>
-<SCRIPT>
-    $(function() {
-        if (window.PIE) {
-            $('#focus .btn span').each(function() {
-                PIE.attach(this);
-            });
-        }
-    });
-</SCRIPT>
-<![endif]-->
+
 </head>
 <body>
 <jsp:include page="/jsp2/head.jsp"></jsp:include>
